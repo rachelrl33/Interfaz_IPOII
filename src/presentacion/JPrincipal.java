@@ -105,7 +105,7 @@ public class JPrincipal {
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 		
-		//PNAEL ENCABEZADO CON LOGO
+		//PANEL ENCABEZADO CON LOGO
 	
 		pnl_encabezado = new JPanel();
 		pnl_encabezado.setBackground(SystemColor.activeCaption);
@@ -159,7 +159,7 @@ public class JPrincipal {
 		gbc_lbl_avatar.gridy = 0;
 		pnl_encabezado.add(lbl_avatar, gbc_lbl_avatar);
 		
-		lbl_NombreDelNodo = new JLabel("  Nombre del Nodo");
+		lbl_NombreDelNodo = new JLabel("");
 		lbl_NombreDelNodo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		GridBagConstraints gbc_lbl_NombreDelNodo = new GridBagConstraints();
 		gbc_lbl_NombreDelNodo.anchor = GridBagConstraints.WEST;
@@ -211,13 +211,12 @@ public class JPrincipal {
 			new DefaultMutableTreeNode("Mi zona de trabajo") {
 				{
 					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("Calendario");
-						node_1.add(new DefaultMutableTreeNode("Deadlines"));
-					add(node_1);
 					node_1 = new DefaultMutableTreeNode("Proyectos");
 						node_1.add(new DefaultMutableTreeNode("p1"));
 					add(node_1);
-					add(new DefaultMutableTreeNode("Usuarios"));
+					node_1 = new DefaultMutableTreeNode("Usuarios");
+					add(node_1);
+					add(new DefaultMutableTreeNode("Enviar mensaje"));
 				}
 			}
 		));
@@ -256,11 +255,7 @@ public class JPrincipal {
 
 		pnl_Usuarios = new pnl_Usuarios();
 		pnl_contenedorCard.add(pnl_Usuarios, "Usuarios");
-		/*
-		pnl_Calendario = new pnl_Calendario(u);
-		pnl_contenedorCard.add(pnl_MisPlaylists, "Calendario");
-		*/
-		
+
 		
 			
 	}
@@ -277,25 +272,32 @@ public class JPrincipal {
 
 			String nodo = (e.getPath().getLastPathComponent()).toString();
 			switch (nodo){
-			case "Calendario": 
 			case "Proyectos": 
+				lbl_NombreDelNodo.setText("Proyectos");
+				break;
 			case "Usuarios": 
-				((CardLayout) pnl_contenedorCard.getLayout()).show(pnl_contenedorCard, nodo);
-			
+				lbl_NombreDelNodo.setText("Usuarios");
+				break;
+			}
+			if (nodo=="Enviar mensaje") {
+				JEnviar_Mensaje window = new JEnviar_Mensaje();
+				JFrame frame = new JFrame();
+				window.frame.setVisible(true);
+			}else {
+			((CardLayout) pnl_contenedorCard.getLayout()).show(pnl_contenedorCard, nodo);
+			}
 			
 			
 		}
 	}
 	
 	
-	
-}
 	//OYENTE CERRAR SESION
 	private class BtnCerrarSesionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//Muestra la pantalla de LogIn
 			JLogin window = new JLogin();
-			JFrame frame1 = new JFrame();
+			JFrame frame = new JFrame();
 
 			//Dialogo de confimación 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres cerrar la sesión?", "Cerrar sesión", JOptionPane.OK_CANCEL_OPTION);

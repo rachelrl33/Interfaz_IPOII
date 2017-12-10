@@ -37,6 +37,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class JLogin {
 
@@ -62,6 +64,8 @@ public class JLogin {
     private JButton btnSalir;
     private JLabel lbl_WarningC;
     private JLabel lbl_WarningUs;
+    private JComboBox comboBox;
+    private JLabel lbl_world;
 	/**
 	 * Launch the application.
 	 */
@@ -113,7 +117,7 @@ public class JLogin {
 		
 		lbl_Usuario = new JLabel("Usuario:");
 		lbl_Usuario.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lbl_Usuario.setBounds(95, 208, 71, 21);
+		lbl_Usuario.setBounds(87, 228, 71, 21);
 		pnlUser.add(lbl_Usuario);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -121,38 +125,52 @@ public class JLogin {
 		btnAceptar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAceptar.setForeground(SystemColor.desktop);
 		btnAceptar.setBackground(new Color(153, 180, 209));//2b78e4
-		btnAceptar.setBounds(224, 334, 106, 43);
+		btnAceptar.setBounds(216, 354, 106, 43);
 		btnAceptar.addActionListener(new BtnSiguienteActionListener());
 		pnlUser.add(btnAceptar);
 		
 		txtUser = new JTextField();
 		txtUser.addActionListener(new TxtUserActionListener());
 		txtUser.addFocusListener(new FieldFocusListener());
-		txtUser.setBounds(95, 239, 235, 27);
+		txtUser.setBounds(87, 259, 235, 27);
 		pnlUser.add(txtUser);
 		txtUser.setColumns(10);
 		
 		lbl_Logo = new JLabel("");
 		lbl_Logo.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Logo.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/logo2.png")));
-		lbl_Logo.setBounds(119, 62, 179, 111);
+		lbl_Logo.setBounds(115, 92, 179, 111);
 		pnlUser.add(lbl_Logo);
 		
 		lbl_ErrorUser = new JLabel("");
-		lbl_ErrorUser.setBounds(99, 281, 231, 14);
+		lbl_ErrorUser.setBounds(91, 301, 231, 14);
 		pnlUser.add(lbl_ErrorUser);
 		
 		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new BtnSalirActionListener());
 		btnSalir.setForeground(Color.BLACK);
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSalir.setBackground(Color.WHITE);
-		btnSalir.setBounds(95, 334, 106, 43);
+		btnSalir.setBounds(87, 354, 106, 43);
 		pnlUser.add(btnSalir);
 		
 		lbl_WarningUs = new JLabel("");
 		lbl_WarningUs.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warining.png")));
-		lbl_WarningUs.setBounds(334, 245, 46, 14);
+		lbl_WarningUs.setBounds(326, 265, 46, 14);
 		pnlUser.add(lbl_WarningUs);
+		
+		comboBox = new JComboBox();
+
+		//comboBox.setRenderer(new RenderComboIdiomas());
+		comboBox.setBounds(299, 22, 106, 20);
+		pnlUser.add(comboBox);
+		
+		
+		lbl_world = new JLabel("");
+		lbl_world.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl_world.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/earth.png")));
+		lbl_world.setBounds(265, 22, 29, 27);
+		pnlUser.add(lbl_world);
 		
 		
 	//PANEL QUE CONTIENE INTRO. CONTRASEÑA
@@ -210,7 +228,6 @@ public class JLogin {
 		pnlPass.add(lbl_WarningC);
 		
 		
-	//CLASE DEL PANEL QUE CONTIENE REGISTRO DE NUEVO USUARIO
 
 	}
 
@@ -263,11 +280,19 @@ public class JLogin {
 			//Muestra la pantalla principal
 			JPrincipal window = new JPrincipal();
 			JFrame frame = new JFrame();
-			window.frame.setVisible(true);
+			frame.setVisible(false);
 
 
 
 
+
+			
+		}
+	}
+	private class BtnSalirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			
 			
 		}
 	}

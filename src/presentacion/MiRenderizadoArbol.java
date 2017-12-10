@@ -17,8 +17,8 @@ public class MiRenderizadoArbol extends DefaultTreeCellRenderer {
 		case "Mi zona de trabajo":
 			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("folder.png")));
 			break;
-		case "Calendario":
-			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("calen.png")));
+		case "Enviar mensaje":
+			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("letter.png")));
 			break;
 		case "Proyectos":
 			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("tasks.png")));

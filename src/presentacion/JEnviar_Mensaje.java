@@ -5,9 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.GridBagLayout;
@@ -18,16 +22,20 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class JEnviar_Mensaje {
 
-	private JFrame frame;
+	JFrame frame;
 	private JLabel lblEnviarMensaje;
 	private JLabel lblAsunto;
 	private JLabel lblAdjuntar;
 	private JTextField txtF_Asunto;
+	private static boolean b_asunto;
 	private JScrollPane scrollPane;
 	private JTextArea txtA_Mensaje;
 	private JButton btnAdjuntarArchivos;
@@ -36,7 +44,16 @@ public class JEnviar_Mensaje {
 	private JLabel lblAdjuntarArchivo;
 	private JLabel lblDestinatario;
 	private JTextField txtF_Dest;
+	private static boolean b_dest;
 	private JButton btnCancelar;
+	private JLabel lbl_WarningDest;
+	private JLabel lbl_WarningAsunt;
+	private JLabel lbl_ErrorDest;
+	
+	
+	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
+	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
 
 	/**
 	 * Launch the application.
@@ -70,7 +87,7 @@ public class JEnviar_Mensaje {
 		frame.setBounds(100, 100, 644, 451);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{43, 72, 0, 24, 73, 84, 47, 0, 66, 71, 34, 0};
+		gridBagLayout.columnWidths = new int[]{43, 72, 0, 24, 73, 84, 36, 0, 66, 71, 34, 0};
 		gridBagLayout.rowHeights = new int[]{23, 45, 0, 37, 42, 195, 19, 34, 32, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -96,6 +113,7 @@ public class JEnviar_Mensaje {
 		frame.getContentPane().add(lblDestinatario, gbc_lblDestinatario);
 		
 		txtF_Dest = new JTextField();
+		txtF_Dest.addKeyListener(new TxtF_destActionListener());
 		GridBagConstraints gbc_txtF_Dest = new GridBagConstraints();
 		gbc_txtF_Dest.gridwidth = 4;
 		gbc_txtF_Dest.insets = new Insets(0, 0, 5, 5);
@@ -104,6 +122,24 @@ public class JEnviar_Mensaje {
 		gbc_txtF_Dest.gridy = 2;
 		frame.getContentPane().add(txtF_Dest, gbc_txtF_Dest);
 		txtF_Dest.setColumns(10);
+		
+		lbl_WarningDest = new JLabel("");
+		GridBagConstraints gbc_lbl_WarningDest = new GridBagConstraints();
+		gbc_lbl_WarningDest.anchor = GridBagConstraints.WEST;
+		gbc_lbl_WarningDest.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_WarningDest.gridx = 6;
+		gbc_lbl_WarningDest.gridy = 2;
+		frame.getContentPane().add(lbl_WarningDest, gbc_lbl_WarningDest);
+		
+		lbl_ErrorDest = new JLabel("");
+		lbl_ErrorDest.setForeground(Color.RED);
+		GridBagConstraints gbc_lbl_ErrorDest = new GridBagConstraints();
+		gbc_lbl_ErrorDest.anchor = GridBagConstraints.WEST;
+		gbc_lbl_ErrorDest.gridwidth = 3;
+		gbc_lbl_ErrorDest.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_ErrorDest.gridx = 7;
+		gbc_lbl_ErrorDest.gridy = 2;
+		frame.getContentPane().add(lbl_ErrorDest, gbc_lbl_ErrorDest);
 		
 		lblAsunto = new JLabel("Asunto");
 		GridBagConstraints gbc_lblAsunto = new GridBagConstraints();
@@ -114,6 +150,7 @@ public class JEnviar_Mensaje {
 		frame.getContentPane().add(lblAsunto, gbc_lblAsunto);
 		
 		txtF_Asunto = new JTextField();
+		txtF_Dest.addKeyListener(new TxtF_asuntoActionListener());
 		GridBagConstraints gbc_txtF_Asunto = new GridBagConstraints();
 		gbc_txtF_Asunto.gridwidth = 4;
 		gbc_txtF_Asunto.fill = GridBagConstraints.HORIZONTAL;
@@ -122,6 +159,13 @@ public class JEnviar_Mensaje {
 		gbc_txtF_Asunto.gridy = 3;
 		frame.getContentPane().add(txtF_Asunto, gbc_txtF_Asunto);
 		txtF_Asunto.setColumns(10);
+		
+		lbl_WarningAsunt = new JLabel("");
+		GridBagConstraints gbc_lbl_WarningAsunt = new GridBagConstraints();
+		gbc_lbl_WarningAsunt.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_WarningAsunt.gridx = 6;
+		gbc_lbl_WarningAsunt.gridy = 3;
+		frame.getContentPane().add(lbl_WarningAsunt, gbc_lbl_WarningAsunt);
 		
 		lblAdjuntar = new JLabel("Mensaje");
 		GridBagConstraints gbc_lblAdjuntar = new GridBagConstraints();
@@ -181,6 +225,7 @@ public class JEnviar_Mensaje {
 		frame.getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 		btnEnviar = new JButton("Enviar");
+		btnEnviar.setEnabled(false);
 		btnEnviar.addActionListener(new BtnEnviarActionListener());
 		GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
 		gbc_btnEnviar.anchor = GridBagConstraints.EAST;
@@ -193,6 +238,40 @@ public class JEnviar_Mensaje {
 	
 	
 	
+	//---------------------------------------------------
+	//CONTROL DE FORMATOS Y VALIDEZ DE DATOS INTRODUCIDOS 
+	//---------------------------------------------------
+	
+	//EMAIL
+	private class TxtF_destActionListener extends KeyAdapter {
+		public void keyReleased(KeyEvent arg0) {
+			if(!txtF_Dest.getText().matches(EMAIL_PATTERN)) {
+				b_dest = false;
+				txtF_Dest.setBorder(bordeRojo); 
+				lbl_ErrorDest.setText("Este destinatario no existe");
+				lbl_WarningDest.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
+			}else {
+				b_dest = true;
+			}
+			if(b_dest && b_asunto /*&& b_mensaj*/) {
+				btnEnviar.setEnabled(true);
+			}
+		}
+	}
+	
+	//ASUNTO
+	private class TxtF_asuntoActionListener extends KeyAdapter {
+		public void keyReleased(KeyEvent arg0) {
+			if(txtF_Asunto.getText().length() < 0) {
+				b_asunto = false;
+			}else {
+				b_asunto = true;
+			}
+			if(b_dest && b_asunto) {
+				btnEnviar.setEnabled(true);
+			}
+		}
+	}
 	
 	
 	//--------------------------------------------

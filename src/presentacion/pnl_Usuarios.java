@@ -17,6 +17,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -178,6 +179,7 @@ public class pnl_Usuarios extends JPanel {
 		pnl_InfoUsuarios.add(lbl_NombreDeUsuario, gbc_lbl_NombreDeUsuario);
 		
 		btnEnviarMensaje = new JButton("");
+		btnEnviarMensaje.addActionListener(new BtnEnviarMensajeActionListener());
 		btnEnviarMensaje.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/email.png")));
 		GridBagConstraints gbc_btnEnviarMensaje = new GridBagConstraints();
 		gbc_btnEnviarMensaje.anchor = GridBagConstraints.SOUTH;
@@ -187,6 +189,7 @@ public class pnl_Usuarios extends JPanel {
 		pnl_InfoUsuarios.add(btnEnviarMensaje, gbc_btnEnviarMensaje);
 		
 		btnEditarUsuario = new JButton("");
+		btnEditarUsuario.addActionListener(new BtnEditarUsuarioActionListener());
 		btnEditarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/edit2.png")));
 		GridBagConstraints gbc_btnEditarUsuario = new GridBagConstraints();
 		gbc_btnEditarUsuario.insets = new Insets(0, 0, 5, 5);
@@ -325,18 +328,24 @@ public class pnl_Usuarios extends JPanel {
 	//                 OYENTES 
 	//--------------------------------------------
 	
+	
+	//AÑADIR USUARIO
 	private class BtnAnadirUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			Crear_EditarUsuario window = new Crear_EditarUsuario();
+			JFrame frame = new JFrame();
+			window.frame.setVisible(true);
+			
 			DefaultListModel modeloLista= (DefaultListModel) lst_Usuarios.getModel();
 			int indice = modeloLista.getSize();
-			modeloLista.addElement("Idioma " + (indice+1));
-			lst_Usuarios.setSelectedIndex(indice);
-			lst_Usuarios.ensureIndexIsVisible(indice);
+			//modeloLista.addElement("Idioma " + (indice+1));
+			//lst_Usuarios.setSelectedIndex(indice);
+			//lst_Usuarios.ensureIndexIsVisible(indice);
 
 		}
 	}
 
-	//OYENTE ELIMINAR USUARIO
+	//ELIMINAR USUARIO
 	private class BtnEliminarUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
@@ -349,4 +358,30 @@ public class pnl_Usuarios extends JPanel {
 			
 		}
 	}
+	
+	
+	//EDITAR USUARIO
+	private class BtnEditarUsuarioActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Crear_EditarUsuario window = new Crear_EditarUsuario();
+			JFrame frame = new JFrame();
+			window.frame.setVisible(true);
+		}
+	}
+	
+	
+	
+	//ENVIAR MENSAJE
+	private class BtnEnviarMensajeActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JEnviar_Mensaje window = new JEnviar_Mensaje();
+			JFrame frame = new JFrame();
+			window.frame.setVisible(true);
+		}
+	}
+	
+
+	
+	
+	
 }
