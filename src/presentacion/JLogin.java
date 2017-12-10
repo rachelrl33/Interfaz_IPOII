@@ -40,26 +40,28 @@ import java.util.logging.Logger;
 
 public class JLogin {
 
-	private JFrame frame;
+	JFrame frame;
 	static JPanel pnlLogin;
 	private JPanel pnlUser;
 	private JPanel pnlPass;
-	private JLabel lblUsuario;
+	private JLabel lbl_Usuario;
 	private JButton btnAceptar;
-	private JLabel lblContrasea;
+	private JLabel lbl_Contrasea;
 	private JButton btnAtras;
 	
 	private Color resaltado = new Color(229,243,255);
 	private JTextField txtUser;
-	private JLabel lblLogo;
+	private JLabel lbl_Logo;
 	private JPasswordField pfPass;
 	private JButton btnLogin;
 	private JLabel lblUsrLogeando;
-	private JLabel lblErrorUser;
-	private JLabel label;
+	private JLabel lbl_ErrorUser;
+	private JLabel lbl_avatar;
 
-    private JLabel loginStatus;
+    private JLabel lbl_loginStatus;
     private JButton btnSalir;
+    private JLabel lbl_WarningC;
+    private JLabel lbl_WarningUs;
 	/**
 	 * Launch the application.
 	 */
@@ -109,10 +111,10 @@ public class JLogin {
 		pnlLogin.add(pnlUser, "pnlUser");
 		pnlUser.setLayout(null);
 		
-		lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblUsuario.setBounds(95, 208, 71, 21);
-		pnlUser.add(lblUsuario);
+		lbl_Usuario = new JLabel("Usuario:");
+		lbl_Usuario.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lbl_Usuario.setBounds(95, 208, 71, 21);
+		pnlUser.add(lbl_Usuario);
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -130,15 +132,15 @@ public class JLogin {
 		pnlUser.add(txtUser);
 		txtUser.setColumns(10);
 		
-		lblLogo = new JLabel("");
-		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogo.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/logo2.png")));
-		lblLogo.setBounds(119, 62, 179, 111);
-		pnlUser.add(lblLogo);
+		lbl_Logo = new JLabel("");
+		lbl_Logo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_Logo.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/logo2.png")));
+		lbl_Logo.setBounds(119, 62, 179, 111);
+		pnlUser.add(lbl_Logo);
 		
-		lblErrorUser = new JLabel("");
-		lblErrorUser.setBounds(99, 281, 231, 14);
-		pnlUser.add(lblErrorUser);
+		lbl_ErrorUser = new JLabel("");
+		lbl_ErrorUser.setBounds(99, 281, 231, 14);
+		pnlUser.add(lbl_ErrorUser);
 		
 		btnSalir = new JButton("Salir");
 		btnSalir.setForeground(Color.BLACK);
@@ -147,6 +149,11 @@ public class JLogin {
 		btnSalir.setBounds(95, 334, 106, 43);
 		pnlUser.add(btnSalir);
 		
+		lbl_WarningUs = new JLabel("");
+		lbl_WarningUs.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warining.png")));
+		lbl_WarningUs.setBounds(334, 245, 46, 14);
+		pnlUser.add(lbl_WarningUs);
+		
 		
 	//PANEL QUE CONTIENE INTRO. CONTRASEÑA
 		pnlPass = new JPanel();
@@ -154,10 +161,10 @@ public class JLogin {
 		pnlLogin.add(pnlPass, "pnlPass");
 		pnlPass.setLayout(null);
 		
-		lblContrasea = new JLabel("Contraseña:");
-		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblContrasea.setBounds(109, 237, 93, 21);
-		pnlPass.add(lblContrasea);
+		lbl_Contrasea = new JLabel("Contraseña:");
+		lbl_Contrasea.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lbl_Contrasea.setBounds(92, 237, 93, 21);
+		pnlPass.add(lbl_Contrasea);
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -168,7 +175,7 @@ public class JLogin {
 		
 		pfPass = new JPasswordField();
 		pfPass.addFocusListener(new FieldFocusListener());
-		pfPass.setBounds(103, 269, 245, 27);
+		pfPass.setBounds(82, 269, 245, 27);
 		pnlPass.add(pfPass);
 		
 		btnLogin = new JButton("Iniciar sesión");
@@ -186,35 +193,43 @@ public class JLogin {
 		lblUsrLogeando.setBounds(92, 136, 254, 69);
 		pnlPass.add(lblUsrLogeando);
 		
-		label = new JLabel("");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/ag1.png")));
-		label.setBounds(188, 48, 81, 101);
-		pnlPass.add(label);
+		lbl_avatar = new JLabel("");
+		lbl_avatar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lbl_avatar.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/ag1.png")));
+		lbl_avatar.setBounds(188, 48, 81, 101);
+		pnlPass.add(lbl_avatar);
 		
-		loginStatus = new JLabel("");
-		loginStatus.setForeground(Color.RED);
-		loginStatus.setBounds(73, 318, 288, 14);
-		pnlPass.add(loginStatus);
+		lbl_loginStatus = new JLabel("");
+		lbl_loginStatus.setForeground(Color.RED);
+		lbl_loginStatus.setBounds(73, 318, 288, 14);
+		pnlPass.add(lbl_loginStatus);
+		
+		lbl_WarningC = new JLabel("");
+		lbl_WarningC.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warining.png")));
+		lbl_WarningC.setBounds(331, 275, 46, 14);
+		pnlPass.add(lbl_WarningC);
 		
 		
 	//CLASE DEL PANEL QUE CONTIENE REGISTRO DE NUEVO USUARIO
 
 	}
 
+	
+	//--------------------------------------------
+	//                 OYENTES 
+	//--------------------------------------------
+	
 	private class BtnSiguienteActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 
 					lblUsrLogeando.setText(txtUser.getText());
 					((CardLayout)pnlLogin.getLayout()).show(pnlLogin,"pnlPass");
-					lblErrorUser.setText("");
+					lbl_ErrorUser.setText("");
 		
 		}
 	}
 	
-	
-	
-	//OYENTES DE LOS BOTONES
+
 	private class BtnAtrasActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			((CardLayout)pnlLogin.getLayout()).show(pnlLogin,"pnlUser");
@@ -240,17 +255,17 @@ public class JLogin {
 			String nombreUsuario = txtUser.getText();
 			char[] contrasenaUsuario = pfPass.getPassword();
 			
-			loginStatus.setText("");
+			lbl_loginStatus.setText("");
 			//pfPass.setText(""); prueb
 			//txtUser.setText("");
-			lblErrorUser.setText("");
+			lbl_ErrorUser.setText("");
 
 			//Muestra la pantalla principal
 			JPrincipal window = new JPrincipal();
 			JFrame frame = new JFrame();
 			window.frame.setVisible(true);
-			
-			//Quita la pantalla de contraseña
+
+
 
 
 			

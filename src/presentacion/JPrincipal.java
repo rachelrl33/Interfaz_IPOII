@@ -21,6 +21,7 @@ import javax.swing.tree.TreeSelectionModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -30,6 +31,9 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 public class JPrincipal {
 
@@ -42,19 +46,22 @@ public class JPrincipal {
 	private JTree tree;
 	private JLabel lbl_logo;
 	private JLabel lbl_usuario;
-	private JLabel lblUltimaConexion;
+	private JLabel lbl_UltimaConexion;
 	private JButton btnCerrarSesion;
 	private JLabel lbl_avatar;
-	private JButton btn_ayuda;
-	private JLabel lblNombreDelNodo;
+	private JButton btnAyuda;
+	private JLabel lbl_NombreDelNodo;
 	private JPanel pnlBienvenida;
+	private JPanel pnl_Bienvenida;
 	private JLabel lblNewLabel;
+	private JLabel lbl_intro;
 	private JPanel pnl_Proyectos;
 	private JLabel label;
 	private JPanel pnl_Usuarios;
 	private JLabel label_1;
 	private JPanel pnl_Calendar;
 	private JPanel pnl_piePag;
+	
 
 	/**
 	 * Launch the application.
@@ -134,14 +141,14 @@ public class JPrincipal {
 		gbc_lbl_usuario.gridy = 1;
 		pnl_encabezado.add(lbl_usuario, gbc_lbl_usuario);
 		
-		lblUltimaConexion = new JLabel("Ultima conexion");
-		GridBagConstraints gbc_lblUltimaConexion = new GridBagConstraints();
-		gbc_lblUltimaConexion.gridwidth = 2;
-		gbc_lblUltimaConexion.anchor = GridBagConstraints.EAST;
-		gbc_lblUltimaConexion.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUltimaConexion.gridx = 4;
-		gbc_lblUltimaConexion.gridy = 2;
-		pnl_encabezado.add(lblUltimaConexion, gbc_lblUltimaConexion);
+		lbl_UltimaConexion = new JLabel("Ultima conexion");
+		GridBagConstraints gbc_lbl_UltimaConexion = new GridBagConstraints();
+		gbc_lbl_UltimaConexion.gridwidth = 2;
+		gbc_lbl_UltimaConexion.anchor = GridBagConstraints.EAST;
+		gbc_lbl_UltimaConexion.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_UltimaConexion.gridx = 4;
+		gbc_lbl_UltimaConexion.gridy = 2;
+		pnl_encabezado.add(lbl_UltimaConexion, gbc_lbl_UltimaConexion);
 		
 		lbl_avatar = new JLabel("");
 		lbl_avatar.setIcon(new ImageIcon(JPrincipal.class.getResource("/presentacion/ag1.png")));
@@ -152,16 +159,17 @@ public class JPrincipal {
 		gbc_lbl_avatar.gridy = 0;
 		pnl_encabezado.add(lbl_avatar, gbc_lbl_avatar);
 		
-		lblNombreDelNodo = new JLabel("  Nombre del Nodo");
-		lblNombreDelNodo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		GridBagConstraints gbc_lblNombreDelNodo = new GridBagConstraints();
-		gbc_lblNombreDelNodo.anchor = GridBagConstraints.WEST;
-		gbc_lblNombreDelNodo.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNombreDelNodo.gridx = 3;
-		gbc_lblNombreDelNodo.gridy = 3;
-		pnl_encabezado.add(lblNombreDelNodo, gbc_lblNombreDelNodo);
+		lbl_NombreDelNodo = new JLabel("  Nombre del Nodo");
+		lbl_NombreDelNodo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		GridBagConstraints gbc_lbl_NombreDelNodo = new GridBagConstraints();
+		gbc_lbl_NombreDelNodo.anchor = GridBagConstraints.WEST;
+		gbc_lbl_NombreDelNodo.insets = new Insets(0, 0, 0, 5);
+		gbc_lbl_NombreDelNodo.gridx = 3;
+		gbc_lbl_NombreDelNodo.gridy = 3;
+		pnl_encabezado.add(lbl_NombreDelNodo, gbc_lbl_NombreDelNodo);
 		
 		btnCerrarSesion = new JButton("Cerrar sesion");
+		btnCerrarSesion.addActionListener(new BtnCerrarSesionActionListener());
 		GridBagConstraints gbc_btnCerrarSesion = new GridBagConstraints();
 		gbc_btnCerrarSesion.anchor = GridBagConstraints.EAST;
 		gbc_btnCerrarSesion.gridwidth = 2;
@@ -170,13 +178,13 @@ public class JPrincipal {
 		gbc_btnCerrarSesion.gridy = 3;
 		pnl_encabezado.add(btnCerrarSesion, gbc_btnCerrarSesion);
 		
-		btn_ayuda = new JButton("Ayuda");
-		btn_ayuda.setIcon(null);
-		GridBagConstraints gbc_btn_ayuda = new GridBagConstraints();
-		gbc_btn_ayuda.anchor = GridBagConstraints.WEST;
-		gbc_btn_ayuda.gridx = 6;
-		gbc_btn_ayuda.gridy = 3;
-		pnl_encabezado.add(btn_ayuda, gbc_btn_ayuda);
+		btnAyuda = new JButton("Ayuda");
+		btnAyuda.setIcon(null);
+		GridBagConstraints gbc_btnAyuda = new GridBagConstraints();
+		gbc_btnAyuda.anchor = GridBagConstraints.WEST;
+		gbc_btnAyuda.gridx = 6;
+		gbc_btnAyuda.gridy = 3;
+		pnl_encabezado.add(btnAyuda, gbc_btnAyuda);
 		
 		
 		
@@ -226,12 +234,12 @@ public class JPrincipal {
 		splitPane.setRightComponent(pnl_contenedorCard);
 		pnl_contenedorCard.setLayout(new CardLayout(0, 0));
 		
-		pnlBienvenida = new JPanel();
-		pnl_contenedorCard.add(pnlBienvenida, "name_531829446263122");
+		pnl_Bienvenida = new JPanel();
+		pnl_contenedorCard.add(pnl_Bienvenida, "name_531829446263122");
 		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(JPrincipal.class.getResource("/presentacion/fondo2_edited.jpg")));
-		pnlBienvenida.add(lblNewLabel);
+		lbl_intro = new JLabel("");
+		lbl_intro.setIcon(new ImageIcon(JPrincipal.class.getResource("/presentacion/fondo2_edited.jpg")));
+		pnl_Bienvenida.add(lbl_intro);
 		
 		pnl_piePag = new JPanel();
 		pnl_piePag.setBackground(SystemColor.activeCaption);
@@ -241,13 +249,6 @@ public class JPrincipal {
 		gbc_pnl_piePag.gridx = 0;
 		gbc_pnl_piePag.gridy = 2;
 		frame.getContentPane().add(pnl_piePag, gbc_pnl_piePag);
-		
-		pnlBienvenida = new JPanel();
-		pnl_contenedorCard.add(pnlBienvenida, "name_531829446263122");
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(JPrincipal.class.getResource("/presentacion/fondo2_edited.jpg")));
-		pnlBienvenida.add(lblNewLabel);
 		
 		
 		pnl_Proyectos = new pnl_Proyectos();
@@ -264,6 +265,10 @@ public class JPrincipal {
 			
 	}
 
+	//--------------------------------------------
+	//                 OYENTES 
+	//--------------------------------------------
+	
 	
 	//OYENTE SELECCION DEL ARBOL
 	private class TreeTreeSelectionListener implements TreeSelectionListener {
@@ -285,5 +290,20 @@ public class JPrincipal {
 	
 	
 }
+	//OYENTE CERRAR SESION
+	private class BtnCerrarSesionActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			//Muestra la pantalla de LogIn
+			JLogin window = new JLogin();
+			JFrame frame1 = new JFrame();
+
+			//Dialogo de confimación 
+			int opcion = JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres cerrar la sesión?", "Cerrar sesión", JOptionPane.OK_CANCEL_OPTION);
+			if (opcion == 0) { 
+				window.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		}
+	}
 }
 
