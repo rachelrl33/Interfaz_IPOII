@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class pnl_Proyectos extends JPanel {
 	private JDesktopPane desktopPane;
@@ -34,6 +36,7 @@ public class pnl_Proyectos extends JPanel {
 	private JComboBox comboBox;
 	private JLabel lblCategoria;
 	private JComboBox comboBox_1;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the panel.
@@ -126,10 +129,10 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoTareas.gridy = 0;
 		desktopPane.add(pnl_InfoTareas, gbc_pnl_InfoTareas);
 		GridBagLayout gbl_pnl_InfoTareas = new GridBagLayout();
-		gbl_pnl_InfoTareas.columnWidths = new int[]{40, 0, 0, 0, 0, 0, 42, 0, 0, 17, 38, 0, 0, 0, 0, 0, 0, 0};
-		gbl_pnl_InfoTareas.rowHeights = new int[]{20, 0, 0, 0, 0, 0};
-		gbl_pnl_InfoTareas.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnl_InfoTareas.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnl_InfoTareas.columnWidths = new int[]{18, 0, 0, 0, 0, 0, 42, 0, 0, 17, 38, 0, 0, 0, 0, 0, 0, 0};
+		gbl_pnl_InfoTareas.rowHeights = new int[]{20, 0, 0, 0, 0, 0, 0};
+		gbl_pnl_InfoTareas.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnl_InfoTareas.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		pnl_InfoTareas.setLayout(gbl_pnl_InfoTareas);
 		
 		lblTareas = new JLabel("TAREAS");
@@ -209,6 +212,17 @@ public class pnl_Proyectos extends JPanel {
 		gbc_comboBox_1.gridx = 8;
 		gbc_comboBox_1.gridy = 3;
 		pnl_InfoTareas.add(comboBox_1, gbc_comboBox_1);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setViewportBorder(null);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 17;
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 5;
+		pnl_InfoTareas.add(scrollPane, gbc_scrollPane);
 	}
 
 }
