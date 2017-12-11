@@ -37,15 +37,13 @@ public class Crear_EditarProyecto extends JFrame {
 	private JTextField textField;
 	private JLabel lblFechaInicio;
 	private JFormattedTextField ftFechaInicio;
-	private JButton btnFechaInicio;
-	private JLabel lblFechaLmite;
+	private JLabel lblFechaLimite;
 	private JFormattedTextField ftFechaLimite;
-	private JButton btnFechaLimite;
 	private JLabel lblPrioridad;
 	private JComboBox cbPrioridad;
 	private JLabel lblEstado;
 	private JComboBox cbEstado;
-	private JButton btnAadirRecursos;
+	private JButton btnAnadirRecursos;
 	private JTextField textField_1;
 	private JScrollPane scrollPane;
 	private JTextArea txtDescripcion;
@@ -53,6 +51,8 @@ public class Crear_EditarProyecto extends JFrame {
 	private JButton btnAceptar;
 
 	private DateFormat formatoFecha = new SimpleDateFormat("dd--MMMM--yyyy");
+	private JLabel lblCal;
+	private JLabel lblCal2;
 	//private static final DateFormat df = new SimpleDateFormat("dd/mm/aaaa");
 	
 	/**
@@ -76,14 +76,14 @@ public class Crear_EditarProyecto extends JFrame {
 	 */
 	public Crear_EditarProyecto() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
-		setBounds(100, 100, 796, 419);
+		setBounds(100, 100, 796, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{42, 0, 39, 50, 47, 64, 86, 69, 51, 79, 69, 48, 0};
+		gbl_contentPane.rowHeights = new int[]{38, 0, 0, 0, 0, 0, 23, 0, 0, 29, 90, 26, 29, 9, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
@@ -105,17 +105,19 @@ public class Crear_EditarProyecto extends JFrame {
 		
 		lblFechaInicio = new JLabel("Fecha Inicio");
 		GridBagConstraints gbc_lblFechaInicio = new GridBagConstraints();
+		gbc_lblFechaInicio.anchor = GridBagConstraints.WEST;
 		gbc_lblFechaInicio.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFechaInicio.gridx = 6;
 		gbc_lblFechaInicio.gridy = 1;
 		contentPane.add(lblFechaInicio, gbc_lblFechaInicio);
 		
-		lblFechaLmite = new JLabel("Fecha Límite");
-		GridBagConstraints gbc_lblFechaLmite = new GridBagConstraints();
-		gbc_lblFechaLmite.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaLmite.gridx = 9;
-		gbc_lblFechaLmite.gridy = 1;
-		contentPane.add(lblFechaLmite, gbc_lblFechaLmite);
+		lblFechaLimite = new JLabel("Fecha Limite");
+		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
+		gbc_lblFechaLimite.anchor = GridBagConstraints.WEST;
+		gbc_lblFechaLimite.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaLimite.gridx = 9;
+		gbc_lblFechaLimite.gridy = 1;
+		contentPane.add(lblFechaLimite, gbc_lblFechaLimite);
 		
 		txtNombre = new JTextField();
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
@@ -155,16 +157,6 @@ public class Crear_EditarProyecto extends JFrame {
 		
 		contentPane.add(ftFechaInicio, gbc_ftFechaInicio);
 		
-		
-		btnFechaInicio = new JButton("");
-		btnFechaInicio.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/calen.png")));
-		GridBagConstraints gbc_btnFechaInicio = new GridBagConstraints();
-		gbc_btnFechaInicio.anchor = GridBagConstraints.WEST;
-		gbc_btnFechaInicio.insets = new Insets(0, 0, 5, 5);
-		gbc_btnFechaInicio.gridx = 7;
-		gbc_btnFechaInicio.gridy = 2;
-		contentPane.add(btnFechaInicio, gbc_btnFechaInicio);
-		
 		ftFechaLimite = new JFormattedTextField();
 		GridBagConstraints gbc_ftFechaLimite = new GridBagConstraints();
 		gbc_ftFechaLimite.insets = new Insets(0, 0, 5, 5);
@@ -182,16 +174,25 @@ public class Crear_EditarProyecto extends JFrame {
 		e.printStackTrace();
 		}
 		
+		lblCal = new JLabel("");
+		lblCal.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/calen.png")));
+		GridBagConstraints gbc_lblCal = new GridBagConstraints();
+		gbc_lblCal.anchor = GridBagConstraints.WEST;
+		gbc_lblCal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCal.gridx = 7;
+		gbc_lblCal.gridy = 2;
+		contentPane.add(lblCal, gbc_lblCal);
+		
 		contentPane.add(ftFechaLimite, gbc_ftFechaLimite);
 		
-		btnFechaLimite = new JButton("");
-		btnFechaLimite.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/calen.png")));
-		GridBagConstraints gbc_btnFechaLimite = new GridBagConstraints();
-		gbc_btnFechaLimite.anchor = GridBagConstraints.WEST;
-		gbc_btnFechaLimite.insets = new Insets(0, 0, 5, 5);
-		gbc_btnFechaLimite.gridx = 10;
-		gbc_btnFechaLimite.gridy = 2;
-		contentPane.add(btnFechaLimite, gbc_btnFechaLimite);
+		lblCal2 = new JLabel("");
+		lblCal2.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/calen.png")));
+		GridBagConstraints gbc_lblCal2 = new GridBagConstraints();
+		gbc_lblCal2.anchor = GridBagConstraints.WEST;
+		gbc_lblCal2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCal2.gridx = 10;
+		gbc_lblCal2.gridy = 2;
+		contentPane.add(lblCal2, gbc_lblCal2);
 		
 		lblUsuarioEncargado = new JLabel("Usuario Encargado");
 		GridBagConstraints gbc_lblUsuarioEncargado = new GridBagConstraints();
@@ -203,6 +204,7 @@ public class Crear_EditarProyecto extends JFrame {
 		
 		lblPrioridad = new JLabel("Prioridad");
 		GridBagConstraints gbc_lblPrioridad = new GridBagConstraints();
+		gbc_lblPrioridad.anchor = GridBagConstraints.WEST;
 		gbc_lblPrioridad.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPrioridad.gridx = 6;
 		gbc_lblPrioridad.gridy = 4;
@@ -210,6 +212,7 @@ public class Crear_EditarProyecto extends JFrame {
 		
 		lblEstado = new JLabel("Estado");
 		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
+		gbc_lblEstado.anchor = GridBagConstraints.WEST;
 		gbc_lblEstado.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEstado.gridx = 9;
 		gbc_lblEstado.gridy = 4;
@@ -236,7 +239,7 @@ public class Crear_EditarProyecto extends JFrame {
 		contentPane.add(cbPrioridad, gbc_cbPrioridad);
 		
 		cbEstado = new JComboBox();
-		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Inicio", "Desarrollo", "Testeo", "Completada"}));
+		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"En proceso", "En espera", "Terminada"}));
 		GridBagConstraints gbc_cbEstado = new GridBagConstraints();
 		gbc_cbEstado.gridwidth = 2;
 		gbc_cbEstado.insets = new Insets(0, 0, 5, 5);
@@ -245,13 +248,13 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_cbEstado.gridy = 5;
 		contentPane.add(cbEstado, gbc_cbEstado);
 		
-		btnAadirRecursos = new JButton("Añadir Recursos");
-		GridBagConstraints gbc_btnAadirRecursos = new GridBagConstraints();
-		gbc_btnAadirRecursos.anchor = GridBagConstraints.WEST;
-		gbc_btnAadirRecursos.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAadirRecursos.gridx = 1;
-		gbc_btnAadirRecursos.gridy = 7;
-		contentPane.add(btnAadirRecursos, gbc_btnAadirRecursos);
+		btnAnadirRecursos = new JButton("Anadir Recursos");
+		GridBagConstraints gbc_btnAnadirRecursos = new GridBagConstraints();
+		gbc_btnAnadirRecursos.anchor = GridBagConstraints.WEST;
+		gbc_btnAnadirRecursos.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnadirRecursos.gridx = 1;
+		gbc_btnAnadirRecursos.gridy = 7;
+		contentPane.add(btnAnadirRecursos, gbc_btnAnadirRecursos);
 		
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
