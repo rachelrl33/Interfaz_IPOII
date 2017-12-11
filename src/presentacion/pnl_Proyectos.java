@@ -17,6 +17,16 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.SwingConstants;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.awt.event.ActionEvent;
 
 public class pnl_Proyectos extends JPanel {
 	private JDesktopPane desktopPane;
@@ -37,6 +47,24 @@ public class pnl_Proyectos extends JPanel {
 	private JLabel lblCategoria;
 	private JComboBox comboBox_1;
 	private JScrollPane scrollPane;
+	private JButton btnEditarRecursos;
+	private JScrollPane scrollPane_1;
+	private JTextArea txtDescripcion;
+	private JLabel lblJefeDeProyecto;
+	private JTextField txtJefeProyecto;
+	private JLabel lblFechaInicio;
+	private JFormattedTextField formattedTextField;
+	private JLabel lblFechaLimite;
+	private JTextField textField;
+	private JButton btnFechaInicio;
+	private JButton btnFechaLimite;
+	private JLabel lblPrioridad;
+	private JTextField txtPrioridad;
+	private JLabel lblEstado_1;
+	private JTextField txtEstado;
+	private JLabel lblUsuariosAsociados;
+	private JScrollPane scrollPane_2;
+	private JList listUsuariosAsociados;
 
 	/**
 	 * Create the panel.
@@ -65,10 +93,10 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoProyecto.gridy = 0;
 		desktopPane.add(pnl_InfoProyecto, gbc_pnl_InfoProyecto);
 		GridBagLayout gbl_pnl_InfoProyecto = new GridBagLayout();
-		gbl_pnl_InfoProyecto.columnWidths = new int[]{21, 0, 0, 0, 0, 82, 63, 0, 73, 0, 0};
-		gbl_pnl_InfoProyecto.rowHeights = new int[]{19, 0, 0, 0, 0, 0};
+		gbl_pnl_InfoProyecto.columnWidths = new int[]{21, 0, 0, 62, 0, 82, 63, 96, 73, 0, 0};
+		gbl_pnl_InfoProyecto.rowHeights = new int[]{19, 0, 0, 0, 0, 19, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_pnl_InfoProyecto.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnl_InfoProyecto.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnl_InfoProyecto.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		pnl_InfoProyecto.setLayout(gbl_pnl_InfoProyecto);
 		
 		lblNombreDelProyecto = new JLabel("Nombre del proyecto");
@@ -81,6 +109,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblNombreDelProyecto, gbc_lblNombreDelProyecto);
 		
 		btnAnadirProyecto = new JButton("");
+		btnAnadirProyecto.addActionListener(new BtnAnadirProyectoActionListener());
 		btnAnadirProyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/add2.png")));
 		GridBagConstraints gbc_btnAnadirProyecto = new GridBagConstraints();
 		gbc_btnAnadirProyecto.anchor = GridBagConstraints.SOUTH;
@@ -115,12 +144,166 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lblIdDelProyecto.gridy = 2;
 		pnl_InfoProyecto.add(lblIdDelProyecto, gbc_lblIdDelProyecto);
 		
-		lblDescripcion = new JLabel("Descripcion");
+		btnEditarRecursos = new JButton("Editar recursos");
+		GridBagConstraints gbc_btnEditarRecursos = new GridBagConstraints();
+		gbc_btnEditarRecursos.gridwidth = 3;
+		gbc_btnEditarRecursos.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEditarRecursos.gridx = 6;
+		gbc_btnEditarRecursos.gridy = 3;
+		pnl_InfoProyecto.add(btnEditarRecursos, gbc_btnEditarRecursos);
+		
+		lblDescripcion = new JLabel("Descripción:");
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
-		gbc_lblDescripcion.insets = new Insets(0, 0, 0, 5);
+		gbc_lblDescripcion.anchor = GridBagConstraints.WEST;
+		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDescripcion.gridx = 1;
 		gbc_lblDescripcion.gridy = 4;
 		pnl_InfoProyecto.add(lblDescripcion, gbc_lblDescripcion);
+		
+		scrollPane_1 = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.gridheight = 2;
+		gbc_scrollPane_1.gridwidth = 8;
+		gbc_scrollPane_1.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.gridx = 1;
+		gbc_scrollPane_1.gridy = 5;
+		pnl_InfoProyecto.add(scrollPane_1, gbc_scrollPane_1);
+		
+		txtDescripcion = new JTextArea();
+		scrollPane_1.setViewportView(txtDescripcion);
+		
+		lblJefeDeProyecto = new JLabel("Jefe de Proyecto:");
+		GridBagConstraints gbc_lblJefeDeProyecto = new GridBagConstraints();
+		gbc_lblJefeDeProyecto.anchor = GridBagConstraints.EAST;
+		gbc_lblJefeDeProyecto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblJefeDeProyecto.gridx = 1;
+		gbc_lblJefeDeProyecto.gridy = 8;
+		pnl_InfoProyecto.add(lblJefeDeProyecto, gbc_lblJefeDeProyecto);
+		
+		txtJefeProyecto = new JTextField();
+		GridBagConstraints gbc_txtJefeProyecto = new GridBagConstraints();
+		gbc_txtJefeProyecto.gridwidth = 7;
+		gbc_txtJefeProyecto.insets = new Insets(0, 0, 5, 5);
+		gbc_txtJefeProyecto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtJefeProyecto.gridx = 2;
+		gbc_txtJefeProyecto.gridy = 8;
+		pnl_InfoProyecto.add(txtJefeProyecto, gbc_txtJefeProyecto);
+		txtJefeProyecto.setColumns(10);
+		
+		lblFechaInicio = new JLabel("Fecha Inicio:");
+		GridBagConstraints gbc_lblFechaInicio = new GridBagConstraints();
+		gbc_lblFechaInicio.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaInicio.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaInicio.gridx = 1;
+		gbc_lblFechaInicio.gridy = 10;
+		pnl_InfoProyecto.add(lblFechaInicio, gbc_lblFechaInicio);
+		
+		formattedTextField = new JFormattedTextField();
+		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+		gbc_formattedTextField.gridwidth = 2;
+		gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_formattedTextField.gridx = 2;
+		gbc_formattedTextField.gridy = 10;
+		pnl_InfoProyecto.add(formattedTextField, gbc_formattedTextField);
+		
+		btnFechaInicio = new JButton("");
+		btnFechaInicio.setHorizontalAlignment(SwingConstants.LEFT);
+		btnFechaInicio.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
+		GridBagConstraints gbc_btnFechaInicio = new GridBagConstraints();
+		gbc_btnFechaInicio.anchor = GridBagConstraints.WEST;
+		gbc_btnFechaInicio.insets = new Insets(0, 0, 5, 5);
+		gbc_btnFechaInicio.gridx = 4;
+		gbc_btnFechaInicio.gridy = 10;
+		pnl_InfoProyecto.add(btnFechaInicio, gbc_btnFechaInicio);
+		
+		lblFechaLimite = new JLabel("Fecha Límite:");
+		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
+		gbc_lblFechaLimite.anchor = GridBagConstraints.EAST;
+		gbc_lblFechaLimite.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechaLimite.gridx = 6;
+		gbc_lblFechaLimite.gridy = 10;
+		pnl_InfoProyecto.add(lblFechaLimite, gbc_lblFechaLimite);
+		
+		textField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 7;
+		gbc_textField.gridy = 10;
+		pnl_InfoProyecto.add(textField, gbc_textField);
+		textField.setColumns(10);
+		
+		btnFechaLimite = new JButton("");
+		btnFechaLimite.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
+		btnFechaLimite.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_btnFechaLimite = new GridBagConstraints();
+		gbc_btnFechaLimite.anchor = GridBagConstraints.WEST;
+		gbc_btnFechaLimite.insets = new Insets(0, 0, 5, 5);
+		gbc_btnFechaLimite.gridx = 8;
+		gbc_btnFechaLimite.gridy = 10;
+		pnl_InfoProyecto.add(btnFechaLimite, gbc_btnFechaLimite);
+		
+		lblPrioridad = new JLabel("Prioridad:");
+		lblPrioridad.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_lblPrioridad = new GridBagConstraints();
+		gbc_lblPrioridad.anchor = GridBagConstraints.EAST;
+		gbc_lblPrioridad.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPrioridad.gridx = 1;
+		gbc_lblPrioridad.gridy = 12;
+		pnl_InfoProyecto.add(lblPrioridad, gbc_lblPrioridad);
+		
+		txtPrioridad = new JTextField();
+		GridBagConstraints gbc_txtPrioridad = new GridBagConstraints();
+		gbc_txtPrioridad.gridwidth = 3;
+		gbc_txtPrioridad.insets = new Insets(0, 0, 5, 5);
+		gbc_txtPrioridad.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtPrioridad.gridx = 2;
+		gbc_txtPrioridad.gridy = 12;
+		pnl_InfoProyecto.add(txtPrioridad, gbc_txtPrioridad);
+		txtPrioridad.setColumns(10);
+		
+		lblEstado_1 = new JLabel("Estado:");
+		GridBagConstraints gbc_lblEstado_1 = new GridBagConstraints();
+		gbc_lblEstado_1.anchor = GridBagConstraints.EAST;
+		gbc_lblEstado_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEstado_1.gridx = 6;
+		gbc_lblEstado_1.gridy = 12;
+		pnl_InfoProyecto.add(lblEstado_1, gbc_lblEstado_1);
+		
+		txtEstado = new JTextField();
+		GridBagConstraints gbc_txtEstado = new GridBagConstraints();
+		gbc_txtEstado.gridwidth = 2;
+		gbc_txtEstado.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEstado.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtEstado.gridx = 7;
+		gbc_txtEstado.gridy = 12;
+		pnl_InfoProyecto.add(txtEstado, gbc_txtEstado);
+		txtEstado.setColumns(10);
+		
+		lblUsuariosAsociados = new JLabel("Usuarios Asociados:");
+		lblUsuariosAsociados.setFont(new Font("Tahoma", Font.BOLD, 16));
+		GridBagConstraints gbc_lblUsuariosAsociados = new GridBagConstraints();
+		gbc_lblUsuariosAsociados.gridwidth = 3;
+		gbc_lblUsuariosAsociados.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsuariosAsociados.gridx = 1;
+		gbc_lblUsuariosAsociados.gridy = 14;
+		pnl_InfoProyecto.add(lblUsuariosAsociados, gbc_lblUsuariosAsociados);
+		
+		scrollPane_2 = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_2 = new GridBagConstraints();
+		gbc_scrollPane_2.gridheight = 4;
+		gbc_scrollPane_2.gridwidth = 5;
+		gbc_scrollPane_2.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane_2.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_2.gridx = 1;
+		gbc_scrollPane_2.gridy = 15;
+		pnl_InfoProyecto.add(scrollPane_2, gbc_scrollPane_2);
+		
+		listUsuariosAsociados = new JList();
+		listUsuariosAsociados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane_2.setViewportView(listUsuariosAsociados);
 		
 		pnl_InfoTareas = new JPanel();
 		GridBagConstraints gbc_pnl_InfoTareas = new GridBagConstraints();
@@ -224,5 +407,21 @@ public class pnl_Proyectos extends JPanel {
 		gbc_scrollPane.gridy = 5;
 		pnl_InfoTareas.add(scrollPane, gbc_scrollPane);
 	}
+	
+	/*Listeners
+	 * 
+	 * 
+	 * */
 
+	
+	//btnAñadir
+	private class BtnAnadirProyectoActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			Crear_EditarProyecto frame = new Crear_EditarProyecto();
+			frame.setVisible(true);
+			//window = new Crear_EditarProyecto();
+			//JFrame frame = new JFrame();
+			//window.frame.setVisible(true);
+		}
+	}
 }
