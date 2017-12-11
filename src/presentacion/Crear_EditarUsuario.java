@@ -38,6 +38,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter; 
 import java.text.ParseException;
 import javax.swing.JMenuBar;
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
 
 public class Crear_EditarUsuario {
 
@@ -74,6 +76,7 @@ public class Crear_EditarUsuario {
 	private static JLabel lbl_WarningTel;
 	private static JLabel lbl_WarningNom;
 	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
+	private Border defaultB;
 	
 	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private JPanel panel;
@@ -104,20 +107,22 @@ public class Crear_EditarUsuario {
 
 	/**
 	 * Create the application.
+	 * @throws ParseException 
 	 */
-	public Crear_EditarUsuario() {
+	public Crear_EditarUsuario() throws ParseException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws ParseException 
 	 */
-	private void initialize() {
+	private void initialize() throws ParseException {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarUsuario.class.getResource("/presentacion/users.png")));
 		frame.setBounds(100, 100, 796, 419);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{39, 0, 61, 41, 16, 48, 0, 74, 0, 43, 98, 116, 72, 40, 0};
 		gridBagLayout.rowHeights = new int[]{24, 33, 27, 27, 19, 20, 0, 27, 41, 0, 0, 20, 0, 0};
@@ -161,6 +166,7 @@ public class Crear_EditarUsuario {
 		frame.getContentPane().add(lblNombre, gbc_lblNombre);
 		
 		txtF_nombre = new JTextField();
+		defaultB=txtF_nombre.getBorder();
 		txtF_nombre.addKeyListener(new TxtF_nombreActionListener());
 		GridBagConstraints gbc_txtF_nombre = new GridBagConstraints();
 		gbc_txtF_nombre.anchor = GridBagConstraints.NORTH;
@@ -174,7 +180,7 @@ public class Crear_EditarUsuario {
 		
 		lbl_WarningNom = new JLabel("");
 		GridBagConstraints gbc_lbl_WarningNom = new GridBagConstraints();
-		gbc_lbl_WarningNom.anchor = GridBagConstraints.WEST;
+		gbc_lbl_WarningNom.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lbl_WarningNom.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningNom.gridx = 9;
 		gbc_lbl_WarningNom.gridy = 2;
@@ -194,8 +200,17 @@ public class Crear_EditarUsuario {
 		gbc_lblTelefono.gridy = 3;
 		frame.getContentPane().add(lblTelefono, gbc_lblTelefono);
 		
-		ftxtF_telefono = new JFormattedTextField();
-		ftxtF_telefono.addKeyListener(new TxtF_telfActionListener());
+		
+		MaskFormatter formatoTelf;
+		try {
+			formatoTelf = new MaskFormatter("'####'-###'-###");
+			formatoTelf.setPlaceholderCharacter('X');
+			ftxtF_telefono = new JFormattedTextField(formatoTelf);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		GridBagConstraints gbc_ftxtF_telefono = new GridBagConstraints();
 		gbc_ftxtF_telefono.gridwidth = 2;
 		gbc_ftxtF_telefono.insets = new Insets(0, 0, 5, 5);
@@ -362,15 +377,15 @@ public class Crear_EditarUsuario {
 	private class TxtF_nombreActionListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
-			char c=e.getKeyChar(); 
-			if((txtF_nombre.getText().length() < 0)||(Character.isDigit(c))) { 
+			if(txtF_nombre.getText().length() > 0) {
+				b_nombre = true;
+				lbl_WarningNom.setIcon(null);
+				txtF_nombre.setBorder(defaultB);
+			}else {
 				b_nombre = false;
 				txtF_nombre.setBorder(bordeRojo); 
-				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
-			}else {
-				b_nombre = true;
+				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
 			}
-			
 			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
 			}
@@ -379,33 +394,20 @@ public class Crear_EditarUsuario {
 	
 	
 	//TELEFONO
-	private class TxtF_telfActionListener extends KeyAdapter {
-		@Override
-		public void keyReleased(KeyEvent e) {
-			char c = e.getKeyChar();
-			if(!Character.isDigit(c)){
-				b_telefono = false;
-				ftxtF_telefono.setBorder(bordeRojo); 
-				lbl_WarningTel.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
-			}else {
-				b_telefono = true;
-			}
-			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
-				btnAceptar.setEnabled(true);
-			}
-		}
-	}
+	
 	
 	
 	//EMAIL
 	private class TxtF_emailActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
-			if(!ftxtF_email.getText().matches(EMAIL_PATTERN)) {
+			if(ftxtF_email.getText().matches(EMAIL_PATTERN)) {
+				b_email = true;
+				lbl_WarningEm.setIcon(null);
+				ftxtF_email.setBorder(defaultB);
+			}else {
 				b_email = false;
 				ftxtF_email.setBorder(bordeRojo); 
-				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
-			}else {
-				b_email = true;
+				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
 			}
 			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
@@ -418,12 +420,14 @@ public class Crear_EditarUsuario {
 	//CONTRASEÑA
 	private class TxtF_passActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
-			if(pssF_contrasena.getPassword().length <0) {
+			if(pssF_contrasena.getPassword().length >0) {
+				b_pass = true;
+				lbl_WarningCo.setIcon(null);
+				pssF_contrasena.setBorder(defaultB);
+			}else {			
 				b_pass = false;
 				pssF_contrasena.setBorder(bordeRojo); 
-				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
-			}else {
-				b_pass = true;
+				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
 			}
 			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
@@ -436,6 +440,8 @@ public class Crear_EditarUsuario {
 		public void keyReleased(KeyEvent arg0) {
 			if((Arrays.equals(pssF_contrasena.getPassword(), pssF_contrasenaRep.getPassword()))) {
 				b_pass = true;
+				lbl_WarningCoR.setIcon(null);
+				pssF_contrasenaRep.setBorder(defaultB);
 			}else {
 				b_pass = false;
 				pssF_contrasenaRep.setBorder(bordeRojo); 

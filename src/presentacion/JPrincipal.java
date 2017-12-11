@@ -295,15 +295,14 @@ public class JPrincipal {
 	//OYENTE CERRAR SESION
 	private class BtnCerrarSesionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//Muestra la pantalla de LogIn
-			JLogin window = new JLogin();
-			JFrame frame = new JFrame();
-
 			//Dialogo de confimación 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres cerrar la sesión?", "Cerrar sesión", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
-				window.frame.setVisible(true);
+				JLogin window = new JLogin();
 				frame.setVisible(false);
+				JFrame frame = new JFrame();
+				window.frame.setVisible(true);
+				
 			}
 		}
 	}

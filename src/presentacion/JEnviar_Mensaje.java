@@ -65,6 +65,7 @@ public class JEnviar_Mensaje {
 				try {
 					JEnviar_Mensaje window = new JEnviar_Mensaje();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -86,7 +87,8 @@ public class JEnviar_Mensaje {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(JEnviar_Mensaje.class.getResource("/presentacion/email.png")));
 		frame.setBounds(100, 100, 644, 451);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{43, 72, 0, 24, 73, 84, 36, 0, 66, 71, 34, 0};
 		gridBagLayout.rowHeights = new int[]{23, 45, 0, 37, 42, 195, 19, 34, 32, 0};
@@ -165,6 +167,7 @@ public class JEnviar_Mensaje {
 		
 		lbl_WarningAsunt = new JLabel("");
 		GridBagConstraints gbc_lbl_WarningAsunt = new GridBagConstraints();
+		gbc_lbl_WarningAsunt.anchor = GridBagConstraints.WEST;
 		gbc_lbl_WarningAsunt.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningAsunt.gridx = 6;
 		gbc_lbl_WarningAsunt.gridy = 3;
@@ -248,15 +251,16 @@ public class JEnviar_Mensaje {
 	//EMAIL
 	private class TxtF_destActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
-			if(!txtF_Dest.getText().matches(EMAIL_PATTERN)) {
+			if(txtF_Dest.getText().matches(EMAIL_PATTERN)) {
+				b_dest = true;
+				lbl_ErrorDest.setText("");
+				lbl_WarningDest.setIcon(null);
+				txtF_Dest.setBorder(defaultB);
+			}else {
 				b_dest = false;
 				txtF_Dest.setBorder(bordeRojo); 
 				lbl_ErrorDest.setText("Este destinatario no existe");
 				lbl_WarningDest.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
-			}else {
-				b_dest = true;
-				lbl_WarningDest.setIcon(null);
-				txtF_Dest.setBorder(defaultB);
 			}
 			if(b_dest && b_asunto) {
 				btnEnviar.setEnabled(true);
@@ -267,10 +271,14 @@ public class JEnviar_Mensaje {
 	//ASUNTO
 	private class TxtF_asuntoActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
-			if(txtF_Asunto.getText().length() < 0) {
-				b_asunto = false;
-			}else {
+			if(txtF_Asunto.getText().length() > 0) {
 				b_asunto = true;
+				lbl_WarningAsunt.setIcon(null);
+				txtF_Asunto.setBorder(defaultB);
+			}else {
+				b_asunto = false;
+				txtF_Asunto.setBorder(bordeRojo); 
+				lbl_WarningAsunt.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
 			}
 			if(b_dest && b_asunto) {
 				btnEnviar.setEnabled(true);

@@ -26,6 +26,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -332,9 +333,16 @@ public class pnl_Usuarios extends JPanel {
 	//AÑADIR USUARIO
 	private class BtnAnadirUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			Crear_EditarUsuario window = new Crear_EditarUsuario();
-			JFrame frame = new JFrame();
-			window.frame.setVisible(true);
+			Crear_EditarUsuario window;
+			try {
+				window = new Crear_EditarUsuario();
+				JFrame frame = new JFrame();
+				window.frame.setVisible(true);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 			
 			DefaultListModel modeloLista= (DefaultListModel) lst_Usuarios.getModel();
 			int indice = modeloLista.getSize();
@@ -363,9 +371,16 @@ public class pnl_Usuarios extends JPanel {
 	//EDITAR USUARIO
 	private class BtnEditarUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Crear_EditarUsuario window = new Crear_EditarUsuario();
-			JFrame frame = new JFrame();
-			window.frame.setVisible(true);
+			Crear_EditarUsuario window;
+			try {
+				window = new Crear_EditarUsuario();
+				JFrame frame = new JFrame();
+				window.frame.setVisible(true);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		}
 	}
 	

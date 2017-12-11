@@ -295,9 +295,7 @@ public class JLogin {
 	}
 	private class BtnSalirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
-			
-			
+			frame.setVisible(false);
 		}
 	}
 }
