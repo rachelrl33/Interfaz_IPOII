@@ -65,8 +65,8 @@ public class pnl_Proyectos extends JPanel {
 	private JLabel lblUsuariosAsociados;
 	private JScrollPane scrollPane_2;
 	private JList listUsuariosAsociados;
-	private JButton btn_FechaI;
-	private JButton btn_FechaL;
+	private JLabel lbl_Cal;
+	private JLabel lbl_Cal2;
 
 	/**
 	 * Create the panel.
@@ -96,7 +96,7 @@ public class pnl_Proyectos extends JPanel {
 		desktopPane.add(pnl_InfoProyecto, gbc_pnl_InfoProyecto);
 		GridBagLayout gbl_pnl_InfoProyecto = new GridBagLayout();
 		gbl_pnl_InfoProyecto.columnWidths = new int[]{23, 0, 75, 62, 33, 60, 75, 51, 17, 0};
-		gbl_pnl_InfoProyecto.rowHeights = new int[]{24, 0, 0, 32, 0, 45, 44, 42, 17, 44, 0, 0, 0, 0, 63, 17, 0};
+		gbl_pnl_InfoProyecto.rowHeights = new int[]{24, 0, 0, 32, 0, 45, 44, 42, 17, 24, 0, 0, 0, 0, 63, 17, 0};
 		gbl_pnl_InfoProyecto.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnl_InfoProyecto.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnl_InfoProyecto.setLayout(gbl_pnl_InfoProyecto);
@@ -212,14 +212,14 @@ public class pnl_Proyectos extends JPanel {
 		gbc_formattedTextField.gridy = 7;
 		pnl_InfoProyecto.add(formattedTextField, gbc_formattedTextField);
 		
-		btn_FechaI = new JButton("");
-		btn_FechaI.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
-		GridBagConstraints gbc_btn_FechaI = new GridBagConstraints();
-		gbc_btn_FechaI.anchor = GridBagConstraints.WEST;
-		gbc_btn_FechaI.insets = new Insets(0, 0, 5, 5);
-		gbc_btn_FechaI.gridx = 3;
-		gbc_btn_FechaI.gridy = 7;
-		pnl_InfoProyecto.add(btn_FechaI, gbc_btn_FechaI);
+		lbl_Cal = new JLabel("");
+		lbl_Cal.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
+		GridBagConstraints gbc_lbl_Cal = new GridBagConstraints();
+		gbc_lbl_Cal.anchor = GridBagConstraints.WEST;
+		gbc_lbl_Cal.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_Cal.gridx = 3;
+		gbc_lbl_Cal.gridy = 7;
+		pnl_InfoProyecto.add(lbl_Cal, gbc_lbl_Cal);
 		
 		lblFechaLimite = new JLabel("Fecha Limite:");
 		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
@@ -238,14 +238,14 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
-		btn_FechaL = new JButton("");
-		btn_FechaL.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
-		GridBagConstraints gbc_btn_FechaL = new GridBagConstraints();
-		gbc_btn_FechaL.anchor = GridBagConstraints.WEST;
-		gbc_btn_FechaL.insets = new Insets(0, 0, 5, 5);
-		gbc_btn_FechaL.gridx = 7;
-		gbc_btn_FechaL.gridy = 7;
-		pnl_InfoProyecto.add(btn_FechaL, gbc_btn_FechaL);
+		lbl_Cal2 = new JLabel("");
+		lbl_Cal2.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
+		GridBagConstraints gbc_lbl_Cal2 = new GridBagConstraints();
+		gbc_lbl_Cal2.anchor = GridBagConstraints.WEST;
+		gbc_lbl_Cal2.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_Cal2.gridx = 7;
+		gbc_lbl_Cal2.gridy = 7;
+		pnl_InfoProyecto.add(lbl_Cal2, gbc_lbl_Cal2);
 		
 		lblPrioridad = new JLabel("Prioridad:");
 		lblPrioridad.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -285,8 +285,9 @@ public class pnl_Proyectos extends JPanel {
 		txtEstado.setColumns(10);
 		
 		lblUsuariosAsociados = new JLabel("Usuarios Asociados:");
-		lblUsuariosAsociados.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblUsuariosAsociados.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		GridBagConstraints gbc_lblUsuariosAsociados = new GridBagConstraints();
+		gbc_lblUsuariosAsociados.anchor = GridBagConstraints.WEST;
 		gbc_lblUsuariosAsociados.gridwidth = 3;
 		gbc_lblUsuariosAsociados.insets = new Insets(0, 0, 5, 5);
 		gbc_lblUsuariosAsociados.gridx = 2;

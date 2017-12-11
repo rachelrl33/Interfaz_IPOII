@@ -20,11 +20,15 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.awt.event.ActionEvent;
 
 public class Crear_EditarProyecto extends JFrame {
 
@@ -44,7 +48,7 @@ public class Crear_EditarProyecto extends JFrame {
 	private JLabel lblEstado;
 	private JComboBox cbEstado;
 	private JButton btnAnadirRecursos;
-	private JTextField textField_1;
+	private JTextField txtF_Adjunto;
 	private JScrollPane scrollPane;
 	private JTextArea txtDescripcion;
 	private JButton btnCancelar;
@@ -256,15 +260,15 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_btnAnadirRecursos.gridy = 7;
 		contentPane.add(btnAnadirRecursos, gbc_btnAnadirRecursos);
 		
-		textField_1 = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.gridwidth = 4;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 8;
-		contentPane.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		txtF_Adjunto = new JTextField();
+		GridBagConstraints gbc_txtF_Adjunto = new GridBagConstraints();
+		gbc_txtF_Adjunto.gridwidth = 4;
+		gbc_txtF_Adjunto.insets = new Insets(0, 0, 5, 5);
+		gbc_txtF_Adjunto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtF_Adjunto.gridx = 1;
+		gbc_txtF_Adjunto.gridy = 8;
+		contentPane.add(txtF_Adjunto, gbc_txtF_Adjunto);
+		txtF_Adjunto.setColumns(10);
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -293,5 +297,7 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_btnAceptar.gridy = 12;
 		contentPane.add(btnAceptar, gbc_btnAceptar);
 	}
+
+	
 
 }
