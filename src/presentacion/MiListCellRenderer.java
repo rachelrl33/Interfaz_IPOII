@@ -32,8 +32,7 @@ class MiListCellRenderer extends DefaultListCellRenderer {
 	}
 	
 	
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean hasFocus) 
-	{
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean hasFocus) {
 		JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, hasFocus);
 		if (list.getModel().getElementAt(index) == "Raquel Ramos") {
 			renderer.setIcon(iconoUser7);

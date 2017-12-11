@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
+import javax.swing.border.*;
 
 
 import javax.swing.JScrollPane;
@@ -44,6 +44,7 @@ public class JEnviar_Mensaje {
 	private JLabel lblAdjuntarArchivo;
 	private JLabel lblDestinatario;
 	private JTextField txtF_Dest;
+	private Border defaultB;
 	private static boolean b_dest;
 	private JButton btnCancelar;
 	private JLabel lbl_WarningDest;
@@ -150,6 +151,8 @@ public class JEnviar_Mensaje {
 		frame.getContentPane().add(lblAsunto, gbc_lblAsunto);
 		
 		txtF_Asunto = new JTextField();
+		
+		defaultB=txtF_Asunto.getBorder();
 		txtF_Dest.addKeyListener(new TxtF_asuntoActionListener());
 		GridBagConstraints gbc_txtF_Asunto = new GridBagConstraints();
 		gbc_txtF_Asunto.gridwidth = 4;
@@ -252,8 +255,10 @@ public class JEnviar_Mensaje {
 				lbl_WarningDest.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
 			}else {
 				b_dest = true;
+				lbl_WarningDest.setIcon(null);
+				txtF_Dest.setBorder(defaultB);
 			}
-			if(b_dest && b_asunto /*&& b_mensaj*/) {
+			if(b_dest && b_asunto) {
 				btnEnviar.setEnabled(true);
 			}
 		}
@@ -272,6 +277,8 @@ public class JEnviar_Mensaje {
 			}
 		}
 	}
+	
+	
 	
 	
 	//--------------------------------------------

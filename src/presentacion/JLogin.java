@@ -38,7 +38,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
 public class JLogin {
 
@@ -155,21 +157,23 @@ public class JLogin {
 		pnlUser.add(btnSalir);
 		
 		lbl_WarningUs = new JLabel("");
-		lbl_WarningUs.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warining.png")));
+		lbl_WarningUs.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warning.png")));
 		lbl_WarningUs.setBounds(326, 265, 46, 14);
 		pnlUser.add(lbl_WarningUs);
 		
 		comboBox = new JComboBox();
-
-		//comboBox.setRenderer(new RenderComboIdiomas());
-		comboBox.setBounds(299, 22, 106, 20);
+		comboBox.addItem("Espanol");
+		comboBox.addItem("Ingles");
+		
+		comboBox.setRenderer(new RenderComboIdiomas());
+		comboBox.setBounds(304, 21, 106, 20);
 		pnlUser.add(comboBox);
 		
 		
 		lbl_world = new JLabel("");
 		lbl_world.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbl_world.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/earth.png")));
-		lbl_world.setBounds(265, 22, 29, 27);
+		lbl_world.setBounds(265, 21, 29, 21);
 		pnlUser.add(lbl_world);
 		
 		
@@ -223,7 +227,7 @@ public class JLogin {
 		pnlPass.add(lbl_loginStatus);
 		
 		lbl_WarningC = new JLabel("");
-		lbl_WarningC.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warining.png")));
+		lbl_WarningC.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warning.png")));
 		lbl_WarningC.setBounds(331, 275, 46, 14);
 		pnlPass.add(lbl_WarningC);
 		
