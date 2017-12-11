@@ -55,7 +55,7 @@ public class pnl_Proyectos extends JPanel {
 		gbl_desktopPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_desktopPane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		desktopPane.setLayout(gbl_desktopPane);
-		
+		 
 		pnl_InfoProyecto = new JPanel();
 		pnl_InfoProyecto.setBackground(new Color(211, 211, 211));
 		GridBagConstraints gbc_pnl_InfoProyecto = new GridBagConstraints();
