@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 public class pnl_Proyectos extends JPanel {
 	private JDesktopPane desktopPane;
@@ -67,6 +68,7 @@ public class pnl_Proyectos extends JPanel {
 	private JList listUsuariosAsociados;
 	private JLabel lbl_Cal;
 	private JLabel lbl_Cal2;
+	private JPanel pnlTareas;
 
 	/**
 	 * Create the panel.
@@ -408,6 +410,18 @@ public class pnl_Proyectos extends JPanel {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 5;
 		pnl_InfoTareas.add(scrollPane, gbc_scrollPane);
+		
+		pnlTareas = new JPanel();
+		pnlTareas.setBorder(new TitledBorder(null, "Listado de tareas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane.setViewportView(pnlTareas);
+		pnlTareas.setLayout(new GridLayout(0, 1, 0, 0));
+		for(int i=0; i<3; i++)
+			pnlTareas.add(new pnlReutilizableTarea());
+		
+		//prueba
+		/*pnlTareas.add(new pnlReutilizableTarea());
+		pnlTareas.repaint();
+		pnlTareas.revalidate();*/
 	}
 	
 	/*Listeners
