@@ -35,7 +35,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
-import javax.swing.text.MaskFormatter; 
+import javax.swing.text.MaskFormatter;
+
+import dominio.Usuario;
+
 import java.text.ParseException;
 import javax.swing.JMenuBar;
 import javax.swing.text.MaskFormatter;
@@ -500,8 +503,10 @@ public class Crear_EditarUsuario {
 	
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			frame.setVisible(false);
+			//Crear o modificar el usuario
+			Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
+			//Añadir ese usuario a la lista 
 			JOptionPane.showMessageDialog(frame, "Usuario creado/editado correctamente", "Confirmación", JOptionPane.PLAIN_MESSAGE);
 			}
 		}

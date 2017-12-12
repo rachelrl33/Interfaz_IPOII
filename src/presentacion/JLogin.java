@@ -31,6 +31,8 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import dominio.Usuario;
+
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
@@ -281,8 +283,9 @@ public class JLogin {
 			//txtUser.setText("");
 			lbl_ErrorUser.setText("");
 
+			Usuario user = new Usuario (null,nombreUsuario,null,null,null, null, null);
 			//Muestra la pantalla principal
-			JPrincipal window = new JPrincipal();
+			JPrincipal window = new JPrincipal(/*user*/);
 			JFrame frame = new JFrame();
 			frame.setVisible(false);
 

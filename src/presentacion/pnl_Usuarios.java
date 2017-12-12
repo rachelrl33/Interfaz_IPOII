@@ -132,6 +132,7 @@ public class pnl_Usuarios extends JPanel {
 		
 		
 		lst_Usuarios = new JList();
+		lst_Usuarios.addListSelectionListener(new Lst_UsuariosListSelectionListener());
 		lst_Usuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		lst_Usuarios.setCellRenderer(new MiListCellRenderer());
@@ -155,9 +156,9 @@ public class pnl_Usuarios extends JPanel {
 		gbc_pnl_InfoUsuarios.gridy = 0;
 		add(pnl_InfoUsuarios, gbc_pnl_InfoUsuarios);
 		GridBagLayout gbl_pnl_InfoUsuarios = new GridBagLayout();
-		gbl_pnl_InfoUsuarios.columnWidths = new int[]{53, 56, 41, 0, 125, 99, 97, 32, 46, 41, 0, 0, 0};
+		gbl_pnl_InfoUsuarios.columnWidths = new int[]{53, 56, 41, 118, 0, 125, 99, 97, 32, 46, 41, 53, 36, 0};
 		gbl_pnl_InfoUsuarios.rowHeights = new int[]{24, 0, 0, 0, 30, 0, 52, 59, 40, 0, 183, 35, 0};
-		gbl_pnl_InfoUsuarios.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnl_InfoUsuarios.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnl_InfoUsuarios.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		pnl_InfoUsuarios.setLayout(gbl_pnl_InfoUsuarios);
 		
@@ -171,9 +172,10 @@ public class pnl_Usuarios extends JPanel {
 		gbc_lbl_Avatar.gridy = 1;
 		pnl_InfoUsuarios.add(lbl_Avatar, gbc_lbl_Avatar);
 		
-		lbl_NombreDeUsuario = new JLabel("Nombre de usuario");
+		lbl_NombreDeUsuario = new JLabel("");
 		lbl_NombreDeUsuario.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lbl_NombreDeUsuario = new GridBagConstraints();
+		gbc_lbl_NombreDeUsuario.anchor = GridBagConstraints.WEST;
 		gbc_lbl_NombreDeUsuario.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_NombreDeUsuario.gridx = 3;
 		gbc_lbl_NombreDeUsuario.gridy = 1;
@@ -185,7 +187,7 @@ public class pnl_Usuarios extends JPanel {
 		GridBagConstraints gbc_btnEnviarMensaje = new GridBagConstraints();
 		gbc_btnEnviarMensaje.anchor = GridBagConstraints.SOUTH;
 		gbc_btnEnviarMensaje.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEnviarMensaje.gridx = 8;
+		gbc_btnEnviarMensaje.gridx = 9;
 		gbc_btnEnviarMensaje.gridy = 1;
 		pnl_InfoUsuarios.add(btnEnviarMensaje, gbc_btnEnviarMensaje);
 		
@@ -194,7 +196,7 @@ public class pnl_Usuarios extends JPanel {
 		btnEditarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/edit2.png")));
 		GridBagConstraints gbc_btnEditarUsuario = new GridBagConstraints();
 		gbc_btnEditarUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditarUsuario.gridx = 9;
+		gbc_btnEditarUsuario.gridx = 10;
 		gbc_btnEditarUsuario.gridy = 1;
 		pnl_InfoUsuarios.add(btnEditarUsuario, gbc_btnEditarUsuario);
 		
@@ -203,7 +205,7 @@ public class pnl_Usuarios extends JPanel {
 		btnEliminarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/rubbish-bin2.png")));
 		GridBagConstraints gbc_btnEliminarUsuario = new GridBagConstraints();
 		gbc_btnEliminarUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEliminarUsuario.gridx = 10;
+		gbc_btnEliminarUsuario.gridx = 11;
 		gbc_btnEliminarUsuario.gridy = 1;
 		pnl_InfoUsuarios.add(btnEliminarUsuario, gbc_btnEliminarUsuario);
 		
@@ -230,7 +232,7 @@ public class pnl_Usuarios extends JPanel {
 		textArea.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Conocimientos y habilidades", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridheight = 3;
-		gbc_textArea.gridwidth = 10;
+		gbc_textArea.gridwidth = 11;
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
 		gbc_textArea.gridx = 1;
@@ -247,14 +249,14 @@ public class pnl_Usuarios extends JPanel {
 		lbl_TrabajandoEn = new JLabel("Trabajando en:");
 		GridBagConstraints gbc_lbl_TrabajandoEn = new GridBagConstraints();
 		gbc_lbl_TrabajandoEn.insets = new Insets(0, 0, 5, 5);
-		gbc_lbl_TrabajandoEn.gridx = 5;
+		gbc_lbl_TrabajandoEn.gridx = 6;
 		gbc_lbl_TrabajandoEn.gridy = 9;
 		pnl_InfoUsuarios.add(lbl_TrabajandoEn, gbc_lbl_TrabajandoEn);
 		
 		scrollPane_jefe = new JScrollPane();
 		scrollPane_jefe.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane_jefe = new GridBagConstraints();
-		gbc_scrollPane_jefe.gridwidth = 3;
+		gbc_scrollPane_jefe.gridwidth = 4;
 		gbc_scrollPane_jefe.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_jefe.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane_jefe.gridx = 1;
@@ -285,7 +287,7 @@ public class pnl_Usuarios extends JPanel {
 		gbc_scrollPane_Trabajando.gridwidth = 6;
 		gbc_scrollPane_Trabajando.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_Trabajando.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_Trabajando.gridx = 5;
+		gbc_scrollPane_Trabajando.gridx = 6;
 		gbc_scrollPane_Trabajando.gridy = 10;
 		pnl_InfoUsuarios.add(scrollPane_Trabajando, gbc_scrollPane_Trabajando);
 		
@@ -392,6 +394,11 @@ public class pnl_Usuarios extends JPanel {
 			JEnviar_Mensaje window = new JEnviar_Mensaje();
 			JFrame frame = new JFrame();
 			window.frame.setVisible(true);
+		}
+	}
+	private class Lst_UsuariosListSelectionListener implements ListSelectionListener {
+		public void valueChanged(ListSelectionEvent arg0) {
+			lbl_NombreDeUsuario.setText((String) lst_Usuarios.getSelectedValue());
 		}
 	}
 	

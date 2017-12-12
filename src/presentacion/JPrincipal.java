@@ -18,6 +18,9 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
+
+import dominio.Usuario;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -70,7 +73,8 @@ public class JPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JPrincipal window = new JPrincipal();
+
+					JPrincipal window = new JPrincipal(/*user*/);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -81,8 +85,9 @@ public class JPrincipal {
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public JPrincipal() {
+	public JPrincipal(/*Usuario user*/) {
 		initialize();
 	}
 
