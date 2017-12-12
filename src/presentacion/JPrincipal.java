@@ -286,8 +286,8 @@ public class JPrincipal {
 			}
 			if (nodo=="Enviar mensaje") {
 				JEnviar_Mensaje window = new JEnviar_Mensaje();
-				JFrame frame = new JFrame();
-				window.frame.setVisible(true);
+				JFrame frmMensaje = new JFrame();
+				window.frmMensaje.setVisible(true);
 			}else {
 			((CardLayout) pnl_contenedorCard.getLayout()).show(pnl_contenedorCard, nodo);
 			}

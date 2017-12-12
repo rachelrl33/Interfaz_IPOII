@@ -172,7 +172,7 @@ public class pnl_Usuarios extends JPanel {
 		gbc_lbl_Avatar.gridy = 1;
 		pnl_InfoUsuarios.add(lbl_Avatar, gbc_lbl_Avatar);
 		
-		lbl_NombreDeUsuario = new JLabel("");
+		lbl_NombreDeUsuario = new JLabel("Usuario");
 		lbl_NombreDeUsuario.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lbl_NombreDeUsuario = new GridBagConstraints();
 		gbc_lbl_NombreDeUsuario.anchor = GridBagConstraints.WEST;
@@ -183,7 +183,7 @@ public class pnl_Usuarios extends JPanel {
 		
 		btnEnviarMensaje = new JButton("");
 		btnEnviarMensaje.addActionListener(new BtnEnviarMensajeActionListener());
-		btnEnviarMensaje.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/email.png")));
+		btnEnviarMensaje.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/email0.png")));
 		GridBagConstraints gbc_btnEnviarMensaje = new GridBagConstraints();
 		gbc_btnEnviarMensaje.anchor = GridBagConstraints.SOUTH;
 		gbc_btnEnviarMensaje.insets = new Insets(0, 0, 5, 5);
@@ -193,7 +193,7 @@ public class pnl_Usuarios extends JPanel {
 		
 		btnEditarUsuario = new JButton("");
 		btnEditarUsuario.addActionListener(new BtnEditarUsuarioActionListener());
-		btnEditarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/edit2.png")));
+		btnEditarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/edit.png")));
 		GridBagConstraints gbc_btnEditarUsuario = new GridBagConstraints();
 		gbc_btnEditarUsuario.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEditarUsuario.gridx = 10;
@@ -202,14 +202,14 @@ public class pnl_Usuarios extends JPanel {
 		
 		btnEliminarUsuario = new JButton("");
 		btnEliminarUsuario.addActionListener(new BtnEliminarUsuarioActionListener());
-		btnEliminarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/rubbish-bin2.png")));
+		btnEliminarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/rubbish-bin.png")));
 		GridBagConstraints gbc_btnEliminarUsuario = new GridBagConstraints();
 		gbc_btnEliminarUsuario.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEliminarUsuario.gridx = 11;
 		gbc_btnEliminarUsuario.gridy = 1;
 		pnl_InfoUsuarios.add(btnEliminarUsuario, gbc_btnEliminarUsuario);
 		
-		lbl_Email = new JLabel("email:");
+		lbl_Email = new JLabel("email");
 		lbl_Email.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lbl_Email = new GridBagConstraints();
 		gbc_lbl_Email.anchor = GridBagConstraints.WEST;
@@ -338,8 +338,8 @@ public class pnl_Usuarios extends JPanel {
 			Crear_EditarUsuario window;
 			try {
 				window = new Crear_EditarUsuario();
-				JFrame frame = new JFrame();
-				window.frame.setVisible(true);
+				JFrame frmUsuario = new JFrame();
+				window.frmUsuario.setVisible(true);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -376,8 +376,8 @@ public class pnl_Usuarios extends JPanel {
 			Crear_EditarUsuario window;
 			try {
 				window = new Crear_EditarUsuario();
-				JFrame frame = new JFrame();
-				window.frame.setVisible(true);
+				JFrame frmUsuario = new JFrame();
+				window.frmUsuario.setVisible(true);
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -392,8 +392,8 @@ public class pnl_Usuarios extends JPanel {
 	private class BtnEnviarMensajeActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JEnviar_Mensaje window = new JEnviar_Mensaje();
-			JFrame frame = new JFrame();
-			window.frame.setVisible(true);
+			JFrame frmMensaje = new JFrame();
+			window.frmMensaje.setVisible(true);
 		}
 	}
 	private class Lst_UsuariosListSelectionListener implements ListSelectionListener {

@@ -1,10 +1,12 @@
 package presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.text.DateFormat;
@@ -27,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -40,15 +43,20 @@ public class Crear_EditarProyecto extends JFrame {
 	private JLabel lblNombre;
 	private JLabel lblId;
 	private JTextField txtNombre;
+	private static boolean b_nombre;
 	private JTextField txtID;
+	private static boolean b_id;
 	private JLabel lblUsuarioEncargado;
 	private JTextField txtUsuarioEncargado;
+	private static boolean b_encargado;
 	private JLabel lblFechaInicio;
 	//private JFormattedTextField ftFechaInicio;
 	private JFormattedTextField ftFechaInicio_1;
+	private static boolean b_finicio;
 	private JLabel lblFechaLimite;
 	//private JFormattedTextField ftFechaLimite;
 	private JFormattedTextField ftFechaLimite_1;
+	private static boolean b_ffin;
 	private JLabel lblPrioridad;
 	private JComboBox cbPrioridad;
 	private JLabel lblEstado;
@@ -59,15 +67,17 @@ public class Crear_EditarProyecto extends JFrame {
 	private JTextArea txtDescripcion;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
+	private Border defaultB;
+	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
 
 	private DateFormat formatoFecha = new SimpleDateFormat("dd--MMMM--yyyy");
 	private JLabel lblCal;
 	private JLabel lblCal2;
-	private JLabel lblNombreVacio;
-	private JLabel lblIDVacio;
-	private JLabel lblFechaInicioVacio;
-	private JLabel lblFechaLimiteVacia;
-	private JLabel lblUsuarioEncargadoVacio;
+	private JLabel lblWarningNom;
+	private JLabel lblWarningID;
+	private JLabel lblWarningFI;
+	private JLabel lblWarningFF;
+	private JLabel lblWarningEncarg;
 	
 	private static Crear_EditarProyecto frame = new Crear_EditarProyecto();
 	//private static final DateFormat df = new SimpleDateFormat("dd/mm/aaaa");
@@ -92,6 +102,7 @@ public class Crear_EditarProyecto extends JFrame {
 	 * Create the frame.
 	 */
 	public Crear_EditarProyecto() {
+		setTitle("Proyecto o Tarea\r\n");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
 		setBounds(100, 100, 796, 447);
@@ -138,6 +149,7 @@ public class Crear_EditarProyecto extends JFrame {
 		contentPane.add(lblFechaLimite, gbc_lblFechaLimite);
 		
 		txtNombre = new JTextField();
+		defaultB=txtNombre.getBorder();
 		txtNombre.addKeyListener(new TxtNombreKeyListener());
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
@@ -147,14 +159,13 @@ public class Crear_EditarProyecto extends JFrame {
 		contentPane.add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
 		
-		lblNombreVacio = new JLabel("");
-		lblNombreVacio.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/warning.png")));
-		GridBagConstraints gbc_lblNombreVacio = new GridBagConstraints();
-		gbc_lblNombreVacio.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombreVacio.anchor = GridBagConstraints.WEST;
-		gbc_lblNombreVacio.gridx = 2;
-		gbc_lblNombreVacio.gridy = 2;
-		contentPane.add(lblNombreVacio, gbc_lblNombreVacio);
+		lblWarningNom = new JLabel("");
+		GridBagConstraints gbc_lblWarningNom = new GridBagConstraints();
+		gbc_lblWarningNom.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWarningNom.anchor = GridBagConstraints.WEST;
+		gbc_lblWarningNom.gridx = 2;
+		gbc_lblWarningNom.gridy = 2;
+		contentPane.add(lblWarningNom, gbc_lblWarningNom);
 		
 		txtID = new JTextField();
 		txtID.addKeyListener(new TxtIDKeyListener());
@@ -185,14 +196,13 @@ public class Crear_EditarProyecto extends JFrame {
 		e.printStackTrace();
 		}
 		
-		lblIDVacio = new JLabel("");
-		lblIDVacio.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/warning.png")));
-		GridBagConstraints gbc_lblIDVacio = new GridBagConstraints();
-		gbc_lblIDVacio.insets = new Insets(0, 0, 5, 5);
-		gbc_lblIDVacio.anchor = GridBagConstraints.WEST;
-		gbc_lblIDVacio.gridx = 5;
-		gbc_lblIDVacio.gridy = 2;
-		contentPane.add(lblIDVacio, gbc_lblIDVacio);
+		lblWarningID = new JLabel("");
+		GridBagConstraints gbc_lblWarningID = new GridBagConstraints();
+		gbc_lblWarningID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWarningID.anchor = GridBagConstraints.WEST;
+		gbc_lblWarningID.gridx = 5;
+		gbc_lblWarningID.gridy = 2;
+		contentPane.add(lblWarningID, gbc_lblWarningID);
 		
 		contentPane.add(ftFechaInicio_1, gbc_ftFechaInicio);
 		
@@ -223,14 +233,13 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_lblCal.gridy = 2;
 		contentPane.add(lblCal, gbc_lblCal);
 		
-		lblFechaInicioVacio = new JLabel("");
-		lblFechaInicioVacio.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/warning.png")));
-		GridBagConstraints gbc_lblFechaInicioVacio = new GridBagConstraints();
-		gbc_lblFechaInicioVacio.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaInicioVacio.anchor = GridBagConstraints.WEST;
-		gbc_lblFechaInicioVacio.gridx = 8;
-		gbc_lblFechaInicioVacio.gridy = 2;
-		contentPane.add(lblFechaInicioVacio, gbc_lblFechaInicioVacio);
+		lblWarningFI = new JLabel("");
+		GridBagConstraints gbc_lblWarningFI = new GridBagConstraints();
+		gbc_lblWarningFI.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWarningFI.anchor = GridBagConstraints.WEST;
+		gbc_lblWarningFI.gridx = 8;
+		gbc_lblWarningFI.gridy = 2;
+		contentPane.add(lblWarningFI, gbc_lblWarningFI);
 		
 		contentPane.add(ftFechaLimite_1, gbc_ftFechaLimite);
 		
@@ -243,16 +252,15 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_lblCal2.gridy = 2;
 		contentPane.add(lblCal2, gbc_lblCal2);
 		
-		lblFechaLimiteVacia = new JLabel("");
-		lblFechaLimiteVacia.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/warning.png")));
-		GridBagConstraints gbc_lblFechaLimiteVacia = new GridBagConstraints();
-		gbc_lblFechaLimiteVacia.anchor = GridBagConstraints.WEST;
-		gbc_lblFechaLimiteVacia.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFechaLimiteVacia.gridx = 11;
-		gbc_lblFechaLimiteVacia.gridy = 2;
-		contentPane.add(lblFechaLimiteVacia, gbc_lblFechaLimiteVacia);
+		lblWarningFF = new JLabel("");
+		GridBagConstraints gbc_lblWarningFF = new GridBagConstraints();
+		gbc_lblWarningFF.anchor = GridBagConstraints.WEST;
+		gbc_lblWarningFF.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWarningFF.gridx = 11;
+		gbc_lblWarningFF.gridy = 2;
+		contentPane.add(lblWarningFF, gbc_lblWarningFF);
 		
-		lblUsuarioEncargado = new JLabel("Usuario Encargado");
+		lblUsuarioEncargado = new JLabel("Jefe de proyecto");
 		GridBagConstraints gbc_lblUsuarioEncargado = new GridBagConstraints();
 		gbc_lblUsuarioEncargado.anchor = GridBagConstraints.WEST;
 		gbc_lblUsuarioEncargado.insets = new Insets(0, 0, 5, 5);
@@ -287,14 +295,13 @@ public class Crear_EditarProyecto extends JFrame {
 		contentPane.add(txtUsuarioEncargado, gbc_txtUsuarioEncargado);
 		txtUsuarioEncargado.setColumns(10);
 		
-		lblUsuarioEncargadoVacio = new JLabel("");
-		lblUsuarioEncargadoVacio.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/warning.png")));
-		GridBagConstraints gbc_lblUsuarioEncargadoVacio = new GridBagConstraints();
-		gbc_lblUsuarioEncargadoVacio.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsuarioEncargadoVacio.anchor = GridBagConstraints.WEST;
-		gbc_lblUsuarioEncargadoVacio.gridx = 5;
-		gbc_lblUsuarioEncargadoVacio.gridy = 5;
-		contentPane.add(lblUsuarioEncargadoVacio, gbc_lblUsuarioEncargadoVacio);
+		lblWarningEncarg = new JLabel("");
+		GridBagConstraints gbc_lblWarningEncarg = new GridBagConstraints();
+		gbc_lblWarningEncarg.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWarningEncarg.anchor = GridBagConstraints.WEST;
+		gbc_lblWarningEncarg.gridx = 5;
+		gbc_lblWarningEncarg.gridy = 5;
+		contentPane.add(lblWarningEncarg, gbc_lblWarningEncarg);
 		
 		cbPrioridad = new JComboBox();
 		cbPrioridad.setModel(new DefaultComboBoxModel(new String[] {"Baja", "Media", "Alta"}));
@@ -366,54 +373,109 @@ public class Crear_EditarProyecto extends JFrame {
 	}
 
 	
+	
+	
 
+	//---------------------------------------------------
+	//CONTROL DE FORMATOS Y VALIDEZ DE DATOS INTRODUCIDOS 
+	//---------------------------------------------------
+	
+
+	private class TxtNombreKeyListener extends KeyAdapter {
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			if(txtNombre.getText().length() > 0) {
+				b_nombre=true;
+				lblWarningNom.setIcon(null);
+				txtNombre.setBorder(defaultB);
+			}else {
+				b_nombre=false;
+				txtNombre.setBorder(bordeRojo); 
+				lblWarningNom.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+			}
+		}
+	}
+	
+	
+	private class TxtIDKeyListener extends KeyAdapter {
+		@Override
+		public void keyReleased(KeyEvent e) {
+			if(txtID.getText().length()>0) {
+				b_id=true;
+				lblWarningID.setIcon(null);
+				txtID.setBorder(defaultB);
+			}else {
+				b_id=false;
+				txtID.setBorder(bordeRojo); 
+				lblWarningID.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+			}
+		}
+	}
+	
+	private class FtFechaInicioKeyListener extends KeyAdapter {
+		@Override
+		public void keyReleased(KeyEvent e) {
+			if(ftFechaInicio_1.getText().length()==10){ //10 por el formato que es predefinido
+				b_finicio=true;
+				lblWarningFI.setIcon(null);
+				ftFechaInicio_1.setBorder(defaultB);
+			}else {
+				b_finicio=true;
+				ftFechaInicio_1.setBorder(bordeRojo); 
+				lblWarningFI.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+			}
+		}
+	}
+	
+	private class FtFechaLimiteKeyListener extends KeyAdapter {
+		@Override
+		public void keyReleased(KeyEvent e) {
+			if(ftFechaLimite_1.getText().length()==10) {
+				b_ffin=true;
+				lblWarningFF.setIcon(null);
+				ftFechaLimite_1.setBorder(defaultB);
+			}else {
+				b_ffin=false;
+				ftFechaLimite_1.setBorder(bordeRojo); 
+				lblWarningFF.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+			}
+		}
+	}
+	
+	private class TextFieldKeyListener extends KeyAdapter {
+		@Override
+		public void keyReleased(KeyEvent e) {
+			if(txtUsuarioEncargado.getText().length()>0) {
+				b_encargado=true;
+				lblWarningEncarg.setIcon(null);
+				txtUsuarioEncargado.setBorder(defaultB);
+			}else {
+				b_encargado=false;
+				txtUsuarioEncargado.setBorder(bordeRojo); 
+				lblWarningEncarg.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+			}
+		}
+	}
+	
+	
+		
+	
+	
+	//--------------------------------------------
+	//                 OYENTES 
+	//--------------------------------------------
+	
+	
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 		}
 	}
-	private class TxtNombreKeyListener extends KeyAdapter {
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-			if(txtNombre.getText().length() > 0)
-				lblNombreVacio.setIcon(null);
-		}
-	}
-	private class TxtIDKeyListener extends KeyAdapter {
-		@Override
-		public void keyReleased(KeyEvent e) {
-			if(txtID.getText().length()>0)
-				lblIDVacio.setIcon(null);
-		}
-	}
-	private class FtFechaInicioKeyListener extends KeyAdapter {
-		@Override
-		public void keyReleased(KeyEvent e) {
-			if(ftFechaInicio_1.getText().length()==10) //10 por el formato que es predefinido
-				lblFechaInicioVacio.setIcon(null);
-		}
-	}
-	private class FtFechaLimiteKeyListener extends KeyAdapter {
-		@Override
-		public void keyReleased(KeyEvent e) {
-			if(ftFechaLimite_1.getText().length()==10)
-				lblFechaLimiteVacia.setIcon(null);
-		}
-	}
-	private class TextFieldKeyListener extends KeyAdapter {
-		@Override
-		public void keyReleased(KeyEvent e) {
-			if(txtUsuarioEncargado.getText().length()>0)
-				lblUsuarioEncargadoVacio.setIcon(null);
-		}
-	}
+	
+	
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int dialogResult = JOptionPane.showConfirmDialog(null, "Perdera la inforación si no guarda", "Informacion", JOptionPane.YES_NO_OPTION);
-			if(dialogResult == JOptionPane.YES_OPTION) {
 				//System.exit(1);
 				frame.dispose();
-				
-			}
 		}
 	}
 }

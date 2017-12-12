@@ -23,6 +23,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -30,6 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
 
 public class pnl_Proyectos extends JPanel {
 	private JDesktopPane desktopPane;
@@ -40,8 +42,6 @@ public class pnl_Proyectos extends JPanel {
 	private JLabel lblDescripcion;
 	private JButton btnEliminarPyoyecto;
 	private JButton btnAnadirProyecto;
-	private JButton btnEliminarTarea;
-	private JButton btnEditTarea;
 	private JButton btnAnadirTarea;
 	private JLabel lblTareas;
 	private JLabel lblBuscarPor;
@@ -82,7 +82,7 @@ public class pnl_Proyectos extends JPanel {
 		desktopPane.setBackground(new Color(211, 211, 211));
 		add(desktopPane, BorderLayout.CENTER);
 		GridBagLayout gbl_desktopPane = new GridBagLayout();
-		gbl_desktopPane.columnWidths = new int[]{523, 672, 0};
+		gbl_desktopPane.columnWidths = new int[]{496, 672, 0};
 		gbl_desktopPane.rowHeights = new int[]{546, 0};
 		gbl_desktopPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_desktopPane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
@@ -97,8 +97,8 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoProyecto.gridy = 0;
 		desktopPane.add(pnl_InfoProyecto, gbc_pnl_InfoProyecto);
 		GridBagLayout gbl_pnl_InfoProyecto = new GridBagLayout();
-		gbl_pnl_InfoProyecto.columnWidths = new int[]{23, 0, 75, 62, 33, 60, 75, 51, 17, 0};
-		gbl_pnl_InfoProyecto.rowHeights = new int[]{24, 0, 0, 32, 0, 45, 44, 42, 17, 24, 0, 0, 0, 0, 63, 17, 0};
+		gbl_pnl_InfoProyecto.columnWidths = new int[]{23, 0, 74, 46, 45, 60, 65, 38, 17, 0};
+		gbl_pnl_InfoProyecto.rowHeights = new int[]{24, 0, 0, 32, 0, 45, 44, 42, 17, 24, 0, 0, 0, 0, 64, 17, 0};
 		gbl_pnl_InfoProyecto.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnl_InfoProyecto.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnl_InfoProyecto.setLayout(gbl_pnl_InfoProyecto);
@@ -115,7 +115,7 @@ public class pnl_Proyectos extends JPanel {
 		
 		btnAnadirProyecto = new JButton("");
 		btnAnadirProyecto.addActionListener(new BtnAnadirProyectoActionListener());
-		btnAnadirProyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/add2.png")));
+		btnAnadirProyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/add.png")));
 		GridBagConstraints gbc_btnAnadirProyecto = new GridBagConstraints();
 		gbc_btnAnadirProyecto.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnAnadirProyecto.insets = new Insets(0, 0, 5, 5);
@@ -124,7 +124,8 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(btnAnadirProyecto, gbc_btnAnadirProyecto);
 		
 		JButton btnEditProyecto = new JButton("");
-		btnEditProyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/edit2.png")));
+		btnEditProyecto.addActionListener(new BtnEditProyectoActionListener());
+		btnEditProyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/edit.png")));
 		GridBagConstraints gbc_btnEditProyecto = new GridBagConstraints();
 		gbc_btnEditProyecto.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEditProyecto.gridx = 6;
@@ -132,7 +133,8 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(btnEditProyecto, gbc_btnEditProyecto);
 		
 		btnEliminarPyoyecto = new JButton("");
-		btnEliminarPyoyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/rubbish-bin2.png")));
+		btnEliminarPyoyecto.addActionListener(new BtnEliminarPyoyectoActionListener());
+		btnEliminarPyoyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/rubbish-bin.png")));
 		GridBagConstraints gbc_btnEliminarPyoyecto = new GridBagConstraints();
 		gbc_btnEliminarPyoyecto.anchor = GridBagConstraints.WEST;
 		gbc_btnEliminarPyoyecto.insets = new Insets(0, 0, 5, 5);
@@ -317,9 +319,9 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoTareas.gridy = 0;
 		desktopPane.add(pnl_InfoTareas, gbc_pnl_InfoTareas);
 		GridBagLayout gbl_pnl_InfoTareas = new GridBagLayout();
-		gbl_pnl_InfoTareas.columnWidths = new int[]{33, 0, 0, 45, 33, 24, 26, 39, 47, 39, 39, 52, 49, 50, 19, 0};
-		gbl_pnl_InfoTareas.rowHeights = new int[]{20, 0, 0, 0, 0, 393, 0};
-		gbl_pnl_InfoTareas.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnl_InfoTareas.columnWidths = new int[]{33, 0, 0, 0, 45, 33, 24, 26, 39, 47, 39, 39, 52, 49, 50, 19, 0, 0};
+		gbl_pnl_InfoTareas.rowHeights = new int[]{20, 0, 0, 0, 37, 393, 0};
+		gbl_pnl_InfoTareas.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnl_InfoTareas.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		pnl_InfoTareas.setLayout(gbl_pnl_InfoTareas);
 		
@@ -329,41 +331,24 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lblTareas.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblTareas.gridwidth = 3;
 		gbc_lblTareas.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTareas.gridx = 1;
+		gbc_lblTareas.gridx = 2;
 		gbc_lblTareas.gridy = 1;
 		pnl_InfoTareas.add(lblTareas, gbc_lblTareas);
 		
 		btnAnadirTarea = new JButton("");
-		btnAnadirTarea.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/add2.png")));
+		btnAnadirTarea.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/add.png")));
 		GridBagConstraints gbc_btnAnadirTarea = new GridBagConstraints();
 		gbc_btnAnadirTarea.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAnadirTarea.gridx = 11;
+		gbc_btnAnadirTarea.gridx = 14;
 		gbc_btnAnadirTarea.gridy = 1;
 		pnl_InfoTareas.add(btnAnadirTarea, gbc_btnAnadirTarea);
-		
-		btnEditTarea = new JButton("");
-		btnEditTarea.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/edit2.png")));
-		GridBagConstraints gbc_btnEditTarea = new GridBagConstraints();
-		gbc_btnEditTarea.anchor = GridBagConstraints.SOUTH;
-		gbc_btnEditTarea.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditTarea.gridx = 12;
-		gbc_btnEditTarea.gridy = 1;
-		pnl_InfoTareas.add(btnEditTarea, gbc_btnEditTarea);
-		
-		btnEliminarTarea = new JButton("");
-		btnEliminarTarea.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/rubbish-bin2.png")));
-		GridBagConstraints gbc_btnEliminarTarea = new GridBagConstraints();
-		gbc_btnEliminarTarea.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEliminarTarea.gridx = 13;
-		gbc_btnEliminarTarea.gridy = 1;
-		pnl_InfoTareas.add(btnEliminarTarea, gbc_btnEliminarTarea);
 		
 		lblBuscarPor = new JLabel("Buscar por:");
 		lblBuscarPor.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/search.png")));
 		GridBagConstraints gbc_lblBuscarPor = new GridBagConstraints();
 		gbc_lblBuscarPor.gridwidth = 2;
 		gbc_lblBuscarPor.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBuscarPor.gridx = 1;
+		gbc_lblBuscarPor.gridx = 2;
 		gbc_lblBuscarPor.gridy = 2;
 		pnl_InfoTareas.add(lblBuscarPor, gbc_lblBuscarPor);
 		
@@ -371,7 +356,7 @@ public class pnl_Proyectos extends JPanel {
 		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
 		gbc_lblEstado.anchor = GridBagConstraints.WEST;
 		gbc_lblEstado.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEstado.gridx = 1;
+		gbc_lblEstado.gridx = 2;
 		gbc_lblEstado.gridy = 3;
 		pnl_InfoTareas.add(lblEstado, gbc_lblEstado);
 		
@@ -380,7 +365,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_comboBox.gridwidth = 3;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 2;
+		gbc_comboBox.gridx = 3;
 		gbc_comboBox.gridy = 3;
 		pnl_InfoTareas.add(comboBox, gbc_comboBox);
 		
@@ -388,7 +373,7 @@ public class pnl_Proyectos extends JPanel {
 		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
 		gbc_lblCategoria.anchor = GridBagConstraints.EAST;
 		gbc_lblCategoria.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCategoria.gridx = 6;
+		gbc_lblCategoria.gridx = 7;
 		gbc_lblCategoria.gridy = 3;
 		pnl_InfoTareas.add(lblCategoria, gbc_lblCategoria);
 		
@@ -397,22 +382,24 @@ public class pnl_Proyectos extends JPanel {
 		gbc_comboBox_1.gridwidth = 3;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 7;
+		gbc_comboBox_1.gridx = 8;
 		gbc_comboBox_1.gridy = 3;
 		pnl_InfoTareas.add(comboBox_1, gbc_comboBox_1);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(null);
+		scrollPane.setViewportBorder(new TitledBorder(null, "Listado de tareas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_scrollPane.gridwidth = 15;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 5;
 		pnl_InfoTareas.add(scrollPane, gbc_scrollPane);
 		
 		pnlTareas = new JPanel();
-		pnlTareas.setBorder(new TitledBorder(null, "Listado de tareas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlTareas.setForeground(Color.BLACK);
+		pnlTareas.setBorder(null);
 		scrollPane.setViewportView(pnlTareas);
 		pnlTareas.setLayout(new GridLayout(0, 1, 0, 0));
 		for(int i=0; i<3; i++)
@@ -430,7 +417,7 @@ public class pnl_Proyectos extends JPanel {
 	 * */
 
 	
-	//btnAÃ±adir
+	//btnAnadir
 	private class BtnAnadirProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			Crear_EditarProyecto frame = new Crear_EditarProyecto();
@@ -438,6 +425,21 @@ public class pnl_Proyectos extends JPanel {
 			//window = new Crear_EditarProyecto();
 			//JFrame frame = new JFrame();
 			//window.frame.setVisible(true);
+		}
+	}
+	private class BtnEditProyectoActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Crear_EditarProyecto frame = new Crear_EditarProyecto();
+			frame.setVisible(true);
+		}
+	}
+	private class BtnEliminarPyoyectoActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			//Dialogo de confirmación
+			int opcion = JOptionPane.showConfirmDialog(pnl_InfoProyecto, "¿Seguro que quieres eliminar este proyecto?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+			if (opcion == 0) { 
+				//Hay que dejar el panel en blanco y eliminar el nodo del arbol
+			}
 		}
 	}
 }

@@ -3,6 +3,8 @@ package presentacion;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
@@ -14,6 +16,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class pnlReutilizableTarea extends JPanel {
 	private JLabel lblNombreTarea;
@@ -23,15 +28,17 @@ public class pnlReutilizableTarea extends JPanel {
 	private JButton btnEditarRecursos;
 	private JScrollPane scrollPane_1;
 	private JTable table;
+	private JButton btn_Editar;
+	private JButton button;
 
 	/**
 	 * Create the panel.
 	 */
 	public pnlReutilizableTarea() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 202, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 202, 0, 45, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 47, 18, 60, 0, 0, 41, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -43,6 +50,25 @@ public class pnlReutilizableTarea extends JPanel {
 		gbc_lblNombreTarea.gridx = 1;
 		gbc_lblNombreTarea.gridy = 1;
 		add(lblNombreTarea, gbc_lblNombreTarea);
+		
+		btn_Editar = new JButton("");
+		btn_Editar.addActionListener(new Btn_EditarActionListener());
+		btn_Editar.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/edit.png")));
+		GridBagConstraints gbc_btn_Editar = new GridBagConstraints();
+		gbc_btn_Editar.anchor = GridBagConstraints.SOUTH;
+		gbc_btn_Editar.insets = new Insets(0, 0, 5, 5);
+		gbc_btn_Editar.gridx = 3;
+		gbc_btn_Editar.gridy = 1;
+		add(btn_Editar, gbc_btn_Editar);
+		
+		button = new JButton("");
+		button.addActionListener(new ButtonActionListener());
+		button.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/rubbish-bin.png")));
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.insets = new Insets(0, 0, 5, 5);
+		gbc_button.gridx = 4;
+		gbc_button.gridy = 1;
+		add(button, gbc_button);
 		
 		lblCategora = new JLabel("Categoria");
 		GridBagConstraints gbc_lblCategora = new GridBagConstraints();
@@ -56,7 +82,7 @@ public class pnlReutilizableTarea extends JPanel {
 		scrollPane_1.setMinimumSize(new Dimension(2, 2));
 		scrollPane_1.setMaximumSize(new Dimension(2, 2));
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
-		gbc_scrollPane_1.gridwidth = 2;
+		gbc_scrollPane_1.gridwidth = 4;
 		gbc_scrollPane_1.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane_1.gridx = 1;
@@ -96,7 +122,7 @@ public class pnlReutilizableTarea extends JPanel {
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.gridwidth = 4;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 1;
@@ -117,4 +143,19 @@ public class pnlReutilizableTarea extends JPanel {
 
 	}
 
+	private class ButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			//Dialogo de confirmación
+			int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta tarea?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+			if (opcion == 0) { 
+				//Hay que dejar el panel en blanco y eliminar el nodo del arbol
+			}
+		}
+	}
+	private class Btn_EditarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Crear_EditarProyecto frame = new Crear_EditarProyecto();
+			frame.setVisible(true);
+		}
+	}
 }

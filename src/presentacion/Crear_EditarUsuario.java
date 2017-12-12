@@ -46,7 +46,7 @@ import java.text.ParseException;
 
 public class Crear_EditarUsuario {
 
-	JFrame frame;
+	JFrame frmUsuario;
 	private JLabel lblFotoAvatar;
 	
 	private JLabel lblNombre;
@@ -100,7 +100,7 @@ public class Crear_EditarUsuario {
 			public void run() {
 				try {
 					Crear_EditarUsuario window = new Crear_EditarUsuario();
-					window.frame.setVisible(true);
+					window.frmUsuario.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -121,17 +121,18 @@ public class Crear_EditarUsuario {
 	 * @throws ParseException 
 	 */
 	private void initialize() throws ParseException {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarUsuario.class.getResource("/presentacion/users.png")));
-		frame.setBounds(100, 100, 796, 419);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmUsuario = new JFrame();
+		frmUsuario.setTitle("Usuario");
+		frmUsuario.setResizable(false);
+		frmUsuario.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarUsuario.class.getResource("/presentacion/users.png")));
+		frmUsuario.setBounds(100, 100, 796, 419);
+		frmUsuario.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{39, 0, 61, 41, 16, 48, 0, 74, 0, 43, 98, 116, 72, 40, 0};
 		gridBagLayout.rowHeights = new int[]{24, 33, 27, 27, 19, 20, 0, 27, 41, 0, 0, 20, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		frame.getContentPane().setLayout(gridBagLayout);
+		frmUsuario.getContentPane().setLayout(gridBagLayout);
 		
 		//FOTO AVATAR
 		lblFotoAvatar = new JLabel("");
@@ -142,7 +143,7 @@ public class Crear_EditarUsuario {
 		gbc_lblFotoAvatar.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFotoAvatar.gridx = 2;
 		gbc_lblFotoAvatar.gridy = 1;
-		frame.getContentPane().add(lblFotoAvatar, gbc_lblFotoAvatar);
+		frmUsuario.getContentPane().add(lblFotoAvatar, gbc_lblFotoAvatar);
 		
 
 		//CONOCIMIENTOS
@@ -156,7 +157,7 @@ public class Crear_EditarUsuario {
 		gbc_txtA_conocimientos.fill = GridBagConstraints.BOTH;
 		gbc_txtA_conocimientos.gridx = 10;
 		gbc_txtA_conocimientos.gridy = 1;
-		frame.getContentPane().add(txtA_conocimientos, gbc_txtA_conocimientos);
+		frmUsuario.getContentPane().add(txtA_conocimientos, gbc_txtA_conocimientos);
 		
 		//NOMBRE
 		lblNombre = new JLabel("Nombre");
@@ -166,7 +167,7 @@ public class Crear_EditarUsuario {
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNombre.gridx = 7;
 		gbc_lblNombre.gridy = 1;
-		frame.getContentPane().add(lblNombre, gbc_lblNombre);
+		frmUsuario.getContentPane().add(lblNombre, gbc_lblNombre);
 		
 		txtF_nombre = new JTextField();
 		defaultB=txtF_nombre.getBorder();
@@ -178,7 +179,7 @@ public class Crear_EditarUsuario {
 		gbc_txtF_nombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtF_nombre.gridx = 7;
 		gbc_txtF_nombre.gridy = 2;
-		frame.getContentPane().add(txtF_nombre, gbc_txtF_nombre);
+		frmUsuario.getContentPane().add(txtF_nombre, gbc_txtF_nombre);
 		txtF_nombre.setColumns(10);
 		
 		lbl_WarningNom = new JLabel("");
@@ -187,7 +188,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningNom.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningNom.gridx = 9;
 		gbc_lbl_WarningNom.gridy = 2;
-		frame.getContentPane().add(lbl_WarningNom, gbc_lbl_WarningNom);
+		frmUsuario.getContentPane().add(lbl_WarningNom, gbc_lbl_WarningNom);
 		
 		
 		
@@ -201,7 +202,7 @@ public class Crear_EditarUsuario {
 		gbc_lblTelefono.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTelefono.gridx = 7;
 		gbc_lblTelefono.gridy = 3;
-		frame.getContentPane().add(lblTelefono, gbc_lblTelefono);
+		frmUsuario.getContentPane().add(lblTelefono, gbc_lblTelefono);
 		
 		
 		MaskFormatter formatoTelf;
@@ -220,7 +221,7 @@ public class Crear_EditarUsuario {
 		gbc_ftxtF_telefono.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtF_telefono.gridx = 7;
 		gbc_ftxtF_telefono.gridy = 4;
-		frame.getContentPane().add(ftxtF_telefono, gbc_ftxtF_telefono);
+		frmUsuario.getContentPane().add(ftxtF_telefono, gbc_ftxtF_telefono);
 		
 		
 		lbl_WarningTel = new JLabel("");
@@ -229,7 +230,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningTel.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningTel.gridx = 9;
 		gbc_lbl_WarningTel.gridy = 4;
-		frame.getContentPane().add(lbl_WarningTel, gbc_lbl_WarningTel);
+		frmUsuario.getContentPane().add(lbl_WarningTel, gbc_lbl_WarningTel);
 
 		
 		//EMAIL
@@ -240,7 +241,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_Email.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_Email.gridx = 2;
 		gbc_lbl_Email.gridy = 6;
-		frame.getContentPane().add(lbl_Email, gbc_lbl_Email);
+		frmUsuario.getContentPane().add(lbl_Email, gbc_lbl_Email);
 		
 		
 		ftxtF_email = new JFormattedTextField();
@@ -251,7 +252,7 @@ public class Crear_EditarUsuario {
 		gbc_ftxtF_email.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtF_email.gridx = 2;
 		gbc_ftxtF_email.gridy = 7;
-		frame.getContentPane().add(ftxtF_email, gbc_ftxtF_email);
+		frmUsuario.getContentPane().add(ftxtF_email, gbc_ftxtF_email);
 		
 		lbl_WarningEm = new JLabel("");
 		GridBagConstraints gbc_lbl_WarningEm = new GridBagConstraints();
@@ -259,7 +260,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningEm.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningEm.gridx = 9;
 		gbc_lbl_WarningEm.gridy = 7;
-		frame.getContentPane().add(lbl_WarningEm, gbc_lbl_WarningEm);
+		frmUsuario.getContentPane().add(lbl_WarningEm, gbc_lbl_WarningEm);
 		
 		
 		//CONTRASEÑA
@@ -270,7 +271,7 @@ public class Crear_EditarUsuario {
 		gbc_lblContrasena.insets = new Insets(0, 0, 5, 5);
 		gbc_lblContrasena.gridx = 2;
 		gbc_lblContrasena.gridy = 9;
-		frame.getContentPane().add(lblContrasena, gbc_lblContrasena);
+		frmUsuario.getContentPane().add(lblContrasena, gbc_lblContrasena);
 		
 		pssF_contrasena = new JPasswordField();
 		pssF_contrasena.addKeyListener(new TxtF_passActionListener());
@@ -280,7 +281,7 @@ public class Crear_EditarUsuario {
 		gbc_pssF_contrasena.fill = GridBagConstraints.HORIZONTAL;
 		gbc_pssF_contrasena.gridx = 2;
 		gbc_pssF_contrasena.gridy = 10;
-		frame.getContentPane().add(pssF_contrasena, gbc_pssF_contrasena);
+		frmUsuario.getContentPane().add(pssF_contrasena, gbc_pssF_contrasena);
 		
 		lbl_WarningCo = new JLabel("");
 		GridBagConstraints gbc_lbl_WarningCo = new GridBagConstraints();
@@ -288,7 +289,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningCo.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningCo.gridx = 4;
 		gbc_lbl_WarningCo.gridy = 10;
-		frame.getContentPane().add(lbl_WarningCo, gbc_lbl_WarningCo);
+		frmUsuario.getContentPane().add(lbl_WarningCo, gbc_lbl_WarningCo);
 		
 		
 		//REPETIR CONTRASEÑA
@@ -298,7 +299,7 @@ public class Crear_EditarUsuario {
 		gbc_lblRepetirContrasea.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRepetirContrasea.gridx = 7;
 		gbc_lblRepetirContrasea.gridy = 9;
-		frame.getContentPane().add(lblRepetirContrasea, gbc_lblRepetirContrasea);
+		frmUsuario.getContentPane().add(lblRepetirContrasea, gbc_lblRepetirContrasea);
 		
 		
 		pssF_contrasenaRep = new JPasswordField();
@@ -309,7 +310,7 @@ public class Crear_EditarUsuario {
 		gbc_pssF_contrasenaRep.fill = GridBagConstraints.HORIZONTAL;
 		gbc_pssF_contrasenaRep.gridx = 7;
 		gbc_pssF_contrasenaRep.gridy = 10;
-		frame.getContentPane().add(pssF_contrasenaRep, gbc_pssF_contrasenaRep);
+		frmUsuario.getContentPane().add(pssF_contrasenaRep, gbc_pssF_contrasenaRep);
 		
 		lbl_WarningCoR = new JLabel("");
 		GridBagConstraints gbc_lbl_WarningCoR = new GridBagConstraints();
@@ -317,7 +318,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningCoR.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningCoR.gridx = 9;
 		gbc_lbl_WarningCoR.gridy = 10;
-		frame.getContentPane().add(lbl_WarningCoR, gbc_lbl_WarningCoR);
+		frmUsuario.getContentPane().add(lbl_WarningCoR, gbc_lbl_WarningCoR);
 		
 		
 		//PANEL MENU AVATARS
@@ -328,7 +329,7 @@ public class Crear_EditarUsuario {
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 3;
-		frame.getContentPane().add(panel, gbc_panel);
+		frmUsuario.getContentPane().add(panel, gbc_panel);
 		
 		
 		//MENU AVATARS
@@ -351,7 +352,7 @@ public class Crear_EditarUsuario {
 		gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCancelar.gridx = 11;
 		gbc_btnCancelar.gridy = 12;
-		frame.getContentPane().add(btnCancelar, gbc_btnCancelar);
+		frmUsuario.getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 
 		
@@ -363,7 +364,7 @@ public class Crear_EditarUsuario {
 		gbc_btnAceptar.anchor = GridBagConstraints.EAST;
 		gbc_btnAceptar.gridx = 12;
 		gbc_btnAceptar.gridy = 12;
-		frame.getContentPane().add(btnAceptar, gbc_btnAceptar);
+		frmUsuario.getContentPane().add(btnAceptar, gbc_btnAceptar);
 		
 		
 		
@@ -497,17 +498,17 @@ public class Crear_EditarUsuario {
 	
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			frame.setVisible(false);
+			frmUsuario.setVisible(false);
 		}
 	}
 	
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			frame.setVisible(false);
+			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
 			Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
 			//Añadir ese usuario a la lista 
-			JOptionPane.showMessageDialog(frame, "Usuario creado/editado correctamente", "Confirmación", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmación", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	
