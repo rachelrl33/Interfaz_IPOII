@@ -102,7 +102,7 @@ public class Crear_EditarProyecto extends JFrame {
 	 * Create the frame.
 	 */
 	public Crear_EditarProyecto() {
-		setTitle("Proyecto o Tarea\r\n");
+		setTitle("Proyecto ");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
 		setBounds(100, 100, 796, 447);

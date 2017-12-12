@@ -10,12 +10,17 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.Dimension;
+
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -53,7 +58,7 @@ public class pnlReutilizableTarea extends JPanel {
 		
 		btn_Editar = new JButton("");
 		btn_Editar.addActionListener(new Btn_EditarActionListener());
-		btn_Editar.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/edit.png")));
+		btn_Editar.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/clip.png")));
 		GridBagConstraints gbc_btn_Editar = new GridBagConstraints();
 		gbc_btn_Editar.anchor = GridBagConstraints.SOUTH;
 		gbc_btn_Editar.insets = new Insets(0, 0, 5, 5);
@@ -91,6 +96,8 @@ public class pnlReutilizableTarea extends JPanel {
 		
 		table = new JTable();
 		table.setPreferredScrollableViewportSize(new Dimension(23, 2));
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null},
@@ -100,18 +107,13 @@ public class pnlReutilizableTarea extends JPanel {
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class, String.class
+				Integer.class, String.class, String.class, String.class, Object.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
 		});
+		
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
@@ -119,6 +121,15 @@ public class pnlReutilizableTarea extends JPanel {
 		table.getColumnModel().getColumn(4).setResizable(false);
 		table.getColumnModel().getColumn(5).setResizable(false);
 		scrollPane_1.setViewportView(table);
+		
+		TableColumn columnaEstado = table.getColumnModel().getColumn(4);
+		JComboBox comboBox = new JComboBox();
+		columnaEstado.setCellEditor(new DefaultCellEditor(comboBox));
+		comboBox.addItem("En espera");
+		comboBox.addItem("En progreso");
+		comboBox.addItem("Terminada");
+
+		
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
