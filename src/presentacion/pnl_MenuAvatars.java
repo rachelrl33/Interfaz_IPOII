@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -14,6 +16,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Rectangle;
 
 public class pnl_MenuAvatars extends JPanel {
 	private JButton btn1;
@@ -33,7 +36,9 @@ public class pnl_MenuAvatars extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public pnl_MenuAvatars() {
+	public pnl_MenuAvatars(int x, int y) {
+		
+		setBounds(new Rectangle(x, y, 0, 0));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 4};
 		gridBagLayout.rowHeights = new int[] {33, 35, 30, 0, 3};

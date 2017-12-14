@@ -34,7 +34,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 
 public class pnl_Proyectos extends JPanel {
-	private JDesktopPane desktopPane;
+	private JPanel pnl_Contenedor;
 	private JPanel pnl_InfoTareas;
 	private JPanel pnl_InfoProyecto;
 	private JLabel lblNombreDelProyecto;
@@ -78,15 +78,15 @@ public class pnl_Proyectos extends JPanel {
 		setBounds(new Rectangle(0, 0, 1210, 546));
 		setLayout(new BorderLayout(0, 0));
 		
-		desktopPane = new JDesktopPane();
-		desktopPane.setBackground(new Color(211, 211, 211));
-		add(desktopPane, BorderLayout.CENTER);
-		GridBagLayout gbl_desktopPane = new GridBagLayout();
-		gbl_desktopPane.columnWidths = new int[]{496, 672, 0};
-		gbl_desktopPane.rowHeights = new int[]{546, 0};
-		gbl_desktopPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_desktopPane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		desktopPane.setLayout(gbl_desktopPane);
+		pnl_Contenedor = new JPanel();
+		pnl_Contenedor.setBackground(new Color(211, 211, 211));
+		add(pnl_Contenedor, BorderLayout.CENTER);
+		GridBagLayout gbl_pnl_Contenedor = new GridBagLayout();
+		gbl_pnl_Contenedor.columnWidths = new int[]{496, 672, 0};
+		gbl_pnl_Contenedor.rowHeights = new int[]{546, 0};
+		gbl_pnl_Contenedor.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_pnl_Contenedor.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pnl_Contenedor.setLayout(gbl_pnl_Contenedor);
 		 
 		pnl_InfoProyecto = new JPanel();
 		pnl_InfoProyecto.setBackground(new Color(211, 211, 211));
@@ -95,7 +95,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoProyecto.fill = GridBagConstraints.BOTH;
 		gbc_pnl_InfoProyecto.gridx = 0;
 		gbc_pnl_InfoProyecto.gridy = 0;
-		desktopPane.add(pnl_InfoProyecto, gbc_pnl_InfoProyecto);
+		pnl_Contenedor.add(pnl_InfoProyecto, gbc_pnl_InfoProyecto);
 		GridBagLayout gbl_pnl_InfoProyecto = new GridBagLayout();
 		gbl_pnl_InfoProyecto.columnWidths = new int[]{23, 0, 74, 46, 45, 60, 65, 38, 17, 0};
 		gbl_pnl_InfoProyecto.rowHeights = new int[]{24, 0, 0, 32, 0, 45, 44, 42, 17, 24, 0, 0, 0, 0, 64, 17, 0};
@@ -317,7 +317,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoTareas.fill = GridBagConstraints.BOTH;
 		gbc_pnl_InfoTareas.gridx = 1;
 		gbc_pnl_InfoTareas.gridy = 0;
-		desktopPane.add(pnl_InfoTareas, gbc_pnl_InfoTareas);
+		pnl_Contenedor.add(pnl_InfoTareas, gbc_pnl_InfoTareas);
 		GridBagLayout gbl_pnl_InfoTareas = new GridBagLayout();
 		gbl_pnl_InfoTareas.columnWidths = new int[]{33, 0, 0, 0, 45, 33, 24, 26, 39, 47, 39, 39, 52, 49, 50, 19, 0, 0};
 		gbl_pnl_InfoTareas.rowHeights = new int[]{20, 0, 0, 0, 37, 393, 0};
@@ -336,6 +336,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoTareas.add(lblTareas, gbc_lblTareas);
 		
 		btnAnadirTarea = new JButton("");
+		btnAnadirTarea.addActionListener(new BtnAnadirTareaActionListener());
 		btnAnadirTarea.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/add.png")));
 		GridBagConstraints gbc_btnAnadirTarea = new GridBagConstraints();
 		gbc_btnAnadirTarea.insets = new Insets(0, 0, 5, 5);
@@ -433,13 +434,24 @@ public class pnl_Proyectos extends JPanel {
 			frame.setVisible(true);
 		}
 	}
+	
+	
+	
 	private class BtnEliminarPyoyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			//Dialogo de confirmación
-			int opcion = JOptionPane.showConfirmDialog(pnl_InfoProyecto, "¿Seguro que quieres eliminar este proyecto?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+			//Dialogo de confirmacion
+			int opcion = JOptionPane.showConfirmDialog(pnl_InfoProyecto, "Â¿Seguro que quieres eliminar este proyecto?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
 				//Hay que dejar el panel en blanco y eliminar el nodo del arbol
+				pnl_InfoProyecto.setVisible(false);
+				pnl_InfoTareas.setVisible(false);
 			}
+		}
+	}
+	private class BtnAnadirTareaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			Crear_EditarProyecto frame = new Crear_EditarProyecto();
+			frame.setVisible(true);
 		}
 	}
 }

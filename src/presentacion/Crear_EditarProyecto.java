@@ -468,6 +468,7 @@ public class Crear_EditarProyecto extends JFrame {
 	
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			frame.setVisible(false);
 		}
 	}
 	
@@ -475,7 +476,7 @@ public class Crear_EditarProyecto extends JFrame {
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 				//System.exit(1);
-				frame.dispose();
+			frame.setVisible(false);
 		}
 	}
 }

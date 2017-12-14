@@ -113,7 +113,7 @@ public class JLogin {
 		frame.getContentPane().add(pnlLogin, BorderLayout.CENTER);
 		pnlLogin.setLayout(new CardLayout(0, 0));
 		
-	//PANEL QUE CONTIENE EL INICIO DE SESIÓN
+	//PANEL QUE CONTIENE EL INICIO DE SESIï¿½N
 		pnlUser = new JPanel();
 		pnlUser.setBackground(Color.WHITE);
 		pnlLogin.add(pnlUser, "pnlUser");
@@ -159,7 +159,7 @@ public class JLogin {
 		pnlUser.add(btnSalir);
 		
 		lbl_WarningUs = new JLabel("");
-		lbl_WarningUs.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warning.png")));
+		lbl_WarningUs.setIcon(null);
 		lbl_WarningUs.setBounds(326, 265, 46, 14);
 		pnlUser.add(lbl_WarningUs);
 		
@@ -179,13 +179,13 @@ public class JLogin {
 		pnlUser.add(lbl_world);
 		
 		
-	//PANEL QUE CONTIENE INTRO. CONTRASEÑA
+	//PANEL QUE CONTIENE INTRO. CONTRASEï¿½A
 		pnlPass = new JPanel();
 		pnlPass.setBackground(Color.WHITE);
 		pnlLogin.add(pnlPass, "pnlPass");
 		pnlPass.setLayout(null);
 		
-		lbl_Contrasea = new JLabel("Contraseña:");
+		lbl_Contrasea = new JLabel("Contrasena:");
 		lbl_Contrasea.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbl_Contrasea.setBounds(92, 237, 93, 21);
 		pnlPass.add(lbl_Contrasea);
@@ -202,7 +202,7 @@ public class JLogin {
 		pfPass.setBounds(82, 269, 245, 27);
 		pnlPass.add(pfPass);
 		
-		btnLogin = new JButton("Iniciar sesión");
+		btnLogin = new JButton("Iniciar sesion");
 		btnLogin.addActionListener(new BtnLoginActionListener());
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogin.setBackground(SystemColor.activeCaption);
@@ -229,7 +229,6 @@ public class JLogin {
 		pnlPass.add(lbl_loginStatus);
 		
 		lbl_WarningC = new JLabel("");
-		lbl_WarningC.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/warning.png")));
 		lbl_WarningC.setBounds(331, 275, 46, 14);
 		pnlPass.add(lbl_WarningC);
 		
@@ -284,9 +283,9 @@ public class JLogin {
 			lbl_ErrorUser.setText("");
 
 			Usuario user = new Usuario (null,nombreUsuario,null,null,null, null, null);
+			
 			//Muestra la pantalla principal
-			JPrincipal window = new JPrincipal(/*user*/);
-			JFrame frame = new JFrame();
+			JPrincipal window = new JPrincipal(user);
 			frame.setVisible(false);
 
 

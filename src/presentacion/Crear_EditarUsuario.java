@@ -82,10 +82,11 @@ public class Crear_EditarUsuario {
 	private Border defaultB;
 	
 	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private JPanel panel;
 	private JMenuBar menuBar;
 	private JMenu mnNewMenu;
 	private JPanel pnl_MenuAvatars;
+	private JMenuItem mntmNewMenuItem;
+	private JButton btnSeleccionarAvatar;
 	
 
 	
@@ -192,6 +193,18 @@ public class Crear_EditarUsuario {
 		
 		
 		
+		//BOTON PARA ELEGIR AVATAR
+		btnSeleccionarAvatar = new JButton("Seleccionar Avatar");
+		btnSeleccionarAvatar.addMouseListener(new BtnSeleccionarAvatarMouseListener());
+		GridBagConstraints gbc_btnSeleccionarAvatar = new GridBagConstraints();
+		gbc_btnSeleccionarAvatar.gridwidth = 2;
+		gbc_btnSeleccionarAvatar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSeleccionarAvatar.gridx = 2;
+		gbc_btnSeleccionarAvatar.gridy = 3;
+		frmUsuario.getContentPane().add(btnSeleccionarAvatar, gbc_btnSeleccionarAvatar);
+		
+		
+		
 
 		
 		//TELEFONO
@@ -263,7 +276,7 @@ public class Crear_EditarUsuario {
 		frmUsuario.getContentPane().add(lbl_WarningEm, gbc_lbl_WarningEm);
 		
 		
-		//CONTRASEÑA
+		//CONTRASEÃ±A
 		lblContrasena = new JLabel("Contrasena");
 		lblContrasena.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
@@ -292,7 +305,7 @@ public class Crear_EditarUsuario {
 		frmUsuario.getContentPane().add(lbl_WarningCo, gbc_lbl_WarningCo);
 		
 		
-		//REPETIR CONTRASEÑA
+		//REPETIR CONTRASEï¿½A
 		lblRepetirContrasea = new JLabel("Repetir contrase\u00F1a");
 		lblRepetirContrasea.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
@@ -321,30 +334,20 @@ public class Crear_EditarUsuario {
 		frmUsuario.getContentPane().add(lbl_WarningCoR, gbc_lbl_WarningCoR);
 		
 		
-		//PANEL MENU AVATARS
-		panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 2;
-		gbc_panel.gridwidth = 2;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.gridx = 2;
-		gbc_panel.gridy = 3;
-		frmUsuario.getContentPane().add(panel, gbc_panel);
-		
-		
 		//MENU AVATARS
-		menuBar = new JMenuBar();
+		/*menuBar = new JMenuBar();
 		panel.add(menuBar);
 		
 		mnNewMenu = new JMenu("Seleccionar Avatar");
 		mnNewMenu.setBackground(Color.WHITE);
 		menuBar.add(mnNewMenu);
-		
-		pnl_MenuAvatars = new pnl_MenuAvatars();
-		mnNewMenu.add(pnl_MenuAvatars);
+
+		pnl_MenuAvatars = new pnl_MenuAvatars(mntmNewMenuItem);
+		//mnNewMenu.add(pnl_MenuAvatars);*/
+
+
 				
-				
-		//BOTONES
+		//BOTON 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
@@ -421,7 +424,7 @@ public class Crear_EditarUsuario {
 	
 	
 	
-	//CONTRASEÑA
+	//CONTRASEÃ±A
 	private class TxtF_passActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if(pssF_contrasena.getPassword().length >0) {
@@ -439,7 +442,7 @@ public class Crear_EditarUsuario {
 		}
 	}
 	
-	//REPITA CONTRASEÑA
+	//REPITA CONTRASEï¿½A
 	private class TxtF_passRActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if((Arrays.equals(pssF_contrasena.getPassword(), pssF_contrasenaRep.getPassword()))) {
@@ -507,10 +510,19 @@ public class Crear_EditarUsuario {
 			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
 			Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
-			//Añadir ese usuario a la lista 
-			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmación", JOptionPane.PLAIN_MESSAGE);
+			//Aï¿½adir ese usuario a la lista 
+			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmaciï¿½n", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
+	
+	private class BtnSeleccionarAvatarMouseListener extends MouseAdapter {
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			JPanel avatar = new pnl_MenuAvatars (arg0.getX(), arg0.getY());
+			avatar.setVisible(true);
+			
+		}
+	}
 	
 
 

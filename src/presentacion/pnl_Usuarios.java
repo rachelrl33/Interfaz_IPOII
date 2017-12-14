@@ -142,8 +142,8 @@ public class pnl_Usuarios extends JPanel {
 		lst_Usuarios.setModel(modeloLista);
 
 		modeloLista.addElement("Raquel Ramos");
-		modeloLista.addElement("Jesús Ramos");
-		modeloLista.addElement("Juan López");
+		modeloLista.addElement("Jesus Ramos");
+		modeloLista.addElement("Juan Lopez");
 		modeloLista.addElement("Marta Casas");
 		
 		
@@ -332,7 +332,7 @@ public class pnl_Usuarios extends JPanel {
 	//--------------------------------------------
 	
 	
-	//AÑADIR USUARIO
+	//Aï¿½ADIR USUARIO
 	private class BtnAnadirUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			Crear_EditarUsuario window;
@@ -359,10 +359,11 @@ public class pnl_Usuarios extends JPanel {
 	private class BtnEliminarUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
-			//Dialogo de confirmación
-			int opcion = JOptionPane.showConfirmDialog(pnl_InfoUsuarios, "¿Seguro que quieres eliminar este usuario?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+			//Dialogo de confirmacion
+			int opcion = JOptionPane.showConfirmDialog(pnl_InfoUsuarios, "Â¿Seguro que quieres eliminar este usuario?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
-				
+				pnl_InfoUsuarios.setVisible(false);
+				//Eliminar el nodo de la lista
 			}
 			
 			

@@ -65,29 +65,15 @@ public class JPrincipal {
 	private JPanel pnl_Calendar;
 	private JPanel pnl_piePag;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					JPrincipal window = new JPrincipal(/*user*/);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Usuario user1;
+	
 
 	/**
 	 * Create the application.
 	 * @param user 
 	 */
-	public JPrincipal(/*Usuario user*/) {
+	public JPrincipal(Usuario user) {
+		user1=user;
 		initialize();
 	}
 
