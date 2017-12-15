@@ -123,7 +123,7 @@ public class JPrincipal {
 		gbc_lbl_logo.gridy = 0;
 		pnl_encabezado.add(lbl_logo, gbc_lbl_logo);
 		
-		lbl_usuario = new JLabel("Usuario");
+		lbl_usuario = new JLabel(user1.getNombre());
 		GridBagConstraints gbc_lbl_usuario = new GridBagConstraints();
 		gbc_lbl_usuario.gridwidth = 2;
 		gbc_lbl_usuario.anchor = GridBagConstraints.SOUTHEAST;
@@ -132,7 +132,7 @@ public class JPrincipal {
 		gbc_lbl_usuario.gridy = 1;
 		pnl_encabezado.add(lbl_usuario, gbc_lbl_usuario);
 		
-		lbl_UltimaConexion = new JLabel("Ultima conexion");
+		lbl_UltimaConexion = new JLabel("17/12/2017");
 		GridBagConstraints gbc_lbl_UltimaConexion = new GridBagConstraints();
 		gbc_lbl_UltimaConexion.gridwidth = 2;
 		gbc_lbl_UltimaConexion.anchor = GridBagConstraints.EAST;
@@ -243,8 +243,9 @@ public class JPrincipal {
 		
 		pnl_Proyectos = new pnl_Proyectos();
 		pnl_contenedorCard.add(pnl_Proyectos, "Proyectos");
-
-		pnl_Usuarios = new pnl_Usuarios();
+		
+		Usuario user = new Usuario (null,null,null,null,null, null, null);
+		pnl_Usuarios = new pnl_Usuarios(user);
 		pnl_contenedorCard.add(pnl_Usuarios, "Usuarios");
 
 		
@@ -286,8 +287,8 @@ public class JPrincipal {
 	//OYENTE CERRAR SESION
 	private class BtnCerrarSesionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//Dialogo de confimación 
-			int opcion = JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres cerrar la sesión?", "Cerrar sesión", JOptionPane.OK_CANCEL_OPTION);
+			//Dialogo de confimaciï¿½n 
+			int opcion = JOptionPane.showConfirmDialog(frame, "ï¿½Seguro que quieres cerrar la sesiï¿½n?", "Cerrar sesiï¿½n", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
 				JLogin window = new JLogin();
 				frame.setVisible(false);

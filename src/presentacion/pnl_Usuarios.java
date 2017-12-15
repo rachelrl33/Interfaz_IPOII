@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -34,7 +35,9 @@ import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Position;
 
+import dominio.Usuario;
 
 import java.awt.SystemColor;
 import java.awt.GridLayout;
@@ -62,11 +65,13 @@ public class pnl_Usuarios extends JPanel {
 	private JLabel lbl_TrabajandoEn;
 	private JScrollPane scrollPane_Trabajando;
 	private JTable tbl_Trabajando;
-
+	private DefaultListModel modeloLista;
+	private Usuario user1;
 	/**
 	 * Create the panel.
 	 */
-	public pnl_Usuarios() {
+	public pnl_Usuarios(Usuario user) {
+		user1=user;
 		setForeground(SystemColor.menu);
 		setBounds(new Rectangle(0, 0, 1210, 546));
 		setBackground(Color.WHITE);
@@ -138,18 +143,19 @@ public class pnl_Usuarios extends JPanel {
 		lst_Usuarios.setCellRenderer(new MiListCellRenderer());
 		scrollPane.setViewportView(lst_Usuarios);
 		
-		DefaultListModel modeloLista = new DefaultListModel();
+		modeloLista = new DefaultListModel();
 		lst_Usuarios.setModel(modeloLista);
 
 		modeloLista.addElement("Raquel Ramos");
 		modeloLista.addElement("Jesus Ramos");
 		modeloLista.addElement("Juan Lopez");
 		modeloLista.addElement("Marta Casas");
-		
+		modeloLista.addElement("Miguel Rodriguez");
 		
 		
 		
 		pnl_InfoUsuarios = new JPanel();
+		pnl_InfoUsuarios.setVisible(false);
 		GridBagConstraints gbc_pnl_InfoUsuarios = new GridBagConstraints();
 		gbc_pnl_InfoUsuarios.fill = GridBagConstraints.BOTH;
 		gbc_pnl_InfoUsuarios.gridx = 1;
@@ -316,6 +322,7 @@ public class pnl_Usuarios extends JPanel {
 				return columnTypes[columnIndex];
 			}
 		});
+		
 		tbl_Trabajando.getColumnModel().getColumn(1).setPreferredWidth(103);
 		scrollPane_Trabajando.setViewportView(tbl_Trabajando);
 	
@@ -324,20 +331,20 @@ public class pnl_Usuarios extends JPanel {
 
 	}
 	
-	
-	
+
 	
 	//--------------------------------------------
 	//                 OYENTES 
 	//--------------------------------------------
 	
 	
-	//A�ADIR USUARIO
+	//ANADIR USUARIO
 	private class BtnAnadirUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			Crear_EditarUsuario window;
 			try {
-				window = new Crear_EditarUsuario();
+				Usuario userVacio = new Usuario(null, "","","","","","");
+				window = new Crear_EditarUsuario(userVacio);
 				JFrame frmUsuario = new JFrame();
 				window.frmUsuario.setVisible(true);
 			} catch (ParseException e) {
@@ -346,7 +353,7 @@ public class pnl_Usuarios extends JPanel {
 			}
 
 			
-			DefaultListModel modeloLista= (DefaultListModel) lst_Usuarios.getModel();
+			modeloLista= (DefaultListModel) lst_Usuarios.getModel();
 			int indice = modeloLista.getSize();
 			//modeloLista.addElement("Idioma " + (indice+1));
 			//lst_Usuarios.setSelectedIndex(indice);
@@ -364,6 +371,28 @@ public class pnl_Usuarios extends JPanel {
 			if (opcion == 0) { 
 				pnl_InfoUsuarios.setVisible(false);
 				//Eliminar el nodo de la lista
+				int index = lst_Usuarios.getSelectedIndex();
+				modeloLista.remove(index);
+				
+				
+				lbl_NombreDeUsuario.setText("Nombre de usuario");
+				lbl_Avatar.setIcon(null);
+				lbl_Email.setText("email");
+				lbl_Telefono.setText("telefono");
+				textArea.setText("");
+				btnEliminarUsuario.setEnabled(false);
+				btnEditarUsuario.setEnabled(false);
+				btnEnviarMensaje.setEnabled(false);
+				scrollPane_jefe.setEnabled(false);
+				tbl_Jefe.setEnabled(false);
+				scrollPane_Trabajando.setEnabled(false);
+				tbl_Trabajando.setEnabled(false);
+				
+				
+				
+				
+				
+				
 			}
 			
 			
@@ -376,7 +405,8 @@ public class pnl_Usuarios extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			Crear_EditarUsuario window;
 			try {
-				window = new Crear_EditarUsuario();
+				
+				window = new Crear_EditarUsuario(user1);
 				JFrame frmUsuario = new JFrame();
 				window.frmUsuario.setVisible(true);
 			} catch (ParseException e1) {
@@ -397,9 +427,28 @@ public class pnl_Usuarios extends JPanel {
 			window.frmMensaje.setVisible(true);
 		}
 	}
+	
+	
+	
+	//SELECCIONDE USUARIOS EN LA LISTA
 	private class Lst_UsuariosListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {
+			
 			lbl_NombreDeUsuario.setText((String) lst_Usuarios.getSelectedValue());
+			user1.setNombre(lbl_NombreDeUsuario.getText());
+			pnl_InfoUsuarios.setVisible(true);
+			
+			
+			lbl_Email.setText("direccionEmail@empresa.com");
+			lbl_Telefono.setText("648253478");
+
+			btnEliminarUsuario.setEnabled(true);
+			btnEditarUsuario.setEnabled(true);
+			btnEnviarMensaje.setEnabled(true);
+			scrollPane_jefe.setEnabled(true);
+			tbl_Jefe.setEnabled(true);
+			scrollPane_Trabajando.setEnabled(true);
+			tbl_Trabajando.setEnabled(true);
 		}
 	}
 	

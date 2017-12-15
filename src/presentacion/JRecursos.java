@@ -13,6 +13,7 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 
 public class JRecursos extends JFrame {
 
@@ -45,7 +46,7 @@ public class JRecursos extends JFrame {
 	 */
 	public JRecursos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 402, 301);
+		setBounds(100, 100, 558, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,10 +54,12 @@ public class JRecursos extends JFrame {
 		gbl_contentPane.columnWidths = new int[] {0, 0, 0, 3};
 		gbl_contentPane.rowHeights = new int[] {122, 124, 3};
 		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		button = new JButton("");
+		button.setBackground(java.awt.Color.white);
+		button.setIcon(new ImageIcon(JRecursos.class.getResource("/presentacion/recurso3...png")));
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.fill = GridBagConstraints.BOTH;
 		gbc_button.insets = new Insets(0, 0, 5, 5);
@@ -65,6 +68,8 @@ public class JRecursos extends JFrame {
 		contentPane.add(button, gbc_button);
 		
 		button_2 = new JButton("");
+		button_2.setBackground(java.awt.Color.white);
+		button_2.setIcon(new ImageIcon(JRecursos.class.getResource("/presentacion/recurso5.png")));
 		GridBagConstraints gbc_button_2 = new GridBagConstraints();
 		gbc_button_2.fill = GridBagConstraints.BOTH;
 		gbc_button_2.insets = new Insets(0, 0, 5, 5);
@@ -73,6 +78,8 @@ public class JRecursos extends JFrame {
 		contentPane.add(button_2, gbc_button_2);
 		
 		button_3 = new JButton("");
+		button_3.setBackground(java.awt.Color.white);
+		button_3.setIcon(new ImageIcon(JRecursos.class.getResource("/presentacion/recurso1..png")));
 		GridBagConstraints gbc_button_3 = new GridBagConstraints();
 		gbc_button_3.fill = GridBagConstraints.BOTH;
 		gbc_button_3.insets = new Insets(0, 0, 5, 0);
@@ -81,6 +88,8 @@ public class JRecursos extends JFrame {
 		contentPane.add(button_3, gbc_button_3);
 		
 		button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(JRecursos.class.getResource("/presentacion/recurso4..png")));
+		button_1.setBackground(java.awt.Color.white);
 		GridBagConstraints gbc_button_1 = new GridBagConstraints();
 		gbc_button_1.fill = GridBagConstraints.BOTH;
 		gbc_button_1.insets = new Insets(0, 0, 0, 5);
@@ -89,6 +98,7 @@ public class JRecursos extends JFrame {
 		contentPane.add(button_1, gbc_button_1);
 		
 		button_4 = new JButton("");
+		button_4.setBackground(java.awt.Color.white);
 		GridBagConstraints gbc_button_4 = new GridBagConstraints();
 		gbc_button_4.fill = GridBagConstraints.BOTH;
 		gbc_button_4.insets = new Insets(0, 0, 0, 5);
@@ -97,6 +107,7 @@ public class JRecursos extends JFrame {
 		contentPane.add(button_4, gbc_button_4);
 		
 		button_5 = new JButton("");
+		button_5.setBackground(java.awt.Color.white);
 		GridBagConstraints gbc_button_5 = new GridBagConstraints();
 		gbc_button_5.fill = GridBagConstraints.BOTH;
 		gbc_button_5.gridx = 2;

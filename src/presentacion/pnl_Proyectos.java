@@ -12,6 +12,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -152,7 +153,8 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lblIdDelProyecto.gridy = 2;
 		pnl_InfoProyecto.add(lblIdDelProyecto, gbc_lblIdDelProyecto);
 		
-		btnEditarRecursos = new JButton("Editar recursos");
+		btnEditarRecursos = new JButton("Consultar recursos");
+		btnEditarRecursos.addActionListener(new BtnEditarRecursosActionListener());
 		GridBagConstraints gbc_btnEditarRecursos = new GridBagConstraints();
 		gbc_btnEditarRecursos.gridwidth = 3;
 		gbc_btnEditarRecursos.insets = new Insets(0, 0, 5, 5);
@@ -312,6 +314,17 @@ public class pnl_Proyectos extends JPanel {
 		listUsuariosAsociados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(listUsuariosAsociados);
 		
+		listUsuariosAsociados.setCellRenderer(new MiListCellRenderer());
+		DefaultListModel modeloLista = new DefaultListModel();
+		listUsuariosAsociados.setModel(modeloLista);
+
+		modeloLista.addElement("Raquel Ramos");
+		modeloLista.addElement("Jesus Ramos");
+		modeloLista.addElement("Juan Lopez");
+		modeloLista.addElement("Marta Casas");
+		modeloLista.addElement("Miguel Rodriguez");
+		
+		
 		pnl_InfoTareas = new JPanel();
 		GridBagConstraints gbc_pnl_InfoTareas = new GridBagConstraints();
 		gbc_pnl_InfoTareas.fill = GridBagConstraints.BOTH;
@@ -450,8 +463,14 @@ public class pnl_Proyectos extends JPanel {
 	}
 	private class BtnAnadirTareaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			Crear_EditarProyecto frame = new Crear_EditarProyecto();
-			frame.setVisible(true);
+			Crear_EditarProyecto frame1 = new Crear_EditarProyecto();
+			frame1.setVisible(true);
+		}
+	}
+	private class BtnEditarRecursosActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JRecursos frame2 = new JRecursos();
+			frame2.setVisible(true);
 		}
 	}
 }

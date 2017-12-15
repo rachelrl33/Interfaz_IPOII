@@ -35,12 +35,12 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import javax.swing.JSplitPane;
 
 public class EditorGrafico extends JFrame {
 
 	private JPanel contentPane;
 	private JToolBar toolBar;
-	private JButton btnAbrir;
 	private JButton btnGuardar;
 	private JSeparator separator;
 	private JButton btnCrear;
@@ -123,15 +123,6 @@ public class EditorGrafico extends JFrame {
 		btnCrear.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/icons8-add-file-32.png")));
 		toolBar.add(btnCrear);
 
-		btnAbrir = new JButton("");
-		btnAbrir.setBackground(Color.WHITE);
-		btnAbrir.setBorder(null);
-		btnAbrir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAbrir.setBorderPainted(false);
-		btnAbrir.addActionListener(new BtnAbrirActionListener());
-		btnAbrir.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/icons8-view-32.png")));
-		toolBar.add(btnAbrir);
-
 		btnGuardar = new JButton("");
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		btnGuardar.setBackground(Color.WHITE);
@@ -183,7 +174,7 @@ public class EditorGrafico extends JFrame {
 		btnTexto.setBorder(null);
 		btnTexto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnTexto.setBorderPainted(false);
-		btnTexto.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/icons8-text-32.png")));
+		btnTexto.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/font3.png")));
 		btnTexto.setToolTipText("Inserta Texto");
 		toolBar.add(btnTexto);
 
@@ -209,7 +200,7 @@ public class EditorGrafico extends JFrame {
 		miAreaDibujo.setHorizontalTextPosition(SwingConstants.CENTER);
 		miAreaDibujo.setHorizontalAlignment(SwingConstants.CENTER);
 		miAreaDibujo.setIcon(null);
-		scrollPane_1.setViewportView(miAreaDibujo);
+		scrollPane_1.setRowHeaderView(miAreaDibujo);
 
 		toolkit = Toolkit.getDefaultToolkit();
 
@@ -222,20 +213,8 @@ public class EditorGrafico extends JFrame {
 		imgDependencia = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/icons8-right-32.png"));
 		cursorDependencia = toolkit.createCustomCursor(imgDependencia, new Point(0,0), "CURSOR_DEPENDENCIA");
 
-		texto = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/icons8-text-32.png"));
+		texto = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/font3.png"));
 		cursorTexto = toolkit.createCustomCursor(texto, new Point(0,0), "CURSOR_TEXTO");
-	}
-
-	private class BtnAbrirActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			JFileChooser fcAbrir = new JFileChooser();
-			int valorDevuelto = fcAbrir.showOpenDialog(frame);
-			if(valorDevuelto == JFileChooser.APPROVE_OPTION) {
-				File file = fcAbrir.getSelectedFile();
-				imagen = new ImageIcon(file.getAbsolutePath());
-				miAreaDibujo.setIcon(imagen);
-			}
-		}
 	}
 	private class BtnCrearActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

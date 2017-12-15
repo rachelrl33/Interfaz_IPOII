@@ -156,8 +156,8 @@ public class pnlReutilizableTarea extends JPanel {
 
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//Dialogo de confirmación
-			int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta tarea?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+			//Dialogo de confirmacion
+			int opcion = JOptionPane.showConfirmDialog(null, "Â¿Seguro que quieres eliminar esta tarea?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
 				//Hay que dejar el panel en blanco y eliminar el nodo del arbol
 			}
@@ -165,8 +165,7 @@ public class pnlReutilizableTarea extends JPanel {
 	}
 	private class Btn_EditarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Crear_EditarProyecto frame = new Crear_EditarProyecto();
-			frame.setVisible(true);
+
 		}
 	}
 }

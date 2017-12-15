@@ -87,33 +87,16 @@ public class Crear_EditarUsuario {
 	private JPanel pnl_MenuAvatars;
 	private JMenuItem mntmNewMenuItem;
 	private JButton btnSeleccionarAvatar;
-	
+	private Usuario user;
 
 	
-
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Crear_EditarUsuario window = new Crear_EditarUsuario();
-					window.frmUsuario.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
+	 * @param user1 
 	 * @throws ParseException 
 	 */
-	public Crear_EditarUsuario() throws ParseException {
+	public Crear_EditarUsuario(Usuario user1) throws ParseException {
+		user=user1;
 		initialize();
 	}
 
@@ -149,6 +132,7 @@ public class Crear_EditarUsuario {
 
 		//CONOCIMIENTOS
 		txtA_conocimientos = new JTextArea();
+		txtA_conocimientos.setText(user.getConocimientos());
 		txtA_conocimientos.setFont(new Font("Verdana", Font.BOLD, 13));
 		txtA_conocimientos.setBorder(new TitledBorder(null, "Conocimientos y habilidades", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_txtA_conocimientos = new GridBagConstraints();
@@ -171,6 +155,7 @@ public class Crear_EditarUsuario {
 		frmUsuario.getContentPane().add(lblNombre, gbc_lblNombre);
 		
 		txtF_nombre = new JTextField();
+		txtF_nombre.setText(user.getNombre());
 		defaultB=txtF_nombre.getBorder();
 		txtF_nombre.addKeyListener(new TxtF_nombreActionListener());
 		GridBagConstraints gbc_txtF_nombre = new GridBagConstraints();
@@ -258,6 +243,7 @@ public class Crear_EditarUsuario {
 		
 		
 		ftxtF_email = new JFormattedTextField();
+		ftxtF_email.setText(user.getEmail());
 		ftxtF_email.addKeyListener(new TxtF_emailActionListener());
 		GridBagConstraints gbc_ftxtF_email = new GridBagConstraints();
 		gbc_ftxtF_email.gridwidth = 7;
@@ -287,6 +273,7 @@ public class Crear_EditarUsuario {
 		frmUsuario.getContentPane().add(lblContrasena, gbc_lblContrasena);
 		
 		pssF_contrasena = new JPasswordField();
+		pssF_contrasena.setText(user.getContrasena());
 		pssF_contrasena.addKeyListener(new TxtF_passActionListener());
 		GridBagConstraints gbc_pssF_contrasena = new GridBagConstraints();
 		gbc_pssF_contrasena.gridwidth = 2;
@@ -305,7 +292,7 @@ public class Crear_EditarUsuario {
 		frmUsuario.getContentPane().add(lbl_WarningCo, gbc_lbl_WarningCo);
 		
 		
-		//REPETIR CONTRASE�A
+		//REPETIR CONTRASENA
 		lblRepetirContrasea = new JLabel("Repetir contrase\u00F1a");
 		lblRepetirContrasea.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
@@ -442,7 +429,7 @@ public class Crear_EditarUsuario {
 		}
 	}
 	
-	//REPITA CONTRASE�A
+	//REPITA CONTRASENA
 	private class TxtF_passRActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if((Arrays.equals(pssF_contrasena.getPassword(), pssF_contrasenaRep.getPassword()))) {
@@ -510,8 +497,8 @@ public class Crear_EditarUsuario {
 			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
 			Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
-			//A�adir ese usuario a la lista 
-			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmaci�n", JOptionPane.PLAIN_MESSAGE);
+			//Añadir ese usuario a la lista 
+			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	

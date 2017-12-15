@@ -10,19 +10,20 @@ public class Usuario {
 	private String nombre;
 	private String telefono;
 	private String email;
-	private String constrasena;
+	private String contrasena;
 	private String conocimientos;
 	private String ultConex;
 	
-	public Usuario(Icon avatar, String nombre, String telefono, String email, String constrasena, String conocimientos, String ultConex) {
+	public Usuario(Icon avatar, String nombre, String telefono, String email, String contrasena, String conocimientos, String ultConex) {
 		this.avatar = avatar;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.email = email;
-		this.constrasena = constrasena;
+		this.contrasena = contrasena;
 		this.conocimientos = conocimientos;
 		this.ultConex=ultConex;
 	}
+	
 
 	public Icon getAvatar() {
 		return avatar;
@@ -56,12 +57,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getConstrasena() {
-		return constrasena;
+	public String getContrasena() {
+		return contrasena;
 	}
 
 	public void setConstrasena(String constrasena) {
-		this.constrasena = constrasena;
+		this.contrasena = constrasena;
 	}
 
 	public String getConocimientos() {
