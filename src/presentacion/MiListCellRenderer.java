@@ -1,9 +1,12 @@
 package presentacion;
 
 import javax.swing.*;
+
+import dominio.Usuario;
+
 import java.awt.*;
 
-class MiListCellRenderer extends DefaultListCellRenderer {
+class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 	
 	protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 	ImageIcon iconoUser1;
@@ -18,7 +21,7 @@ class MiListCellRenderer extends DefaultListCellRenderer {
 	ImageIcon iconoUser10;
 
 	
-	public MiListCellRenderer () {
+	public MiListCellRenderer() {
 		iconoUser1 = new ImageIcon(MiListCellRenderer.class.getResource("ap1.png"));
 		iconoUser2 = new ImageIcon(MiListCellRenderer.class.getResource("ap2.png"));
 		iconoUser3 = new ImageIcon(MiListCellRenderer.class.getResource("ap3.png"));

@@ -134,7 +134,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(btnEditProyecto, gbc_btnEditProyecto);
 		
 		btnEliminarPyoyecto = new JButton("");
-		btnEliminarPyoyecto.addActionListener(new BtnEliminarPyoyectoActionListener());
+		btnEliminarPyoyecto.addActionListener(new BtnEliminarProyectoActionListener());
 		btnEliminarPyoyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/rubbish-bin.png")));
 		GridBagConstraints gbc_btnEliminarPyoyecto = new GridBagConstraints();
 		gbc_btnEliminarPyoyecto.anchor = GridBagConstraints.WEST;
@@ -450,7 +450,7 @@ public class pnl_Proyectos extends JPanel {
 	
 	
 	
-	private class BtnEliminarPyoyectoActionListener implements ActionListener {
+	private class BtnEliminarProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			//Dialogo de confirmacion
 			int opcion = JOptionPane.showConfirmDialog(pnl_InfoProyecto, "¿Seguro que quieres eliminar este proyecto?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
@@ -461,12 +461,16 @@ public class pnl_Proyectos extends JPanel {
 			}
 		}
 	}
+	
+	
 	private class BtnAnadirTareaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			Crear_EditarProyecto frame1 = new Crear_EditarProyecto();
 			frame1.setVisible(true);
 		}
 	}
+	
+	
 	private class BtnEditarRecursosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JRecursos frame2 = new JRecursos();

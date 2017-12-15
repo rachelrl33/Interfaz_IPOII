@@ -120,7 +120,8 @@ public class Crear_EditarUsuario {
 		
 		//FOTO AVATAR
 		lblFotoAvatar = new JLabel("");
-		lblFotoAvatar.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/ag1.png")));
+		lblFotoAvatar.setIcon(null);
+		lblFotoAvatar.setIcon(user.getAvatar());
 		GridBagConstraints gbc_lblFotoAvatar = new GridBagConstraints();
 		gbc_lblFotoAvatar.gridwidth = 2;
 		gbc_lblFotoAvatar.gridheight = 2;
@@ -208,6 +209,7 @@ public class Crear_EditarUsuario {
 			formatoTelf = new MaskFormatter("'####'-###'-###");
 			formatoTelf.setPlaceholderCharacter('X');
 			ftxtF_telefono = new JFormattedTextField(formatoTelf);
+			ftxtF_telefono.setValue(user.getTelefono());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -502,12 +504,12 @@ public class Crear_EditarUsuario {
 			}
 		}
 	
+	
 	private class BtnSeleccionarAvatarMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			JPanel avatar = new pnl_MenuAvatars (arg0.getX(), arg0.getY());
 			avatar.setVisible(true);
-			
 		}
 	}
 	

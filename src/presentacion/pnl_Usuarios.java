@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 
@@ -65,7 +66,19 @@ public class pnl_Usuarios extends JPanel {
 	private JLabel lbl_TrabajandoEn;
 	private JScrollPane scrollPane_Trabajando;
 	private JTable tbl_Trabajando;
-	private DefaultListModel modeloLista;
+	
+	ImageIcon iconoUser1;
+	ImageIcon iconoUser2;
+	ImageIcon iconoUser3;
+	ImageIcon iconoUser4;
+	ImageIcon iconoUser5;
+	ImageIcon iconoUser6;
+	ImageIcon iconoUser7;
+	ImageIcon iconoUser8;
+	ImageIcon iconoUser9;
+	ImageIcon iconoUser10;
+	
+	private CustomListModel modeloLista;
 	private Usuario user1;
 	/**
 	 * Create the panel.
@@ -135,25 +148,43 @@ public class pnl_Usuarios extends JPanel {
 		gbc_scrollPane.gridy = 3;
 		pnl_ListaUsuarios.add(scrollPane, gbc_scrollPane);
 		
-		
+		//LISTADO DE USUARIOS
 		lst_Usuarios = new JList();
 		lst_Usuarios.addListSelectionListener(new Lst_UsuariosListSelectionListener());
 		lst_Usuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		lst_Usuarios.setCellRenderer(new MiListCellRenderer());
 		scrollPane.setViewportView(lst_Usuarios);
-		
-		modeloLista = new DefaultListModel();
+
+		iconoUser1 = new ImageIcon(pnl_Usuarios.class.getResource("ag1.png"));
+		iconoUser2 = new ImageIcon(pnl_Usuarios.class.getResource("ag2.png"));
+		iconoUser3 = new ImageIcon(pnl_Usuarios.class.getResource("ag3.png"));
+		iconoUser4 = new ImageIcon(pnl_Usuarios.class.getResource("ag4.png"));
+		iconoUser5 = new ImageIcon(pnl_Usuarios.class.getResource("ag5.png"));
+		iconoUser6 = new ImageIcon(pnl_Usuarios.class.getResource("ag6.png"));
+		iconoUser7 = new ImageIcon(pnl_Usuarios.class.getResource("ag7.png"));
+		iconoUser8 = new ImageIcon(pnl_Usuarios.class.getResource("ag8.png"));
+		iconoUser9 = new ImageIcon(pnl_Usuarios.class.getResource("ag9.png"));
+		iconoUser10 = new ImageIcon(pnl_Usuarios.class.getResource("ag10.png"));
+
+		modeloLista = new CustomListModel();
 		lst_Usuarios.setModel(modeloLista);
 
-		modeloLista.addElement("Raquel Ramos");
-		modeloLista.addElement("Jesus Ramos");
-		modeloLista.addElement("Juan Lopez");
-		modeloLista.addElement("Marta Casas");
-		modeloLista.addElement("Miguel Rodriguez");
+		DefaultListCellRenderer renderer = new MiListCellRenderer();
+		lst_Usuarios.setCellRenderer(renderer);
+
+		Usuario u1 = new Usuario(iconoUser7, "Raquel Ramos", "648616243", "raquel@uclm.es", "estrtgh", "Grado en Ingeniería Informatica", "17/12/2017");
+		Usuario u2 = new Usuario(iconoUser1, "Jesus Ramos", "645481296", "jesus@uclm.es", "trcfi", "Grado en Ingeniería Informatica", "20/11/2017");
+		Usuario u3 = new Usuario(iconoUser9, "Juan Lopez", "698756321", "juanl@uclm.es", "rtgh", "Grado en Diseño gráfico", "30/11/2017");
+		Usuario u4 = new Usuario(iconoUser6, "Marta Casas", "689745123", "marta.casas@uclm.es", "martitaC", "Grado en Gestión y dirección de empresaas", "15/11/2017");
+		Usuario u5 = new Usuario(iconoUser3, "Miguel Rodriguez", "648625319", "miguel.r@uclm.es", "migRZ", "Grado en Ingeniería Informática", "15/12/2017");
 		
+		modeloLista.addPersona(u1);
+		modeloLista.addPersona(u2);
+		modeloLista.addPersona(u3);
+		modeloLista.addPersona(u4);
+		modeloLista.addPersona(u5);
 		
-		
+
 		pnl_InfoUsuarios = new JPanel();
 		pnl_InfoUsuarios.setVisible(false);
 		GridBagConstraints gbc_pnl_InfoUsuarios = new GridBagConstraints();
@@ -162,9 +193,9 @@ public class pnl_Usuarios extends JPanel {
 		gbc_pnl_InfoUsuarios.gridy = 0;
 		add(pnl_InfoUsuarios, gbc_pnl_InfoUsuarios);
 		GridBagLayout gbl_pnl_InfoUsuarios = new GridBagLayout();
-		gbl_pnl_InfoUsuarios.columnWidths = new int[]{53, 56, 41, 118, 0, 125, 99, 97, 32, 46, 41, 53, 36, 0};
+		gbl_pnl_InfoUsuarios.columnWidths = new int[]{53, 56, 41, 118, 0, 0, 125, 99, 97, 32, 46, 41, 53, 36, 0};
 		gbl_pnl_InfoUsuarios.rowHeights = new int[]{24, 0, 0, 0, 30, 0, 52, 59, 40, 0, 183, 35, 0};
-		gbl_pnl_InfoUsuarios.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnl_InfoUsuarios.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnl_InfoUsuarios.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		pnl_InfoUsuarios.setLayout(gbl_pnl_InfoUsuarios);
 		
@@ -193,7 +224,7 @@ public class pnl_Usuarios extends JPanel {
 		GridBagConstraints gbc_btnEnviarMensaje = new GridBagConstraints();
 		gbc_btnEnviarMensaje.anchor = GridBagConstraints.SOUTH;
 		gbc_btnEnviarMensaje.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEnviarMensaje.gridx = 9;
+		gbc_btnEnviarMensaje.gridx = 10;
 		gbc_btnEnviarMensaje.gridy = 1;
 		pnl_InfoUsuarios.add(btnEnviarMensaje, gbc_btnEnviarMensaje);
 		
@@ -202,7 +233,7 @@ public class pnl_Usuarios extends JPanel {
 		btnEditarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/edit.png")));
 		GridBagConstraints gbc_btnEditarUsuario = new GridBagConstraints();
 		gbc_btnEditarUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditarUsuario.gridx = 10;
+		gbc_btnEditarUsuario.gridx = 11;
 		gbc_btnEditarUsuario.gridy = 1;
 		pnl_InfoUsuarios.add(btnEditarUsuario, gbc_btnEditarUsuario);
 		
@@ -211,7 +242,7 @@ public class pnl_Usuarios extends JPanel {
 		btnEliminarUsuario.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/rubbish-bin.png")));
 		GridBagConstraints gbc_btnEliminarUsuario = new GridBagConstraints();
 		gbc_btnEliminarUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEliminarUsuario.gridx = 11;
+		gbc_btnEliminarUsuario.gridx = 12;
 		gbc_btnEliminarUsuario.gridy = 1;
 		pnl_InfoUsuarios.add(btnEliminarUsuario, gbc_btnEliminarUsuario);
 		
@@ -238,7 +269,7 @@ public class pnl_Usuarios extends JPanel {
 		textArea.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Conocimientos y habilidades", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridheight = 3;
-		gbc_textArea.gridwidth = 11;
+		gbc_textArea.gridwidth = 12;
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
 		gbc_textArea.gridx = 1;
@@ -255,14 +286,14 @@ public class pnl_Usuarios extends JPanel {
 		lbl_TrabajandoEn = new JLabel("Trabajando en:");
 		GridBagConstraints gbc_lbl_TrabajandoEn = new GridBagConstraints();
 		gbc_lbl_TrabajandoEn.insets = new Insets(0, 0, 5, 5);
-		gbc_lbl_TrabajandoEn.gridx = 6;
+		gbc_lbl_TrabajandoEn.gridx = 7;
 		gbc_lbl_TrabajandoEn.gridy = 9;
 		pnl_InfoUsuarios.add(lbl_TrabajandoEn, gbc_lbl_TrabajandoEn);
 		
 		scrollPane_jefe = new JScrollPane();
 		scrollPane_jefe.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane_jefe = new GridBagConstraints();
-		gbc_scrollPane_jefe.gridwidth = 4;
+		gbc_scrollPane_jefe.gridwidth = 5;
 		gbc_scrollPane_jefe.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_jefe.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane_jefe.gridx = 1;
@@ -293,7 +324,7 @@ public class pnl_Usuarios extends JPanel {
 		gbc_scrollPane_Trabajando.gridwidth = 6;
 		gbc_scrollPane_Trabajando.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane_Trabajando.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_Trabajando.gridx = 6;
+		gbc_scrollPane_Trabajando.gridx = 7;
 		gbc_scrollPane_Trabajando.gridy = 10;
 		pnl_InfoUsuarios.add(scrollPane_Trabajando, gbc_scrollPane_Trabajando);
 		
@@ -353,8 +384,8 @@ public class pnl_Usuarios extends JPanel {
 			}
 
 			
-			modeloLista= (DefaultListModel) lst_Usuarios.getModel();
-			int indice = modeloLista.getSize();
+			//modeloLista= (DefaultListModel) lst_Usuarios.getModel();
+			//int indice = modeloLista.getSize();
 			//modeloLista.addElement("Idioma " + (indice+1));
 			//lst_Usuarios.setSelectedIndex(indice);
 			//lst_Usuarios.ensureIndexIsVisible(indice);
@@ -372,7 +403,7 @@ public class pnl_Usuarios extends JPanel {
 				pnl_InfoUsuarios.setVisible(false);
 				//Eliminar el nodo de la lista
 				int index = lst_Usuarios.getSelectedIndex();
-				modeloLista.remove(index);
+				modeloLista.eliminarPersona(index);
 				
 				
 				lbl_NombreDeUsuario.setText("Nombre de usuario");
@@ -404,11 +435,16 @@ public class pnl_Usuarios extends JPanel {
 	private class BtnEditarUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Crear_EditarUsuario window;
+
 			try {
+				int selection = lst_Usuarios.getSelectedIndex();
+				if (selection!=-1) {
+					Usuario u= modeloLista.getPersona(selection);
+					window = new Crear_EditarUsuario(u);
+					JFrame frmUsuario = new JFrame();
+					window.frmUsuario.setVisible(true);
+				}
 				
-				window = new Crear_EditarUsuario(user1);
-				JFrame frmUsuario = new JFrame();
-				window.frmUsuario.setVisible(true);
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -433,15 +469,19 @@ public class pnl_Usuarios extends JPanel {
 	//SELECCIONDE USUARIOS EN LA LISTA
 	private class Lst_UsuariosListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {
-			
-			lbl_NombreDeUsuario.setText((String) lst_Usuarios.getSelectedValue());
-			user1.setNombre(lbl_NombreDeUsuario.getText());
-			pnl_InfoUsuarios.setVisible(true);
-			
-			
-			lbl_Email.setText("direccionEmail@empresa.com");
-			lbl_Telefono.setText("648253478");
 
+			
+			int selection = lst_Usuarios.getSelectedIndex();
+			if (selection!=-1) {
+				Usuario u= modeloLista.getPersona(selection);
+				lbl_Avatar.setIcon(u.getAvatar());
+				lbl_NombreDeUsuario.setText(u.getNombre());
+				lbl_Email.setText(u.getEmail());
+				lbl_Telefono.setText(u.getTelefono());
+				textArea.setText(u.getConocimientos());
+			}
+
+			pnl_InfoUsuarios.setVisible(true);
 			btnEliminarUsuario.setEnabled(true);
 			btnEditarUsuario.setEnabled(true);
 			btnEnviarMensaje.setEnabled(true);
