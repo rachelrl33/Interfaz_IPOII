@@ -67,6 +67,7 @@ public class pnl_Usuarios extends JPanel {
 	private JScrollPane scrollPane_Trabajando;
 	private JTable tbl_Trabajando;
 	
+	ImageIcon iconoDef;
 	ImageIcon iconoUser1;
 	ImageIcon iconoUser2;
 	ImageIcon iconoUser3;
@@ -155,6 +156,7 @@ public class pnl_Usuarios extends JPanel {
 
 		scrollPane.setViewportView(lst_Usuarios);
 
+		iconoDef=new ImageIcon(pnl_Usuarios.class.getResource("user4.png"));
 		iconoUser1 = new ImageIcon(pnl_Usuarios.class.getResource("ag1.png"));
 		iconoUser2 = new ImageIcon(pnl_Usuarios.class.getResource("ag2.png"));
 		iconoUser3 = new ImageIcon(pnl_Usuarios.class.getResource("ag3.png"));
@@ -374,7 +376,7 @@ public class pnl_Usuarios extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			Crear_EditarUsuario window;
 			try {
-				Usuario userVacio = new Usuario(null, "","","","","","");
+				Usuario userVacio = new Usuario(iconoDef,"","","","","","");
 				window = new Crear_EditarUsuario(userVacio);
 				JFrame frmUsuario = new JFrame();
 				window.frmUsuario.setVisible(true);
@@ -436,19 +438,26 @@ public class pnl_Usuarios extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			Crear_EditarUsuario window;
 
-			try {
+			//try {
 				int selection = lst_Usuarios.getSelectedIndex();
 				if (selection!=-1) {
 					Usuario u= modeloLista.getPersona(selection);
-					window = new Crear_EditarUsuario(u);
-					JFrame frmUsuario = new JFrame();
-					window.frmUsuario.setVisible(true);
+					try {
+						window = new Crear_EditarUsuario(u);
+						JFrame frmUsuario = new JFrame();
+						window.frmUsuario.setVisible(true);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+
 				}
 				
-			} catch (ParseException e1) {
+			/*} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
+			}*/
 
 		}
 	}

@@ -57,7 +57,6 @@ public class pnlReutilizableTarea extends JPanel {
 		add(lblNombreTarea, gbc_lblNombreTarea);
 		
 		btn_Editar = new JButton("");
-		btn_Editar.addActionListener(new Btn_EditarActionListener());
 		btn_Editar.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/clip.png")));
 		GridBagConstraints gbc_btn_Editar = new GridBagConstraints();
 		gbc_btn_Editar.anchor = GridBagConstraints.SOUTH;
@@ -159,13 +158,11 @@ public class pnlReutilizableTarea extends JPanel {
 			//Dialogo de confirmacion
 			int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta tarea?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
-				//Hay que dejar el panel en blanco y eliminar el nodo del arbol
+				
+				
+				
 			}
 		}
 	}
-	private class Btn_EditarActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
 
-		}
-	}
 }

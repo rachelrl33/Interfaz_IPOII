@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JPopupMenu;
@@ -15,6 +17,7 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JMenu;
@@ -82,13 +85,10 @@ public class Crear_EditarUsuario {
 	private Border defaultB;
 	
 	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private JMenuBar menuBar;
-	private JMenu mnNewMenu;
-	private JPanel pnl_MenuAvatars;
-	private JMenuItem mntmNewMenuItem;
+
+	
 	private JButton btnSeleccionarAvatar;
 	private Usuario user;
-
 	
 	/**
 	 * Create the application.
@@ -113,17 +113,17 @@ public class Crear_EditarUsuario {
 		frmUsuario.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{39, 0, 61, 41, 16, 48, 0, 74, 0, 43, 98, 116, 72, 40, 0};
-		gridBagLayout.rowHeights = new int[]{24, 33, 27, 27, 19, 20, 0, 27, 41, 0, 0, 20, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{24, 33, 40, 27, 19, 20, 0, 27, 41, 0, 0, 20, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmUsuario.getContentPane().setLayout(gridBagLayout);
 		
 		//FOTO AVATAR
 		lblFotoAvatar = new JLabel("");
-		lblFotoAvatar.setIcon(null);
+		lblFotoAvatar.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/user4.png")));
 		lblFotoAvatar.setIcon(user.getAvatar());
 		GridBagConstraints gbc_lblFotoAvatar = new GridBagConstraints();
-		gbc_lblFotoAvatar.gridwidth = 2;
+		gbc_lblFotoAvatar.gridwidth = 3;
 		gbc_lblFotoAvatar.gridheight = 2;
 		gbc_lblFotoAvatar.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFotoAvatar.gridx = 2;
@@ -177,18 +177,17 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningNom.gridy = 2;
 		frmUsuario.getContentPane().add(lbl_WarningNom, gbc_lbl_WarningNom);
 		
-		
-		
-		//BOTON PARA ELEGIR AVATAR
-		btnSeleccionarAvatar = new JButton("Seleccionar Avatar");
-		btnSeleccionarAvatar.addMouseListener(new BtnSeleccionarAvatarMouseListener());
+		btnSeleccionarAvatar = new JButton("Cambiar Avatar");
+		btnSeleccionarAvatar.addActionListener(new BtnSeleccionarAvatarActionListener());
+		btnSeleccionarAvatar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_btnSeleccionarAvatar = new GridBagConstraints();
-		gbc_btnSeleccionarAvatar.gridwidth = 2;
+		gbc_btnSeleccionarAvatar.gridwidth = 3;
 		gbc_btnSeleccionarAvatar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnSeleccionarAvatar.gridx = 2;
 		gbc_btnSeleccionarAvatar.gridy = 3;
 		frmUsuario.getContentPane().add(btnSeleccionarAvatar, gbc_btnSeleccionarAvatar);
 		
+
 		
 		
 
@@ -382,9 +381,9 @@ public class Crear_EditarUsuario {
 				txtF_nombre.setBorder(bordeRojo); 
 				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
 			}
-			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
+			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
-			}
+			}*/
 		}
 	}
 	
@@ -405,9 +404,9 @@ public class Crear_EditarUsuario {
 				ftxtF_email.setBorder(bordeRojo); 
 				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
 			}
-			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
+			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
-			}
+			}*/
 		}
 	}
 	
@@ -425,9 +424,9 @@ public class Crear_EditarUsuario {
 				pssF_contrasena.setBorder(bordeRojo); 
 				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
 			}
-			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
+			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
-			}
+			}*/
 		}
 	}
 	
@@ -443,9 +442,9 @@ public class Crear_EditarUsuario {
 				pssF_contrasenaRep.setBorder(bordeRojo); 
 				lbl_WarningCoR.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
 			}
-			if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
+			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
-			}
+			}*/
 		}
 	}
 	
@@ -499,17 +498,19 @@ public class Crear_EditarUsuario {
 			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
 			Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
+			
 			//Añadir ese usuario a la lista 
+			//modeloLista.modificarPersona(user, index);
 			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	
 	
-	private class BtnSeleccionarAvatarMouseListener extends MouseAdapter {
-		@Override
-		public void mousePressed(MouseEvent arg0) {
-			JPanel avatar = new pnl_MenuAvatars (arg0.getX(), arg0.getY());
-			avatar.setVisible(true);
+
+	private class BtnSeleccionarAvatarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			JFrame menuAvatar = new MenuAvatars();
+			menuAvatar.setVisible(true);
 		}
 	}
 	

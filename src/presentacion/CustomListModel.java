@@ -37,7 +37,17 @@ public class CustomListModel extends AbstractListModel {
 	}
 	
 	
-	
+	public void modificarPersona(Usuario p, int index) {
+		Usuario aux = lista.get(index);
+		aux.setNombre(p.getNombre());
+		aux.setAvatar(p.getAvatar());
+		aux.setConocimientos(p.getConocimientos());
+		aux.setConstrasena(p.getContrasena());
+		aux.setEmail(p.getEmail());
+		aux.setTelefono(p.getTelefono());
+		lista.remove(p);
+		lista.add(aux);
+	}
 	
 	
 	
