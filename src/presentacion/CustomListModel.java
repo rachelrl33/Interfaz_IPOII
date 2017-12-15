@@ -11,6 +11,7 @@ import dominio.Usuario;
 
 public class CustomListModel extends AbstractListModel {
 	private ArrayList<Usuario> lista = new ArrayList<>();
+
 	
 	@Override
 	public int getSize() {
@@ -22,7 +23,7 @@ public class CustomListModel extends AbstractListModel {
 		return p.getNombre();
 	}
 	
-	public void addPersona(Usuario p){
+	public void addPersona(Usuario p ){
 		lista.add(p);
 		this.fireIntervalAdded(this, getSize(), getSize()+1);
 		 }

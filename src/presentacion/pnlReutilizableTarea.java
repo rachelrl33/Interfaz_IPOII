@@ -17,12 +17,14 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 
 import java.awt.Dimension;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class pnlReutilizableTarea extends JPanel {
@@ -33,7 +35,7 @@ public class pnlReutilizableTarea extends JPanel {
 	private JButton btnEditarRecursos;
 	private JScrollPane scrollPane_1;
 	private JTable table;
-	private JButton btn_Editar;
+	private JButton btn_Adjuntar;
 	private JButton button;
 
 	/**
@@ -56,14 +58,15 @@ public class pnlReutilizableTarea extends JPanel {
 		gbc_lblNombreTarea.gridy = 1;
 		add(lblNombreTarea, gbc_lblNombreTarea);
 		
-		btn_Editar = new JButton("");
-		btn_Editar.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/clip.png")));
-		GridBagConstraints gbc_btn_Editar = new GridBagConstraints();
-		gbc_btn_Editar.anchor = GridBagConstraints.SOUTH;
-		gbc_btn_Editar.insets = new Insets(0, 0, 5, 5);
-		gbc_btn_Editar.gridx = 3;
-		gbc_btn_Editar.gridy = 1;
-		add(btn_Editar, gbc_btn_Editar);
+		btn_Adjuntar = new JButton("");
+		btn_Adjuntar.addActionListener(new Btn_AdjuntarActionListener());
+		btn_Adjuntar.setIcon(new ImageIcon(pnlReutilizableTarea.class.getResource("/presentacion/clip.png")));
+		GridBagConstraints gbc_btn_Adjuntar = new GridBagConstraints();
+		gbc_btn_Adjuntar.anchor = GridBagConstraints.SOUTH;
+		gbc_btn_Adjuntar.insets = new Insets(0, 0, 5, 5);
+		gbc_btn_Adjuntar.gridx = 3;
+		gbc_btn_Adjuntar.gridy = 1;
+		add(btn_Adjuntar, gbc_btn_Adjuntar);
 		
 		button = new JButton("");
 		button.addActionListener(new ButtonActionListener());
@@ -164,5 +167,18 @@ public class pnlReutilizableTarea extends JPanel {
 			}
 		}
 	}
+	private class Btn_AdjuntarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+					JFileChooser fcAbrir = new JFileChooser();
+					int valorDevuelto = fcAbrir.showOpenDialog(null);
+
+					//Recoger el nombre del fichero seleccionado por el usuario
+					if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
+						File fichero = fcAbrir.getSelectedFile();
+					}
+				}
+			}
+
 
 }

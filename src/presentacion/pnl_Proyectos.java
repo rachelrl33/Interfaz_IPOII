@@ -156,6 +156,7 @@ public class pnl_Proyectos extends JPanel {
 		btnEditarRecursos = new JButton("Consultar recursos");
 		btnEditarRecursos.addActionListener(new BtnEditarRecursosActionListener());
 		GridBagConstraints gbc_btnEditarRecursos = new GridBagConstraints();
+		gbc_btnEditarRecursos.anchor = GridBagConstraints.EAST;
 		gbc_btnEditarRecursos.gridwidth = 3;
 		gbc_btnEditarRecursos.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEditarRecursos.gridx = 5;

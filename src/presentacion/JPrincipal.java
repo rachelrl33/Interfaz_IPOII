@@ -12,6 +12,8 @@ import java.awt.Insets;
 import java.awt.CardLayout;
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -35,6 +37,7 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
@@ -170,6 +173,8 @@ public class JPrincipal {
 		pnl_encabezado.add(btnCerrarSesion, gbc_btnCerrarSesion);
 		
 		btnAyuda = new JButton("Ayuda");
+		btnAyuda.addActionListener(new BtnAyudaActionListener());
+
 		btnAyuda.setIcon(null);
 		GridBagConstraints gbc_btnAyuda = new GridBagConstraints();
 		gbc_btnAyuda.anchor = GridBagConstraints.WEST;
@@ -195,27 +200,25 @@ public class JPrincipal {
 		splitPane.setLeftComponent(scrollPane);
 		
 		tree = new JTree();
-		tree.addTreeSelectionListener(new TreeTreeSelectionListener());
-
-		tree.setFont(new Font("Verdana", Font.PLAIN, 12));
-		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Mi zona de trabajo") {
-				{
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("Proyectos");
-						node_1.add(new DefaultMutableTreeNode("p1"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Usuarios");
-					add(node_1);
-					add(new DefaultMutableTreeNode("Enviar mensaje"));
-				}
-			}
-		));
-		
-		
 		scrollPane.setViewportView(tree);
-		tree.getSelectionModel().setSelectionMode (TreeSelectionModel.SINGLE_TREE_SELECTION);
-		tree.setCellRenderer(new MiRenderizadoArbol());
+		tree.addTreeSelectionListener(new TreeTreeSelectionListener());
+		
+				tree.setFont(new Font("Verdana", Font.PLAIN, 12));
+				tree.setModel(new DefaultTreeModel(
+					new DefaultMutableTreeNode("Mi zona de trabajo") {
+						{
+							DefaultMutableTreeNode node_1;
+							node_1 = new DefaultMutableTreeNode("Proyectos");
+								node_1.add(new DefaultMutableTreeNode("p1"));
+							add(node_1);
+							node_1 = new DefaultMutableTreeNode("Usuarios");
+							add(node_1);
+							add(new DefaultMutableTreeNode("Enviar mensaje"));
+						}
+					}
+				));
+				tree.getSelectionModel().setSelectionMode (TreeSelectionModel.SINGLE_TREE_SELECTION);
+				tree.setCellRenderer(new MiRenderizadoArbol());
 		
 		
 		
@@ -252,6 +255,21 @@ public class JPrincipal {
 			
 	}
 
+	
+	public static void openWebPage(String url) {
+        try {
+            Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+            if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+                desktop.browse(new URI(url));
+            }
+            throw new NullPointerException();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, url, "", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+	
+	
+	
 	//--------------------------------------------
 	//                 OYENTES 
 	//--------------------------------------------
@@ -298,5 +316,22 @@ public class JPrincipal {
 			}
 		}
 	}
+	private class BtnAyudaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String url="https://drive.google.com/file/d/1uIDQ2XJSvMhCO9RAVDxZE_0Fy5_IyQsv/view?usp=sharing";
+			openWebPage(url);
+		}
+	}
+	
+	private void ButtonOpenWebActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        try { 
+         String url = "https://www.google.com";
+         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+       }
+       catch (java.io.IOException e) {
+           System.out.println(e.getMessage());
+       }
+    }    
+
 }
 

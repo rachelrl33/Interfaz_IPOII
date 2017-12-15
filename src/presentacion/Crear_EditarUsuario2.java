@@ -51,10 +51,9 @@ import javax.swing.JMenuBar;
 import javax.swing.text.MaskFormatter;
 import java.text.ParseException;
 
-public class Crear_EditarUsuario {
+public class Crear_EditarUsuario2 {
 
 	JFrame frmUsuario;
-	private JLabel lblFotoAvatar;
 	
 	private JLabel lblNombre;
 	private static JTextField txtF_nombre;
@@ -89,17 +88,16 @@ public class Crear_EditarUsuario {
 	private Border defaultB;
 	
 	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-	
-	private JButton btnSeleccionarAvatar;
 	private Usuario user;
+	private JPanel pnl_MenuAvatars;
+	private JLabel lblSeleccionarAvatar;
 	
 	/**
 	 * Create the application.
 	 * @param user1 
 	 * @throws ParseException 
 	 */
-	public Crear_EditarUsuario(Usuario user1) throws ParseException {
+	public Crear_EditarUsuario2(Usuario user1) throws ParseException {
 		user=user1;
 		initialize();
 	}
@@ -112,27 +110,25 @@ public class Crear_EditarUsuario {
 		frmUsuario = new JFrame();
 		frmUsuario.setTitle("Usuario");
 		frmUsuario.setResizable(false);
-		frmUsuario.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarUsuario.class.getResource("/presentacion/users.png")));
-		frmUsuario.setBounds(100, 100, 796, 419);
+		frmUsuario.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarUsuario2.class.getResource("/presentacion/users.png")));
+		frmUsuario.setBounds(100, 100, 811, 505);
 		frmUsuario.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{39, 0, 61, 41, 16, 48, 0, 74, 0, 43, 98, 116, 72, 40, 0};
-		gridBagLayout.rowHeights = new int[]{24, 33, 40, 27, 19, 20, 0, 27, 41, 0, 0, 20, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{24, 33, 40, 27, 19, 20, 34, 33, 0, 27, 41, 0, 0, 22, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmUsuario.getContentPane().setLayout(gridBagLayout);
 		
-		//FOTO AVATAR
-		lblFotoAvatar = new JLabel("");
-		lblFotoAvatar.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/user4.png")));
-		lblFotoAvatar.setIcon(user.getAvatar());
-		GridBagConstraints gbc_lblFotoAvatar = new GridBagConstraints();
-		gbc_lblFotoAvatar.gridwidth = 3;
-		gbc_lblFotoAvatar.gridheight = 2;
-		gbc_lblFotoAvatar.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFotoAvatar.gridx = 2;
-		gbc_lblFotoAvatar.gridy = 1;
-		frmUsuario.getContentPane().add(lblFotoAvatar, gbc_lblFotoAvatar);
+		pnl_MenuAvatars = new pnl_MenuAvatars();
+		GridBagConstraints gbc_pnl_MenuAvatars = new GridBagConstraints();
+		gbc_pnl_MenuAvatars.gridheight = 5;
+		gbc_pnl_MenuAvatars.gridwidth = 5;
+		gbc_pnl_MenuAvatars.insets = new Insets(0, 0, 5, 5);
+		gbc_pnl_MenuAvatars.fill = GridBagConstraints.BOTH;
+		gbc_pnl_MenuAvatars.gridx = 1;
+		gbc_pnl_MenuAvatars.gridy = 1;
+		frmUsuario.getContentPane().add(pnl_MenuAvatars, gbc_pnl_MenuAvatars);
 		
 
 		//CONOCIMIENTOS
@@ -143,7 +139,7 @@ public class Crear_EditarUsuario {
 		GridBagConstraints gbc_txtA_conocimientos = new GridBagConstraints();
 		gbc_txtA_conocimientos.gridwidth = 3;
 		gbc_txtA_conocimientos.insets = new Insets(0, 0, 5, 5);
-		gbc_txtA_conocimientos.gridheight = 10;
+		gbc_txtA_conocimientos.gridheight = 12;
 		gbc_txtA_conocimientos.fill = GridBagConstraints.BOTH;
 		gbc_txtA_conocimientos.gridx = 10;
 		gbc_txtA_conocimientos.gridy = 1;
@@ -198,8 +194,7 @@ public class Crear_EditarUsuario {
 			formatoTelf = new MaskFormatter("'####'-###'-###");
 			formatoTelf.setPlaceholderCharacter('X');
 			ftxtF_telefono = new JFormattedTextField(formatoTelf);
-			Integer entero = Integer.valueOf(user.getTelefono());
-			ftxtF_telefono.setValue(entero);
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -221,16 +216,26 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningTel.gridx = 9;
 		gbc_lbl_WarningTel.gridy = 4;
 		frmUsuario.getContentPane().add(lbl_WarningTel, gbc_lbl_WarningTel);
+		
+		lblSeleccionarAvatar = new JLabel("Seleccionar Avatar");
+		lblSeleccionarAvatar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_lblSeleccionarAvatar = new GridBagConstraints();
+		gbc_lblSeleccionarAvatar.gridwidth = 5;
+		gbc_lblSeleccionarAvatar.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSeleccionarAvatar.gridx = 1;
+		gbc_lblSeleccionarAvatar.gridy = 6;
+		frmUsuario.getContentPane().add(lblSeleccionarAvatar, gbc_lblSeleccionarAvatar);
 
 		
 		//EMAIL
 		lbl_Email = new JLabel("Email");
 		lbl_Email.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lbl_Email = new GridBagConstraints();
+		gbc_lbl_Email.gridwidth = 2;
 		gbc_lbl_Email.anchor = GridBagConstraints.WEST;
 		gbc_lbl_Email.insets = new Insets(0, 0, 5, 5);
-		gbc_lbl_Email.gridx = 2;
-		gbc_lbl_Email.gridy = 6;
+		gbc_lbl_Email.gridx = 1;
+		gbc_lbl_Email.gridy = 8;
 		frmUsuario.getContentPane().add(lbl_Email, gbc_lbl_Email);
 		
 		
@@ -238,11 +243,11 @@ public class Crear_EditarUsuario {
 		ftxtF_email.setText(user.getEmail());
 		ftxtF_email.addKeyListener(new TxtF_emailActionListener());
 		GridBagConstraints gbc_ftxtF_email = new GridBagConstraints();
-		gbc_ftxtF_email.gridwidth = 7;
+		gbc_ftxtF_email.gridwidth = 8;
 		gbc_ftxtF_email.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtF_email.fill = GridBagConstraints.HORIZONTAL;
-		gbc_ftxtF_email.gridx = 2;
-		gbc_ftxtF_email.gridy = 7;
+		gbc_ftxtF_email.gridx = 1;
+		gbc_ftxtF_email.gridy = 9;
 		frmUsuario.getContentPane().add(ftxtF_email, gbc_ftxtF_email);
 		
 		lbl_WarningEm = new JLabel("");
@@ -250,7 +255,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningEm.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lbl_WarningEm.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningEm.gridx = 9;
-		gbc_lbl_WarningEm.gridy = 7;
+		gbc_lbl_WarningEm.gridy = 9;
 		frmUsuario.getContentPane().add(lbl_WarningEm, gbc_lbl_WarningEm);
 		
 		
@@ -258,21 +263,22 @@ public class Crear_EditarUsuario {
 		lblContrasena = new JLabel("Contrasena");
 		lblContrasena.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
+		gbc_lblContrasena.gridwidth = 2;
 		gbc_lblContrasena.anchor = GridBagConstraints.WEST;
 		gbc_lblContrasena.insets = new Insets(0, 0, 5, 5);
-		gbc_lblContrasena.gridx = 2;
-		gbc_lblContrasena.gridy = 9;
+		gbc_lblContrasena.gridx = 1;
+		gbc_lblContrasena.gridy = 11;
 		frmUsuario.getContentPane().add(lblContrasena, gbc_lblContrasena);
 		
 		pssF_contrasena = new JPasswordField();
 		pssF_contrasena.setText(user.getContrasena());
 		pssF_contrasena.addKeyListener(new TxtF_passActionListener());
 		GridBagConstraints gbc_pssF_contrasena = new GridBagConstraints();
-		gbc_pssF_contrasena.gridwidth = 2;
+		gbc_pssF_contrasena.gridwidth = 3;
 		gbc_pssF_contrasena.insets = new Insets(0, 0, 5, 5);
 		gbc_pssF_contrasena.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pssF_contrasena.gridx = 2;
-		gbc_pssF_contrasena.gridy = 10;
+		gbc_pssF_contrasena.gridx = 1;
+		gbc_pssF_contrasena.gridy = 12;
 		frmUsuario.getContentPane().add(pssF_contrasena, gbc_pssF_contrasena);
 		
 		lbl_WarningCo = new JLabel("");
@@ -280,7 +286,7 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningCo.anchor = GridBagConstraints.WEST;
 		gbc_lbl_WarningCo.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningCo.gridx = 4;
-		gbc_lbl_WarningCo.gridy = 10;
+		gbc_lbl_WarningCo.gridy = 12;
 		frmUsuario.getContentPane().add(lbl_WarningCo, gbc_lbl_WarningCo);
 		
 		
@@ -290,7 +296,7 @@ public class Crear_EditarUsuario {
 		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
 		gbc_lblRepetirContrasea.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRepetirContrasea.gridx = 7;
-		gbc_lblRepetirContrasea.gridy = 9;
+		gbc_lblRepetirContrasea.gridy = 11;
 		frmUsuario.getContentPane().add(lblRepetirContrasea, gbc_lblRepetirContrasea);
 		
 		
@@ -301,7 +307,7 @@ public class Crear_EditarUsuario {
 		gbc_pssF_contrasenaRep.insets = new Insets(0, 0, 5, 5);
 		gbc_pssF_contrasenaRep.fill = GridBagConstraints.HORIZONTAL;
 		gbc_pssF_contrasenaRep.gridx = 7;
-		gbc_pssF_contrasenaRep.gridy = 10;
+		gbc_pssF_contrasenaRep.gridy = 12;
 		frmUsuario.getContentPane().add(pssF_contrasenaRep, gbc_pssF_contrasenaRep);
 		
 		lbl_WarningCoR = new JLabel("");
@@ -309,40 +315,27 @@ public class Crear_EditarUsuario {
 		gbc_lbl_WarningCoR.anchor = GridBagConstraints.WEST;
 		gbc_lbl_WarningCoR.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningCoR.gridx = 9;
-		gbc_lbl_WarningCoR.gridy = 10;
+		gbc_lbl_WarningCoR.gridy = 12;
 		frmUsuario.getContentPane().add(lbl_WarningCoR, gbc_lbl_WarningCoR);
-		
-		
-		
-		//BOTONES	
-		btnSeleccionarAvatar = new JButton("Cambiar Avatar");
-		btnSeleccionarAvatar.addActionListener(new BtnSeleccionarAvatarActionListener());
-		btnSeleccionarAvatar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		GridBagConstraints gbc_btnSeleccionarAvatar = new GridBagConstraints();
-		gbc_btnSeleccionarAvatar.gridwidth = 3;
-		gbc_btnSeleccionarAvatar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSeleccionarAvatar.gridx = 2;
-		gbc_btnSeleccionarAvatar.gridy = 3;
-		frmUsuario.getContentPane().add(btnSeleccionarAvatar, gbc_btnSeleccionarAvatar);
 		
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.anchor = GridBagConstraints.EAST;
-		gbc_btnCancelar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCancelar.gridx = 11;
-		gbc_btnCancelar.gridy = 12;
+		gbc_btnCancelar.gridy = 14;
 		frmUsuario.getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new BtnAceptarActionListener());
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-		gbc_btnAceptar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAceptar.anchor = GridBagConstraints.EAST;
 		gbc_btnAceptar.gridx = 12;
-		gbc_btnAceptar.gridy = 12;
+		gbc_btnAceptar.gridy = 14;
 		frmUsuario.getContentPane().add(btnAceptar, gbc_btnAceptar);
 
 	}
@@ -389,7 +382,7 @@ public class Crear_EditarUsuario {
 			}else {
 				b_nombre = false;
 				txtF_nombre.setBorder(bordeRojo); 
-				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
+				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 			}
 			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
@@ -408,7 +401,7 @@ public class Crear_EditarUsuario {
 			}else {
 				b_email = false;
 				ftxtF_email.setBorder(bordeRojo); 
-				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
@@ -428,7 +421,7 @@ public class Crear_EditarUsuario {
 			}else {			
 				b_pass = false;
 				pssF_contrasena.setBorder(bordeRojo); 
-				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
+				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 			}
 			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
@@ -446,7 +439,7 @@ public class Crear_EditarUsuario {
 			}else {
 				b_pass = false;
 				pssF_contrasenaRep.setBorder(bordeRojo); 
-				lbl_WarningCoR.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lbl_WarningCoR.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 			/*if(b_nombre && b_telefono && b_pass && b_passR && b_email) {
 				btnAceptar.setEnabled(true);
@@ -482,20 +475,11 @@ public class Crear_EditarUsuario {
 		public void actionPerformed(ActionEvent e) {
 			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
-			Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
+			//Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
 			guardarDatosArchivo();
 			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
-	
-	
-
-	private class BtnSeleccionarAvatarActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			JFrame menuAvatar = new MenuAvatars();
-			menuAvatar.setVisible(true);
-		}
-	}
 	
 
 

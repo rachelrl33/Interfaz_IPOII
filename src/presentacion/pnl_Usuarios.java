@@ -28,6 +28,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -305,14 +309,9 @@ public class pnl_Usuarios extends JPanel {
 		tbl_Jefe = new JTable();
 		tbl_Jefe.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
+				{"P05_452"},
+				{"P02_451"},
+				{"P01_125"},
 			},
 			new String[] {
 				"Proyecto"
@@ -333,16 +332,11 @@ public class pnl_Usuarios extends JPanel {
 		tbl_Trabajando = new JTable();
 		tbl_Trabajando.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{"P05_452", "Analisis de requisitos", "Terminada"},
+				{"P05_452", "Clases de uso", "En epera"},
+				{"P03_102", "Imprementaci\u00F3n REQ.5", "En progreso"},
+				{"P03_103", "Creaci\u00F3n de la base de datos", "Terminada"},
+				{"P01_105", "Pruebas de conexion", "En espera"},
 			},
 			new String[] {
 				"Proyecto", "Tarea", "Estado"
@@ -355,15 +349,13 @@ public class pnl_Usuarios extends JPanel {
 				return columnTypes[columnIndex];
 			}
 		});
-		
-		tbl_Trabajando.getColumnModel().getColumn(1).setPreferredWidth(103);
+		tbl_Trabajando.getColumnModel().getColumn(1).setPreferredWidth(155);
 		scrollPane_Trabajando.setViewportView(tbl_Trabajando);
 	
 		
 
 
 	}
-	
 
 	
 	//--------------------------------------------
@@ -371,26 +363,23 @@ public class pnl_Usuarios extends JPanel {
 	//--------------------------------------------
 	
 	
-	//ANADIR USUARIO
+	//AÑADIR USUARIO
 	private class BtnAnadirUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			Crear_EditarUsuario window;
+			Crear_EditarUsuario2 window;
 			try {
 				Usuario userVacio = new Usuario(iconoDef,"","","","","","");
-				window = new Crear_EditarUsuario(userVacio);
+				window = new Crear_EditarUsuario2(userVacio);
 				JFrame frmUsuario = new JFrame();
 				window.frmUsuario.setVisible(true);
+
+				
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			
-			//modeloLista= (DefaultListModel) lst_Usuarios.getModel();
-			//int indice = modeloLista.getSize();
-			//modeloLista.addElement("Idioma " + (indice+1));
-			//lst_Usuarios.setSelectedIndex(indice);
-			//lst_Usuarios.ensureIndexIsVisible(indice);
+
 
 		}
 	}

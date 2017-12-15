@@ -324,6 +324,7 @@ public class Crear_EditarProyecto extends JFrame {
 		contentPane.add(cbEstado, gbc_cbEstado);
 		
 		btnAnadirRecursos = new JButton("Anadir Recursos");
+		btnAnadirRecursos.addActionListener(new BtnAnadirRecursosActionListener());
 		GridBagConstraints gbc_btnAnadirRecursos = new GridBagConstraints();
 		gbc_btnAnadirRecursos.anchor = GridBagConstraints.WEST;
 		gbc_btnAnadirRecursos.insets = new Insets(0, 0, 5, 5);
@@ -477,6 +478,18 @@ public class Crear_EditarProyecto extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 				//System.exit(1);
 			frame.setVisible(false);
+		}
+	}
+	private class BtnAnadirRecursosActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			JFileChooser fcAbrir = new JFileChooser();
+			int valorDevuelto = fcAbrir.showOpenDialog(frame);
+
+			//Recoger el nombre del fichero seleccionado por el usuario
+			if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
+				File fichero = fcAbrir.getSelectedFile();
+				txtF_Adjunto.setText(fichero.getAbsolutePath());
+			}
 		}
 	}
 }

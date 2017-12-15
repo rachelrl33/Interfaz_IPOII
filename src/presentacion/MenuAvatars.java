@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -177,10 +178,6 @@ public class MenuAvatars extends JFrame {
 	
 	
 
-	
-	
-	
-
 	//--------------------------------------------
 	//                 OYENTES 
 	//--------------------------------------------
@@ -189,9 +186,7 @@ public class MenuAvatars extends JFrame {
 	private class SeleccionMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			JButton b;
-			b=(JButton) e.getComponent();
-			b.getIcon();
+			
 			setVisible(false);
 		}
 	}
