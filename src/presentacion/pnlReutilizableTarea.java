@@ -18,6 +18,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 import java.awt.Dimension;
 
@@ -147,6 +148,7 @@ public class pnlReutilizableTarea extends JPanel {
 		scrollPane.setViewportView(txtDescripcion);
 		
 		btnEditarRecursos = new JButton("Editar Recursos");
+		btnEditarRecursos.addActionListener(new BtnEditarRecursosActionListener());
 		GridBagConstraints gbc_btnEditarRecursos = new GridBagConstraints();
 		gbc_btnEditarRecursos.anchor = GridBagConstraints.WEST;
 		gbc_btnEditarRecursos.insets = new Insets(0, 0, 5, 5);
@@ -179,6 +181,12 @@ public class pnlReutilizableTarea extends JPanel {
 					}
 				}
 			}
+	private class BtnEditarRecursosActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JFrame editor = new EditorGrafico();
+			editor.setVisible(true);
+		}
+	}
 
 
 }

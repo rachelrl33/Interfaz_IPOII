@@ -145,7 +145,7 @@ public class JPrincipal {
 		pnl_encabezado.add(lbl_UltimaConexion, gbc_lbl_UltimaConexion);
 		
 		lbl_avatar = new JLabel("");
-		lbl_avatar.setIcon(new ImageIcon(JPrincipal.class.getResource("/presentacion/ag1.png")));
+		lbl_avatar.setIcon(new ImageIcon(JPrincipal.class.getResource("/presentacion/user4.png")));
 		GridBagConstraints gbc_lbl_avatar = new GridBagConstraints();
 		gbc_lbl_avatar.gridheight = 3;
 		gbc_lbl_avatar.insets = new Insets(0, 0, 5, 0);

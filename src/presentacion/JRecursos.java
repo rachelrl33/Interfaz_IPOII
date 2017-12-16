@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class JRecursos extends JFrame {
 
@@ -45,7 +46,8 @@ public class JRecursos extends JFrame {
 	 * Create the frame.
 	 */
 	public JRecursos() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JRecursos.class.getResource("/presentacion/file.png")));
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 558, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

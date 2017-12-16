@@ -17,6 +17,9 @@ public class MiRenderizadoArbol extends DefaultTreeCellRenderer {
 		case "Mi zona de trabajo":
 			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("folder.png")));
 			break;
+		case "Archivos":
+			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("folder..png")));
+			break;
 		case "Enviar mensaje":
 			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("letter.png")));
 			break;
@@ -25,6 +28,15 @@ public class MiRenderizadoArbol extends DefaultTreeCellRenderer {
 			break; 
 		case "Usuarios":
 			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("users.png")));
+			break; 
+		case "Nombre de archivo 1":
+			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("file.png")));
+			break; 
+		case "Nombre de archivo 2":
+			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("file.png")));
+			break; 
+		case "Nombre de archivo 3":
+			setIcon(new ImageIcon(MiRenderizadoArbol.class.getResource("file.png")));
 			break; 
 
 		default:

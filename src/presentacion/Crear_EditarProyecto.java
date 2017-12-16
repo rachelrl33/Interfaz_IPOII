@@ -80,12 +80,14 @@ public class Crear_EditarProyecto extends JFrame {
 	private JLabel lblWarningEncarg;
 	
 	private static Crear_EditarProyecto frame = new Crear_EditarProyecto();
+	private JLabel lblCategoria;
+	private JComboBox comboBox;
 	//private static final DateFormat df = new SimpleDateFormat("dd/mm/aaaa");
 	//private JFrame frame;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -96,13 +98,13 @@ public class Crear_EditarProyecto extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
 	public Crear_EditarProyecto() {
-		setTitle("Proyecto ");
+		setTitle("Proyecto/Tarea");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
 		setBounds(100, 100, 796, 447);
@@ -112,7 +114,7 @@ public class Crear_EditarProyecto extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{42, 0, 39, 50, 47, 64, 86, 32, 51, 79, 0, 44, 48, 0};
 		gbl_contentPane.rowHeights = new int[]{38, 0, 0, 0, 0, 0, 23, 0, 0, 29, 90, 26, 29, 9, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
@@ -260,7 +262,7 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_lblWarningFF.gridy = 2;
 		contentPane.add(lblWarningFF, gbc_lblWarningFF);
 		
-		lblUsuarioEncargado = new JLabel("Jefe de proyecto");
+		lblUsuarioEncargado = new JLabel("Jefe/encargardo");
 		GridBagConstraints gbc_lblUsuarioEncargado = new GridBagConstraints();
 		gbc_lblUsuarioEncargado.anchor = GridBagConstraints.WEST;
 		gbc_lblUsuarioEncargado.insets = new Insets(0, 0, 5, 5);
@@ -332,6 +334,14 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_btnAnadirRecursos.gridy = 7;
 		contentPane.add(btnAnadirRecursos, gbc_btnAnadirRecursos);
 		
+		lblCategoria = new JLabel("Categoria");
+		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
+		gbc_lblCategoria.anchor = GridBagConstraints.WEST;
+		gbc_lblCategoria.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCategoria.gridx = 6;
+		gbc_lblCategoria.gridy = 7;
+		contentPane.add(lblCategoria, gbc_lblCategoria);
+		
 		txtF_Adjunto = new JTextField();
 		GridBagConstraints gbc_txtF_Adjunto = new GridBagConstraints();
 		gbc_txtF_Adjunto.gridwidth = 4;
@@ -341,6 +351,16 @@ public class Crear_EditarProyecto extends JFrame {
 		gbc_txtF_Adjunto.gridy = 8;
 		contentPane.add(txtF_Adjunto, gbc_txtF_Adjunto);
 		txtF_Adjunto.setColumns(10);
+		
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Analisis", "Diseño", "Implementacion"}));
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.gridwidth = 2;
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 6;
+		gbc_comboBox.gridy = 8;
+		contentPane.add(comboBox, gbc_comboBox);
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();

@@ -82,6 +82,8 @@ public class pnl_Usuarios extends JPanel {
 	ImageIcon iconoUser8;
 	ImageIcon iconoUser9;
 	ImageIcon iconoUser10;
+	ImageIcon iconoUser11;
+	ImageIcon iconoUser12;
 	
 	private CustomListModel modeloLista;
 	private Usuario user1;
@@ -171,7 +173,9 @@ public class pnl_Usuarios extends JPanel {
 		iconoUser8 = new ImageIcon(pnl_Usuarios.class.getResource("ag8.png"));
 		iconoUser9 = new ImageIcon(pnl_Usuarios.class.getResource("ag9.png"));
 		iconoUser10 = new ImageIcon(pnl_Usuarios.class.getResource("ag10.png"));
-
+		iconoUser11 = new ImageIcon(pnl_Usuarios.class.getResource("ag11.png"));
+		iconoUser12 = new ImageIcon(pnl_Usuarios.class.getResource("ag12.png"));
+		
 		modeloLista = new CustomListModel();
 		lst_Usuarios.setModel(modeloLista);
 
@@ -183,12 +187,20 @@ public class pnl_Usuarios extends JPanel {
 		Usuario u3 = new Usuario(iconoUser9, "Juan Lopez", "698756321", "juanl@uclm.es", "rtgh", "Grado en Diseño gráfico", "30/11/2017");
 		Usuario u4 = new Usuario(iconoUser6, "Marta Casas", "689745123", "marta.casas@uclm.es", "martitaC", "Grado en Gestión y dirección de empresaas", "15/11/2017");
 		Usuario u5 = new Usuario(iconoUser3, "Miguel Rodriguez", "648625319", "miguel.r@uclm.es", "migRZ", "Grado en Ingeniería Informática", "15/12/2017");
+		Usuario u6 = new Usuario(iconoUser11, "Pepe Ramirez", "648725919", "pepito@uclm.es", "migRZ", "Grado en Ingeniería de Sistemas", "15/12/2017");
+		Usuario u7 = new Usuario(iconoUser12, "Carla Pereira", "648525964", "car.Pe@uclm.es", "migiutpZ", "Grado en RRHH", "15/12/2017");
+		Usuario u8 = new Usuario(iconoUser5, "Angela Velasco", "647525454", "angelaV@uclm.es", "bwtrje", "Grado en Marketing", "15/12/2017");
+		Usuario u9 = new Usuario(iconoUser4, "Teodoro Palacios", "647521639", "teo@uclm.es", "btyhjje", "Grado en Telecomunicaciones", "15/12/2017");
 		
 		modeloLista.addPersona(u1);
 		modeloLista.addPersona(u2);
 		modeloLista.addPersona(u3);
 		modeloLista.addPersona(u4);
 		modeloLista.addPersona(u5);
+		modeloLista.addPersona(u6);
+		modeloLista.addPersona(u7);
+		modeloLista.addPersona(u8);
+		modeloLista.addPersona(u9);
 		
 
 		pnl_InfoUsuarios = new JPanel();

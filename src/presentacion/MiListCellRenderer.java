@@ -19,6 +19,8 @@ class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 	ImageIcon iconoUser8;
 	ImageIcon iconoUser9;
 	ImageIcon iconoUser10;
+	ImageIcon iconoUser11;
+	ImageIcon iconoUser12;
 
 	
 	public MiListCellRenderer() {
@@ -32,6 +34,8 @@ class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 		iconoUser8 = new ImageIcon(MiListCellRenderer.class.getResource("ap8.png"));
 		iconoUser9 = new ImageIcon(MiListCellRenderer.class.getResource("ap9.png"));
 		iconoUser10 = new ImageIcon(MiListCellRenderer.class.getResource("ap10.png"));
+		iconoUser11 = new ImageIcon(pnl_Usuarios.class.getResource("ap11.png"));
+		iconoUser12 = new ImageIcon(pnl_Usuarios.class.getResource("ap12.png"));
 	}
 	
 	
@@ -48,8 +52,25 @@ class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 			
 		} else if (list.getModel().getElementAt(index) == "Miguel Rodriguez"){
 			renderer.setIcon(iconoUser3);
-
+		
+		} else if (list.getModel().getElementAt(index) == "Pepe Ramirez"){
+		renderer.setIcon(iconoUser11);
 		}
+		else if (list.getModel().getElementAt(index) == "Carla Pereira"){
+			renderer.setIcon(iconoUser12);
+			}
+		else if (list.getModel().getElementAt(index) == "Angela Velasco"){
+			renderer.setIcon(iconoUser5);
+			}
+		else if (list.getModel().getElementAt(index) == "Teodoro Palacios"){
+			renderer.setIcon(iconoUser4);
+			}
+		
+		
+		
+		
+		
+		
 		return renderer;
 
 	}

@@ -33,6 +33,7 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.DefaultComboBoxModel;
 
 public class pnl_Proyectos extends JPanel {
 	private JPanel pnl_Contenedor;
@@ -376,6 +377,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoTareas.add(lblEstado, gbc_lblEstado);
 		
 		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"En espera", "En proceso", "Terminada"}));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 3;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -393,6 +395,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoTareas.add(lblCategoria, gbc_lblCategoria);
 		
 		comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Analisis", "Diseño", "Implementacion"}));
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 3;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);

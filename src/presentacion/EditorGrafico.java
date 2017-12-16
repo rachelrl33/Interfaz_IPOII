@@ -1,12 +1,22 @@
 package presentacion;
 
+
+
 import java.awt.BorderLayout;
+
 import java.awt.Cursor;
+
 import java.awt.EventQueue;
+
 import java.awt.FileDialog;
+import java.awt.Font;
 import java.awt.Image;
+
 import java.awt.Point;
+
 import java.awt.Toolkit;
+
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
@@ -24,6 +35,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -37,7 +50,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JSplitPane;
 
+
+
 public class EditorGrafico extends JFrame {
+
+
 
 	private JPanel contentPane;
 	private JToolBar toolBar;
@@ -47,12 +64,18 @@ public class EditorGrafico extends JFrame {
 	private JScrollPane scrollPane;
 	private JTree tree;
 	private JScrollPane scrollPane_1;
+
 	//private JLabel miAreaDibujo;
+
+
+
 
 
 	private static EditorGrafico frame = new EditorGrafico();
 	private MiAreaDibujo miAreaDibujo;
 	private ImageIcon imagen;
+
+
 
 	int modo = -1;
 	private final int CLASE = 1;
@@ -60,15 +83,23 @@ public class EditorGrafico extends JFrame {
 	private final int DEPENDENCIA = 3;
 	private final int TEXTO = 4;
 
+
+
 	private Toolkit toolkit;
+
+
 
 	private Image imgClase;
 	private Image imgCDU;
 	private Image imgDependencia;
 	private Image texto;
 
+
+
 	private Image imgCursorClase;
 	private Image imgCursorCDU;
+
+
 
 	private Cursor cursorClase;
 	private Cursor cursorCDU;
@@ -81,28 +112,45 @@ public class EditorGrafico extends JFrame {
 
 	private int x,y;
 
+
+
 	private JTextField txtTexto = new JTextField();
+
 	/**
+
 	 * Launch the application.
+
 	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+
 			public void run() {
 				try {
 					//EditorGrafico frame = new EditorGrafico();
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
+
 				}
 			}
+
 		});
+
 	}
 
+
+
 	/**
+
 	 * Create the frame.
+
 	 */
+
 	public EditorGrafico() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -110,9 +158,13 @@ public class EditorGrafico extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
+
+
 		toolBar = new JToolBar();
 		toolBar.setBackground(Color.WHITE);
 		contentPane.add(toolBar, BorderLayout.NORTH);
+
+
 
 		btnCrear = new JButton("");
 		btnCrear.addActionListener(new BtnCrearActionListener());
@@ -123,6 +175,7 @@ public class EditorGrafico extends JFrame {
 		btnCrear.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/icons8-add-file-32.png")));
 		toolBar.add(btnCrear);
 
+
 		btnGuardar = new JButton("");
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		btnGuardar.setBackground(Color.WHITE);
@@ -131,6 +184,7 @@ public class EditorGrafico extends JFrame {
 		btnGuardar.setBorderPainted(false);
 		btnGuardar.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/icons8-save-32.png")));
 		toolBar.add(btnGuardar);
+
 
 		separator = new JSeparator();
 		separator.setMaximumSize(new Dimension(10, 40));
@@ -147,6 +201,7 @@ public class EditorGrafico extends JFrame {
 		btnClase.setToolTipText("Nueva Clase");
 		toolBar.add(btnClase);
 
+
 		btnCdu = new JButton("");
 		btnCdu.addActionListener(new BtnCduActionListener());
 		btnCdu.setBackground(Color.WHITE);
@@ -156,6 +211,8 @@ public class EditorGrafico extends JFrame {
 		btnCdu.setToolTipText("Nuevo Caso de Uso");
 		btnCdu.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/CDU.png")));
 		toolBar.add(btnCdu);
+
+
 
 		btnDependencia = new JButton("");
 		btnDependencia.addActionListener(new BtnDependenciaActionListener());
@@ -167,8 +224,9 @@ public class EditorGrafico extends JFrame {
 		btnDependencia.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/icons8-right-32.png")));
 		toolBar.add(btnDependencia);
 
-		btnTexto = new JButton("");
 
+
+		btnTexto = new JButton("");
 		btnTexto.addActionListener(new BtnTextoActionListener());
 		btnTexto.setBackground(Color.WHITE);
 		btnTexto.setBorder(null);
@@ -178,78 +236,132 @@ public class EditorGrafico extends JFrame {
 		btnTexto.setToolTipText("Inserta Texto");
 		toolBar.add(btnTexto);
 
+
+
 		scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.WEST);
 
+
+
 		tree = new JTree();
+		tree.setFont(new Font("Verdana", Font.PLAIN, 12));
 		tree.setModel(new DefaultTreeModel(
+				
 				new DefaultMutableTreeNode("Archivos") {
 					{
-
+						DefaultMutableTreeNode node_1;
+						node_1 = new DefaultMutableTreeNode("Nombre de archivo 1");
+						add(node_1);
+						node_1 = new DefaultMutableTreeNode("Nombre de archivo 2");
+						add(node_1);
+						add(new DefaultMutableTreeNode("Nombre de archivo 3"));
 					}
+
 				}
+
 				));
+
 		scrollPane.setViewportView(tree);
+		tree.getSelectionModel().setSelectionMode (TreeSelectionModel.SINGLE_TREE_SELECTION);
+		tree.setCellRenderer(new MiRenderizadoArbol());
+
+
 
 		scrollPane_1 = new JScrollPane();
+
 		contentPane.add(scrollPane_1, BorderLayout.CENTER);
 
+
+
 		miAreaDibujo = new MiAreaDibujo();
+
 		miAreaDibujo.addMouseMotionListener(new MiAreaDibujoMouseMotionListener());
+
 		miAreaDibujo.addMouseListener(new MiAreaDibujoMouseListener());
+
 		miAreaDibujo.setHorizontalTextPosition(SwingConstants.CENTER);
+
 		miAreaDibujo.setHorizontalAlignment(SwingConstants.CENTER);
+
 		miAreaDibujo.setIcon(null);
+
 		scrollPane_1.setRowHeaderView(miAreaDibujo);
+
+
 
 		toolkit = Toolkit.getDefaultToolkit();
 
+
+
 		imgClase = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/Clases.png"));
+
 		cursorClase = toolkit.createCustomCursor(imgClase, new Point(0,0), "CURSOR_CLASE");
 
+
+
 		imgCDU = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/CDU.png"));
+
 		cursorCDU = toolkit.createCustomCursor(imgCDU, new Point(0,0), "CURSOR_CDU");
 
+
+
 		imgDependencia = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/icons8-right-32.png"));
+
 		cursorDependencia = toolkit.createCustomCursor(imgDependencia, new Point(0,0), "CURSOR_DEPENDENCIA");
 
+
+
 		texto = toolkit.getImage(getClass().getClassLoader().getResource("presentacion/font3.png"));
+
 		cursorTexto = toolkit.createCustomCursor(texto, new Point(0,0), "CURSOR_TEXTO");
+
 	}
+
 	private class BtnCrearActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Nueva.png")));
 		}
+
 	}
+
 	private class BtnGuardarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
+			miAreaDibujo.setIcon(null);
+			JOptionPane.showMessageDialog(frame, "Archivo guardado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+
 	private class BtnClaseActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			modo = CLASE;
 			frame.setCursor(cursorClase);
 		}
 	}
+
 	private class BtnCduActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			modo = CDU;
 			frame.setCursor(cursorCDU);
 		}
 	}
+	
+	
 	private class BtnDependenciaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			modo = DEPENDENCIA;
 			frame.setCursor(cursorDependencia);
 		}
 	}
+
+	
 	private class BtnTextoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			modo = TEXTO;
 			frame.setCursor(cursorTexto);
 		}
 	}
+
+
 
 	private class MiAreaDibujoMouseListener extends MouseAdapter {
 		@Override
@@ -279,8 +391,7 @@ public class EditorGrafico extends JFrame {
 				txtTexto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg) {
 						if(!txtTexto.getText().equals(""))
-							miAreaDibujo.addObjetoGrafico(new TextoGrafico(x, y+15, txtTexto.getText(),
-									Color.WHITE));
+							miAreaDibujo.addObjetoGrafico(new TextoGrafico(x, y+15, txtTexto.getText(), Color.WHITE));
 						txtTexto.setText("");
 						txtTexto.setVisible(false);
 						miAreaDibujo.repaint();
@@ -291,6 +402,7 @@ public class EditorGrafico extends JFrame {
 			//}
 		}
 	}
+
 	private class MiAreaDibujoMouseMotionListener extends MouseMotionAdapter {
 		@Override
 		public void mouseDragged(MouseEvent arg0) {
@@ -307,7 +419,11 @@ public class EditorGrafico extends JFrame {
 				((DependenciaGrafica)miAreaDibujo.getUltimoObjetoGrafico()).setX1(arg0.getX());
 				((DependenciaGrafica)miAreaDibujo.getUltimoObjetoGrafico()).setY1(arg0.getY());
 				miAreaDibujo.repaint();
+
 			}
+
 		}
+
 	}
+
 }

@@ -130,6 +130,8 @@ public class Crear_EditarUsuario2 {
 		gbc_pnl_MenuAvatars.gridy = 1;
 		frmUsuario.getContentPane().add(pnl_MenuAvatars, gbc_pnl_MenuAvatars);
 		
+		
+		
 
 		//CONOCIMIENTOS
 		txtA_conocimientos = new JTextArea();

@@ -16,6 +16,7 @@ import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -41,7 +42,7 @@ public class pnl_MenuAvatars extends JPanel {
 	private JButton btn6;
 	private JButton btn5;
 
-
+	private Icon seleccion;
 
 	/**
 	 * Create the panel.
@@ -181,7 +182,9 @@ public class pnl_MenuAvatars extends JPanel {
 
 	}
 
-	
+	public Icon getSeleccion() {
+		return seleccion;
+	}
 	
 	//--------------------------------------------
 	//                 OYENTES 
@@ -205,6 +208,7 @@ public class pnl_MenuAvatars extends JPanel {
 				btn11.setEnabled(false);
 				btn12.setEnabled(false);
 				botonPulsado .setEnabled(true);
+				seleccion=botonPulsado.getIcon();
 		}
 	
 	}

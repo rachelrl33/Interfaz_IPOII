@@ -27,11 +27,15 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import dominio.Usuario;
+
 
 import java.awt.SystemColor;
 import java.awt.Toolkit;
@@ -131,9 +135,11 @@ public class JLogin {
 		btnAceptar.setBackground(new Color(153, 180, 209));//2b78e4
 		btnAceptar.setBounds(216, 354, 106, 43);
 		btnAceptar.addActionListener(new BtnSiguienteActionListener());
+		btnAceptar.setEnabled(false);
 		pnlUser.add(btnAceptar);
 		
 		txtUser = new JTextField();
+		txtUser.addKeyListener(new TxtF_userActionListener());
 		txtUser.addActionListener(new TxtUserActionListener());
 		txtUser.addFocusListener(new FieldFocusListener());
 		txtUser.setBounds(87, 259, 235, 27);
@@ -179,7 +185,7 @@ public class JLogin {
 		pnlUser.add(lbl_world);
 		
 		
-	//PANEL QUE CONTIENE INTRO. CONTRASE�A
+	//PANEL QUE CONTIENE INTRO. CONTRASEnA
 		pnlPass = new JPanel();
 		pnlPass.setBackground(Color.WHITE);
 		pnlLogin.add(pnlPass, "pnlPass");
@@ -198,6 +204,7 @@ public class JLogin {
 		pnlPass.add(btnAtras);
 		
 		pfPass = new JPasswordField();
+		pfPass.addKeyListener(new TxtF_userActionListener());
 		pfPass.addFocusListener(new FieldFocusListener());
 		pfPass.setBounds(82, 269, 245, 27);
 		pnlPass.add(pfPass);
@@ -209,6 +216,8 @@ public class JLogin {
 		btnLogin.setForeground(SystemColor.desktop);
 		btnLogin.setBounds(232, 369, 129, 41);
 		pnlPass.add(btnLogin);
+		btnLogin.setEnabled(false);
+
 		
 		lblUsrLogeando = new JLabel("Nombre de usuario");
 		lblUsrLogeando.setIcon(null);
@@ -219,7 +228,7 @@ public class JLogin {
 		
 		lbl_avatar = new JLabel("");
 		lbl_avatar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbl_avatar.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/ag1.png")));
+		lbl_avatar.setIcon(new ImageIcon(JLogin.class.getResource("/presentacion/user4.png")));
 		lbl_avatar.setBounds(188, 48, 81, 101);
 		pnlPass.add(lbl_avatar);
 		
@@ -241,9 +250,21 @@ public class JLogin {
 	//                 OYENTES 
 	//--------------------------------------------
 	
+	private class TxtF_userActionListener extends KeyAdapter {
+		public void keyReleased(KeyEvent arg0) {
+			if(txtUser.getText().length()!=0) {
+				btnAceptar.setEnabled(true);
+			}
+			if(!pfPass.equals(null)) {
+				btnLogin.setEnabled(true);
+			}
+		}
+	}
+	
+	
+	
 	private class BtnSiguienteActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-
 					lblUsrLogeando.setText(txtUser.getText());
 					((CardLayout)pnlLogin.getLayout()).show(pnlLogin,"pnlPass");
 					lbl_ErrorUser.setText("");
