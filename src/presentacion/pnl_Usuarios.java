@@ -29,10 +29,14 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -55,7 +59,7 @@ public class pnl_Usuarios extends JPanel {
 	private JTextField txtF_Buscar;
 	private JButton btnAnadirUsuario;
 	private JScrollPane scrollPane;
-	private JList lst_Usuarios;
+	private static JList lst_Usuarios;
 	private JLabel lbl_NombreDeUsuario;
 	private JLabel lbl_Avatar;
 	private JLabel lbl_Email;
@@ -85,8 +89,9 @@ public class pnl_Usuarios extends JPanel {
 	ImageIcon iconoUser11;
 	ImageIcon iconoUser12;
 	
-	private CustomListModel modeloLista;
+	private static CustomListModel modeloLista;
 	private Usuario user1;
+	private static Usuario createdUser;
 	/**
 	 * Create the panel.
 	 */
@@ -182,15 +187,15 @@ public class pnl_Usuarios extends JPanel {
 		DefaultListCellRenderer renderer = new MiListCellRenderer();
 		lst_Usuarios.setCellRenderer(renderer);
 
-		Usuario u1 = new Usuario(iconoUser7, "Raquel Ramos", "648616243", "raquel@uclm.es", "estrtgh", "Grado en Ingeniería Informatica", "17/12/2017");
-		Usuario u2 = new Usuario(iconoUser1, "Jesus Ramos", "645481296", "jesus@uclm.es", "trcfi", "Grado en Ingeniería Informatica", "20/11/2017");
-		Usuario u3 = new Usuario(iconoUser9, "Juan Lopez", "698756321", "juanl@uclm.es", "rtgh", "Grado en Diseño gráfico", "30/11/2017");
-		Usuario u4 = new Usuario(iconoUser6, "Marta Casas", "689745123", "marta.casas@uclm.es", "martitaC", "Grado en Gestión y dirección de empresaas", "15/11/2017");
-		Usuario u5 = new Usuario(iconoUser3, "Miguel Rodriguez", "648625319", "miguel.r@uclm.es", "migRZ", "Grado en Ingeniería Informática", "15/12/2017");
-		Usuario u6 = new Usuario(iconoUser11, "Pepe Ramirez", "648725919", "pepito@uclm.es", "migRZ", "Grado en Ingeniería de Sistemas", "15/12/2017");
-		Usuario u7 = new Usuario(iconoUser12, "Carla Pereira", "648525964", "car.Pe@uclm.es", "migiutpZ", "Grado en RRHH", "15/12/2017");
-		Usuario u8 = new Usuario(iconoUser5, "Angela Velasco", "647525454", "angelaV@uclm.es", "bwtrje", "Grado en Marketing", "15/12/2017");
-		Usuario u9 = new Usuario(iconoUser4, "Teodoro Palacios", "647521639", "teo@uclm.es", "btyhjje", "Grado en Telecomunicaciones", "15/12/2017");
+		Usuario u1 = new Usuario(iconoUser7, "Raquel Ramos", "648-616-243", "raquel@uclm.es", "estrtgh", "Grado en Ingeniería Informatica", "17/12/2017");
+		Usuario u2 = new Usuario(iconoUser1, "Jesus Ramos", "645-481-296", "jesus@uclm.es", "trcfi", "Grado en Ingeniería Informatica", "20/11/2017");
+		Usuario u3 = new Usuario(iconoUser9, "Juan Lopez", "698-756-321", "juanl@uclm.es", "rtgh", "Grado en Diseño gráfico", "30/11/2017");
+		Usuario u4 = new Usuario(iconoUser6, "Marta Casas", "689-745-123", "marta.casas@uclm.es", "martitaC", "Grado en Gestión y dirección de empresaas", "15/11/2017");
+		Usuario u5 = new Usuario(iconoUser3, "Miguel Rodriguez", "648-625-319", "miguel.r@uclm.es", "migRZ", "Grado en Ingeniería Informática", "15/12/2017");
+		Usuario u6 = new Usuario(iconoUser11, "Pepe Ramirez", "648-725-919", "pepito@uclm.es", "migRZ", "Grado en Ingeniería de Sistemas", "15/12/2017");
+		Usuario u7 = new Usuario(iconoUser12, "Carla Pereira", "648-525-964", "car.Pe@uclm.es", "migiutpZ", "Grado en RRHH", "15/12/2017");
+		Usuario u8 = new Usuario(iconoUser5, "Angela Velasco", "647-525-454", "angelaV@uclm.es", "bwtrje", "Grado en Marketing", "15/12/2017");
+		Usuario u9 = new Usuario(iconoUser4, "Teodoro Palacios", "647-521-639", "teo@uclm.es", "btyhjje", "Grado en Telecomunicaciones", "15/12/2017");
 		
 		modeloLista.addPersona(u1);
 		modeloLista.addPersona(u2);
@@ -370,6 +375,79 @@ public class pnl_Usuarios extends JPanel {
 	}
 
 	
+	
+	public static Usuario leerArchivo() {
+		String nombreArchivo= "src/resources/fichero_escritura.txt"; 
+		ArrayList<String> usuario = new ArrayList<>();
+		FileReader fr = null; 
+		Usuario newUsuario = null;
+		int c=4;
+		try {
+			fr = new FileReader(nombreArchivo); 
+			String linea;
+
+			BufferedReader br = new BufferedReader(fr);
+			while((linea=br.readLine())!=null) {
+					usuario.add(linea);
+			}	
+			
+			newUsuario = new Usuario(null,"" , null,"" , null,"" , null);
+			newUsuario.setNombre(usuario.get(0));
+			newUsuario.setTelefono(usuario.get(1));
+			//newUsuario.setTelefono(usuario.get(2));
+			//newUsuario.setConocimientos(usuario.get(3));
+			
+			br.close();
+			fr.close();
+			
+		}//FIN DEL TRY 
+		catch(IOException e){ 
+			System.out.println(e);
+		}
+		return newUsuario;
+
+	}
+	
+	
+	
+	public static void limpiarArchivo() {
+		String nombreArchivo= "src/resources/fichero_escritura.txt"; 
+		FileWriter fw = null; 
+		try { 
+			fw = new FileWriter(nombreArchivo); 
+			BufferedWriter bw = new BufferedWriter(fw); 
+			PrintWriter salArch = new PrintWriter(bw); 
+
+			salArch.print(""); 
+			salArch.println(); 
+			salArch.print(""); 
+			salArch.println(); 
+			salArch.print("");
+			salArch.println(); 
+			salArch.print("");
+			salArch.close(); 
+		} 
+		catch (IOException ex) { 
+		} 
+	}
+	
+	
+	public static void crearUsuario() {
+		createdUser=leerArchivo();
+		if(createdUser.getNombre().length()>1) {
+			modeloLista.addPersona(createdUser);
+			createdUser=null;
+			limpiarArchivo();
+		}
+	}
+	
+	
+	public static void upDateList(Usuario u) {
+		modeloLista.modificarPersona(u, lst_Usuarios.getSelectedIndex());
+	}
+	
+	
+	
 	//--------------------------------------------
 	//                 OYENTES 
 	//--------------------------------------------
@@ -381,15 +459,15 @@ public class pnl_Usuarios extends JPanel {
 			Crear_EditarUsuario2 window;
 			try {
 				Usuario userVacio = new Usuario(iconoDef,"","","","","","");
-				window = new Crear_EditarUsuario2(userVacio);
+				window = new Crear_EditarUsuario2(userVacio, true);
 				JFrame frmUsuario = new JFrame();
 				window.frmUsuario.setVisible(true);
 
-				
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 
 
 
@@ -437,14 +515,13 @@ public class pnl_Usuarios extends JPanel {
 	//EDITAR USUARIO
 	private class BtnEditarUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Crear_EditarUsuario window;
+			Crear_EditarUsuario2 window;
 
-			//try {
 				int selection = lst_Usuarios.getSelectedIndex();
 				if (selection!=-1) {
 					Usuario u= modeloLista.getPersona(selection);
 					try {
-						window = new Crear_EditarUsuario(u);
+						window = new Crear_EditarUsuario2(u, false);
 						JFrame frmUsuario = new JFrame();
 						window.frmUsuario.setVisible(true);
 					} catch (ParseException e1) {
@@ -454,13 +531,8 @@ public class pnl_Usuarios extends JPanel {
 
 
 				}
-				
-			/*} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}*/
-
 		}
+
 	}
 	
 	

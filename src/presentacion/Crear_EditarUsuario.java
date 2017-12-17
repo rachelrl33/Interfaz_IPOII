@@ -198,8 +198,7 @@ public class Crear_EditarUsuario {
 			formatoTelf = new MaskFormatter("'####'-###'-###");
 			formatoTelf.setPlaceholderCharacter('X');
 			ftxtF_telefono = new JFormattedTextField(formatoTelf);
-			Integer entero = Integer.valueOf(user.getTelefono());
-			ftxtF_telefono.setValue(entero);
+			ftxtF_telefono.setText(user.getTelefono());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

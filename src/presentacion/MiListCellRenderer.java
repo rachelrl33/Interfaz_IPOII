@@ -21,6 +21,7 @@ class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 	ImageIcon iconoUser10;
 	ImageIcon iconoUser11;
 	ImageIcon iconoUser12;
+	ImageIcon defaultI;
 
 	
 	public MiListCellRenderer() {
@@ -34,8 +35,9 @@ class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 		iconoUser8 = new ImageIcon(MiListCellRenderer.class.getResource("ap8.png"));
 		iconoUser9 = new ImageIcon(MiListCellRenderer.class.getResource("ap9.png"));
 		iconoUser10 = new ImageIcon(MiListCellRenderer.class.getResource("ap10.png"));
-		iconoUser11 = new ImageIcon(pnl_Usuarios.class.getResource("ap11.png"));
-		iconoUser12 = new ImageIcon(pnl_Usuarios.class.getResource("ap12.png"));
+		iconoUser11 = new ImageIcon(MiListCellRenderer.class.getResource("ap11.png"));
+		iconoUser12 = new ImageIcon(MiListCellRenderer.class.getResource("ap12.png"));
+		defaultI= new ImageIcon(MiListCellRenderer.class.getResource("user3.png"));
 	}
 	
 	
@@ -64,6 +66,8 @@ class MiListCellRenderer<Usuario> extends DefaultListCellRenderer {
 			}
 		else if (list.getModel().getElementAt(index) == "Teodoro Palacios"){
 			renderer.setIcon(iconoUser4);
+			}else {
+				renderer.setIcon(defaultI);
 			}
 		
 		

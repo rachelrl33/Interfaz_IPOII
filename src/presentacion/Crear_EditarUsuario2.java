@@ -91,14 +91,18 @@ public class Crear_EditarUsuario2 {
 	private Usuario user;
 	private JPanel pnl_MenuAvatars;
 	private JLabel lblSeleccionarAvatar;
+	private boolean opcion;
+	private static Usuario userU;
 	
 	/**
 	 * Create the application.
 	 * @param user1 
+	 * @param b 
 	 * @throws ParseException 
 	 */
-	public Crear_EditarUsuario2(Usuario user1) throws ParseException {
+	public Crear_EditarUsuario2(Usuario user1, boolean opcion1) throws ParseException {
 		user=user1;
+		opcion=opcion1;
 		initialize();
 	}
 
@@ -196,7 +200,7 @@ public class Crear_EditarUsuario2 {
 			formatoTelf = new MaskFormatter("'####'-###'-###");
 			formatoTelf.setPlaceholderCharacter('X');
 			ftxtF_telefono = new JFormattedTextField(formatoTelf);
-
+			ftxtF_telefono.setText(user.getTelefono());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -451,7 +455,10 @@ public class Crear_EditarUsuario2 {
 	
 	
 	
-
+	public static Usuario updatePersona() {
+		Usuario updatedUser= new Usuario (null,userU.getNombre() ,userU.getTelefono(),userU.getTelefono(),userU.getEmail(), userU.getConocimientos(), null);
+		return updatedUser;
+	}
 	
 	
 	
@@ -478,8 +485,15 @@ public class Crear_EditarUsuario2 {
 			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
 			//Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
-			guardarDatosArchivo();
-			JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
+			if(opcion) {
+				guardarDatosArchivo();
+				JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
+				pnl_Usuarios.crearUsuario();
+			}else {
+				userU = new Usuario (null,lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
+				Usuario finalU =updatePersona();
+				pnl_Usuarios.upDateList(finalU);
+			}
 			}
 		}
 	
