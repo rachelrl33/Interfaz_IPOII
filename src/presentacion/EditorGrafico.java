@@ -282,7 +282,7 @@ public class EditorGrafico extends JFrame {
 
 		miAreaDibujo.setIcon(null);
 
-		scrollPane_1.setRowHeaderView(miAreaDibujo);
+		scrollPane_1.setViewportView(miAreaDibujo);
 
 
 
