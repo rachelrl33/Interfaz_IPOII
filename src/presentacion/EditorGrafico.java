@@ -3,7 +3,7 @@ package presentacion;
 
 
 import java.awt.BorderLayout;
-
+import java.awt.CardLayout;
 import java.awt.Cursor;
 
 import java.awt.EventQueue;
@@ -49,6 +49,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JSplitPane;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
 
 
 
@@ -244,22 +246,17 @@ public class EditorGrafico extends JFrame {
 
 
 		tree = new JTree();
+		tree.addTreeSelectionListener(new TreeTreeSelectionListener());
 		tree.setFont(new Font("Verdana", Font.PLAIN, 12));
 		tree.setModel(new DefaultTreeModel(
-				
-				new DefaultMutableTreeNode("Archivos") {
-					{
-						DefaultMutableTreeNode node_1;
-						node_1 = new DefaultMutableTreeNode("Nombre de archivo 1");
-						add(node_1);
-						node_1 = new DefaultMutableTreeNode("Nombre de archivo 2");
-						add(node_1);
-						add(new DefaultMutableTreeNode("Nombre de archivo 3"));
-					}
-
+			new DefaultMutableTreeNode("Archivos") {
+				{
+					add(new DefaultMutableTreeNode("Archivo 1"));
+					add(new DefaultMutableTreeNode("Archivo 2"));
+					add(new DefaultMutableTreeNode("Archivo 3"));
 				}
-
-				));
+			}
+		));
 
 		scrollPane.setViewportView(tree);
 		tree.getSelectionModel().setSelectionMode (TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -425,5 +422,23 @@ public class EditorGrafico extends JFrame {
 		}
 
 	}
-
+	private class TreeTreeSelectionListener implements TreeSelectionListener {
+		public void valueChanged(TreeSelectionEvent arg0) {
+			//System.out.println("Nodo seleccionado "+ arg0.getPath().getLastPathComponent());
+			String nodo = (arg0.getPath().getLastPathComponent()).toString();
+			switch (nodo){
+				case "Archivo 1":
+					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Archivo1.png")));
+					break;
+				case "Archivo 2":
+					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Archivo2.png")));
+					break;
+				case "Archivo 3":
+					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Archivo3.png")));
+					break;
+					
+			}
+		}
+	}
 }
+
