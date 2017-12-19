@@ -32,6 +32,10 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import dominio.Tarea;
+import dominio.Usuario;
+
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
 
@@ -438,8 +442,15 @@ public class pnl_Proyectos extends JPanel {
 	//btnAnadir
 	private class BtnAnadirProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			Crear_EditarProyecto frame = new Crear_EditarProyecto();
-			frame.setVisible(true);
+			/*Crear_EditarProyecto frame;
+			try {
+				frame = new Crear_EditarProyecto(true);
+				frame.setVisible(true);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			
 			//window = new Crear_EditarProyecto();
 			//JFrame frame = new JFrame();
 			//window.frame.setVisible(true);
@@ -447,8 +458,15 @@ public class pnl_Proyectos extends JPanel {
 	}
 	private class BtnEditProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Crear_EditarProyecto frame = new Crear_EditarProyecto();
-			frame.setVisible(true);
+			/*Crear_EditarProyecto frame;
+			try {
+				frame = new Crear_EditarProyecto(false);
+				frame.setVisible(true);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
+			
 		}
 	}
 	
@@ -469,8 +487,33 @@ public class pnl_Proyectos extends JPanel {
 	
 	private class BtnAnadirTareaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			Crear_EditarProyecto frame1 = new Crear_EditarProyecto();
-			frame1.setVisible(true);
+			/*Tarea t = null;
+			Crear_EditarProyecto frame1;
+			try {
+				frame1 = new Crear_EditarProyecto();
+				frame1.setVisible(true);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			if(!frame1.isVisible() && t.getCreada() == 1) {
+				System.out.println("Se añadirá una nueva tarea con el contenido del objeto");
+			}*/
+			
+			Crear_EditarProyecto window;
+			try {
+				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
+				window = new Crear_EditarProyecto(true);
+				JFrame frmProyectoa = new JFrame();
+				window.frmProyectoa.setVisible(true);
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	

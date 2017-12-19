@@ -29,6 +29,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+
+import dominio.Tarea;
+import dominio.Usuario;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
@@ -36,8 +40,9 @@ import java.io.File;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 
-public class Crear_EditarProyecto extends JFrame {
+public class Crear_EditarProyecto{
 
 	private JPanel contentPane;
 	private JLabel lblNombre;
@@ -79,7 +84,9 @@ public class Crear_EditarProyecto extends JFrame {
 	private JLabel lblWarningFF;
 	private JLabel lblWarningEncarg;
 	
-	private static Crear_EditarProyecto frame = new Crear_EditarProyecto();
+	private Boolean opcion;
+	
+	JFrame frmProyectoa;// = new Crear_EditarProyecto();
 	private JLabel lblCategoria;
 	private JComboBox comboBox;
 	//private static final DateFormat df = new SimpleDateFormat("dd/mm/aaaa");
@@ -102,15 +109,23 @@ public class Crear_EditarProyecto extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public Crear_EditarProyecto() {
-		setTitle("Proyecto/Tarea");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
-		setBounds(100, 100, 796, 447);
+	public Crear_EditarProyecto(boolean opcion1) throws ParseException {
+		opcion = opcion1;
+		initialize();
+	}
+	
+	public void initialize() throws ParseException{
+		frmProyectoa = new JFrame();
+		//Crear_EditarProyecto(){
+		frmProyectoa.setTitle("Proyecto/Tarea");
+		frmProyectoa.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmProyectoa.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
+		frmProyectoa.setBounds(100, 100, 796, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frmProyectoa.setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{42, 0, 39, 50, 47, 64, 86, 32, 51, 79, 0, 44, 48, 0};
 		gbl_contentPane.rowHeights = new int[]{38, 0, 0, 0, 0, 0, 23, 0, 0, 29, 90, 26, 29, 9, 0};
@@ -489,7 +504,30 @@ public class Crear_EditarProyecto extends JFrame {
 	
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			frame.setVisible(false);
+			
+			String nombre = txtNombre.getText();
+			String id = txtID.getText();
+			String usuarioEncargado = txtUsuarioEncargado.getText();
+			String adjunto = txtF_Adjunto.getText();
+			String fechaInicio = ftFechaInicio_1.getText();
+			String fechaLimite = ftFechaLimite_1.getText();
+			String estado = cbEstado.getSelectedItem().toString();
+			String prioridad = cbPrioridad.getSelectedItem().toString();
+			String categoria = comboBox.getSelectedItem().toString();
+			String comentario = txtDescripcion.getText();
+			
+			if(adjunto == null)
+				adjunto = "";
+			if(comentario == null)
+				comentario = "";
+			
+			Tarea nuevaTarea = new Tarea(nombre, id, usuarioEncargado, adjunto, fechaInicio, fechaLimite, estado, prioridad, categoria, comentario);
+			System.out.println("Constructor creado correctamente");
+			
+			//frame.setVisible(false);
+			//System.out.println("Frame invisible");
+			frmProyectoa.dispose();
+			frmProyectoa.setVisible(false);
 		}
 	}
 	
@@ -497,13 +535,16 @@ public class Crear_EditarProyecto extends JFrame {
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 				//System.exit(1);
-			frame.setVisible(false);
+			//frame.setVisible(false);
+			//frmProyecto.dispose();
+			//frmProyecto.setVisible(false);
+			frmProyectoa.dispatchEvent(new WindowEvent(frmProyectoa, WindowEvent.WINDOW_CLOSING));
 		}
 	}
 	private class BtnAnadirRecursosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			JFileChooser fcAbrir = new JFileChooser();
-			int valorDevuelto = fcAbrir.showOpenDialog(frame);
+			int valorDevuelto = fcAbrir.showOpenDialog(frmProyectoa);
 
 			//Recoger el nombre del fichero seleccionado por el usuario
 			if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
@@ -512,4 +553,5 @@ public class Crear_EditarProyecto extends JFrame {
 			}
 		}
 	}
+	
 }
