@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.DefaultCellEditor;
@@ -181,8 +182,8 @@ public class pnlReutilizableTarea extends JPanel {
 			//Dialogo de confirmacion
 			int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta tarea?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
-				
-				
+				removeAll();
+				//pnlReutilizableTarea.dispose();
 				
 			}
 		}

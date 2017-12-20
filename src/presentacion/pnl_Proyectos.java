@@ -593,20 +593,7 @@ public class pnl_Proyectos extends JPanel {
 	
 	private class BtnAnadirTareaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			/*Tarea t = null;
-			Crear_EditarProyecto frame1;
-			try {
-				frame1 = new Crear_EditarProyecto();
-				frame1.setVisible(true);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			
-			if(!frame1.isVisible() && t.getCreada() == 1) {
-				System.out.println("Se añadirá una nueva tarea con el contenido del objeto");
-			}*/
 			
 			Crear_EditarProyecto window;
 			try {
@@ -648,7 +635,10 @@ public class pnl_Proyectos extends JPanel {
 				pnlTareas.repaint();
 				pnlTareas.revalidate();
 				limpiarArchivo();
+
 			}else {
+				pnlTareas.repaint();
+				pnlTareas.revalidate();
 				//System.out.println("No lo añadira");
 			}
 		}
