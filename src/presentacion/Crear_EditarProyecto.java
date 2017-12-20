@@ -440,7 +440,7 @@ public class Crear_EditarProyecto{
 			}else {
 				b_nombre=false;
 				txtNombre.setBorder(bordeRojo); 
-				lblWarningNom.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lblWarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
 	}
@@ -456,7 +456,7 @@ public class Crear_EditarProyecto{
 			}else {
 				b_id=false;
 				txtID.setBorder(bordeRojo); 
-				lblWarningID.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lblWarningID.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
 	}
@@ -471,7 +471,7 @@ public class Crear_EditarProyecto{
 			}else {
 				b_finicio=true;
 				ftFechaInicio_1.setBorder(bordeRojo); 
-				lblWarningFI.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lblWarningFI.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
 	}
@@ -486,7 +486,7 @@ public class Crear_EditarProyecto{
 			}else {
 				b_ffin=false;
 				ftFechaLimite_1.setBorder(bordeRojo); 
-				lblWarningFF.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lblWarningFF.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
 	}
@@ -501,7 +501,7 @@ public class Crear_EditarProyecto{
 			}else {
 				b_encargado=false;
 				txtUsuarioEncargado.setBorder(bordeRojo); 
-				lblWarningEncarg.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));
+				lblWarningEncarg.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
 	}

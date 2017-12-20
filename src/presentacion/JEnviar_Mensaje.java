@@ -156,7 +156,7 @@ public class JEnviar_Mensaje {
 		txtF_Asunto = new JTextField();
 		
 		defaultB=txtF_Asunto.getBorder();
-		txtF_Dest.addKeyListener(new TxtF_asuntoActionListener());
+		//txtF_Dest.addKeyListener(new TxtF_asuntoActionListener());
 		GridBagConstraints gbc_txtF_Asunto = new GridBagConstraints();
 		gbc_txtF_Asunto.gridwidth = 4;
 		gbc_txtF_Asunto.fill = GridBagConstraints.HORIZONTAL;
@@ -258,34 +258,36 @@ public class JEnviar_Mensaje {
 				lbl_WarningDest.setIcon(null);
 				txtF_Dest.setBorder(defaultB);
 			}else {
+				btnEnviar.setEnabled(false);
 				b_dest = false;
 				txtF_Dest.setBorder(bordeRojo); 
 				lbl_ErrorDest.setText("Este destinatario no existe");
-				lbl_WarningDest.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
+				lbl_WarningDest.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 			}
-			if(b_dest && b_asunto) {
+			if(b_dest) {
 				btnEnviar.setEnabled(true);
 			}
 		}
 	}
 	
 	//ASUNTO
-	private class TxtF_asuntoActionListener extends KeyAdapter {
+	/*private class TxtF_asuntoActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if(txtF_Asunto.getText().length() > 0) {
 				b_asunto = true;
 				lbl_WarningAsunt.setIcon(null);
 				txtF_Asunto.setBorder(defaultB);
 			}else {
+				btnEnviar.setEnabled(false);
 				b_asunto = false;
 				txtF_Asunto.setBorder(bordeRojo); 
-				lbl_WarningAsunt.setIcon(new ImageIcon(Crear_EditarUsuario.class.getResource("/presentacion/warning.png")));	
+				lbl_WarningAsunt.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 			}
 			if(b_dest && b_asunto) {
 				btnEnviar.setEnabled(true);
 			}
 		}
-	}
+	}*/
 	
 	
 	
@@ -318,11 +320,11 @@ public class JEnviar_Mensaje {
 	}
 	
 	
-	//OYENTE BOTON ENVIAR -- DIALOGO DE CONFIMACIÓN
+	//OYENTE BOTON ENVIAR -- DIALOGO DE CONFIMACIï¿½N
 	private class BtnEnviarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			frmMensaje.setVisible(false);
-			JOptionPane.showMessageDialog(frmMensaje, "Mensaje enviado correctamente", "Confirmación", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(frmMensaje, "Mensaje enviado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 		
 		}
 	}

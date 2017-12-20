@@ -43,11 +43,13 @@ public class pnl_MenuAvatars extends JPanel {
 	private JButton btn5;
 
 	private Icon seleccion;
+	private boolean opcion;
 
 	/**
 	 * Create the panel.
+	 * @param opcion 
 	 */
-	public pnl_MenuAvatars() {
+	public pnl_MenuAvatars(boolean opcion) {
 		
 		setVisible(true);
 		setBounds(new Rectangle(0, 0, 0, 0));
@@ -57,7 +59,7 @@ public class pnl_MenuAvatars extends JPanel {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-
+		this.opcion=opcion;
 		 
 
 		btn1 = new JButton("");
@@ -180,8 +182,25 @@ public class pnl_MenuAvatars extends JPanel {
 		gbc_btn5.gridy = 3;
 		add(btn5, gbc_btn5);
 
+		
+		if(!opcion) {
+			btn1.setEnabled(false);
+			btn2.setEnabled(false);
+			btn3.setEnabled(false);
+			btn4.setEnabled(false);
+			btn5.setEnabled(false);
+			btn6.setEnabled(false);
+			btn7.setEnabled(false);
+			btn8.setEnabled(false);
+			btn9.setEnabled(false);
+			btn10.setEnabled(false);
+			btn11.setEnabled(false);
+			btn12.setEnabled(false);
+		}
 	}
+	
 
+	
 	public Icon getSeleccion() {
 		return seleccion;
 	}
@@ -192,7 +211,7 @@ public class pnl_MenuAvatars extends JPanel {
 		private class BtnMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			
+			if(opcion) {
 			JButton botonPulsado = (JButton) e.getSource();
 			//botonPulsado.setBackground(SystemColor.activeCaption);
 				btn1.setEnabled(false);
@@ -209,6 +228,7 @@ public class pnl_MenuAvatars extends JPanel {
 				btn12.setEnabled(false);
 				botonPulsado .setEnabled(true);
 				seleccion=botonPulsado.getIcon();
+			}
 		}
 	
 	}

@@ -60,11 +60,11 @@ public class pnl_Usuarios extends JPanel {
 	private JButton btnAnadirUsuario;
 	private JScrollPane scrollPane;
 	private static JList lst_Usuarios;
-	private JLabel lbl_NombreDeUsuario;
-	private JLabel lbl_Avatar;
-	private JLabel lbl_Email;
-	private JLabel lbl_Telefono;
-	private JTextArea textArea;
+	private static JLabel lbl_NombreDeUsuario;
+	private static JLabel lbl_Avatar;
+	private static JLabel lbl_Email;
+	private static JLabel lbl_Telefono;
+	private static JTextArea textArea;
 	private JButton btnEliminarUsuario;
 	private JButton btnEditarUsuario;
 	private JButton btnEnviarMensaje;
@@ -394,7 +394,7 @@ public class pnl_Usuarios extends JPanel {
 			newUsuario = new Usuario(null,"" , null,"" , null,"" , null);
 			newUsuario.setNombre(usuario.get(0));
 			newUsuario.setTelefono(usuario.get(1));
-			//newUsuario.setTelefono(usuario.get(2));
+			//newUsuario.setEmail(usuario.get(2));
 			//newUsuario.setConocimientos(usuario.get(3));
 			
 			br.close();
@@ -442,9 +442,17 @@ public class pnl_Usuarios extends JPanel {
 	}
 	
 	
-	public static void upDateList(Usuario u) {
-		modeloLista.modificarPersona(u, lst_Usuarios.getSelectedIndex());
+	public static void editarUsuario() {
+		createdUser=leerArchivo();
+		lbl_NombreDeUsuario.setText(createdUser.getNombre());
+		lbl_Email.setText(createdUser.getEmail());
+		lbl_Telefono.setText(createdUser.getTelefono());
+		textArea.setText(createdUser.getConocimientos());
 	}
+	
+	/*public static void upDateList(Usuario u) {
+		modeloLista.modificarPersona(u, lst_Usuarios.getSelectedIndex());
+	}*/
 	
 	
 	
