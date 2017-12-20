@@ -27,7 +27,14 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
@@ -38,6 +45,8 @@ import dominio.Usuario;
 
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 
 public class pnl_Proyectos extends JPanel {
 	private JPanel pnl_Contenedor;
@@ -80,6 +89,7 @@ public class pnl_Proyectos extends JPanel {
 	 * Create the panel.
 	 */
 	public pnl_Proyectos() {
+		addMouseMotionListener(new ThisMouseMotionListener());
 		setBackground(Color.WHITE);
 		setBounds(new Rectangle(0, 0, 1210, 546));
 		setLayout(new BorderLayout(0, 0));
@@ -424,14 +434,110 @@ public class pnl_Proyectos extends JPanel {
 		pnlTareas.setBorder(null);
 		scrollPane.setViewportView(pnlTareas);
 		pnlTareas.setLayout(new GridLayout(0, 1, 0, 0));
-		for(int i=0; i<3; i++)
-			pnlTareas.add(new pnlReutilizableTarea());
+		/*for(int i=0; i<3; i++)
+			pnlTareas.add(new pnlReutilizableTarea());*/
 		
+		/*Tarea t = null;
+		if(t.getCreada() == 1) {
+			System.out.println("Actualizar paneles");
+		}*/
 		//prueba
 		/*pnlTareas.add(new pnlReutilizableTarea());
 		pnlTareas.repaint();
 		pnlTareas.revalidate();*/
 	}
+	
+	
+	public static Tarea leerArchivo() {
+		String nombreArchivo= "src/resources/fichero_escrituraProyecto.txt"; 
+		ArrayList<String> tarea = new ArrayList<>();
+		FileReader fr = null; 
+		Tarea newTarea = null;
+		//int c=4;
+		try {
+			fr = new FileReader(nombreArchivo); 
+			String linea;
+
+			BufferedReader br = new BufferedReader(fr);
+			while((linea=br.readLine())!=null) {
+					tarea.add(linea);
+			}	
+			//String nombre, String id, String usuarioEncargado, String adjunto, String fechaInicio,
+			//String fechaLimite, String estado, String prioridad, String categoria, String comentario)
+			newTarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
+			if(tarea.size()>=1) newTarea.setNombre(tarea.get(0));
+			if(tarea.size()>=2)newTarea.setId(tarea.get(1));
+			if(tarea.size()>=3)newTarea.setUsuarioEncargado(tarea.get(2));
+			if(tarea.size()>=4)newTarea.setAdjunto(tarea.get(3));
+			if(tarea.size()>=5)newTarea.setFechaInicio(tarea.get(4));
+			if(tarea.size()>=6)newTarea.setFechaLimite(tarea.get(5));
+			if(tarea.size()>=7)newTarea.setEstado(tarea.get(6));
+			if(tarea.size()>=8)newTarea.setPrioridad(tarea.get(7));
+			if(tarea.size()>=9)newTarea.setCategoria(tarea.get(8));
+			if(tarea.size()>=10)newTarea.setComentario(tarea.get(9));
+
+			//newUsuario.setTelefono(usuario.get(2));
+			//newUsuario.setConocimientos(usuario.get(3));
+			
+			br.close();
+			fr.close();
+			
+		}//FIN DEL TRY 
+		catch(IOException e){ 
+			System.out.println(e);
+		}
+		return newTarea;
+
+	}
+	
+	
+	
+	public static void limpiarArchivo() {
+		String nombreArchivo= "src/resources/fichero_escrituraProyecto.txt"; 
+		FileWriter fw = null; 
+		try { 
+			fw = new FileWriter(nombreArchivo); 
+			BufferedWriter bw = new BufferedWriter(fw); 
+			PrintWriter salArch = new PrintWriter(bw); 
+
+			salArch.print(""); 
+			/*salArch.println(); 
+			salArch.print(""); 
+			salArch.println(); 
+			salArch.print("");
+			salArch.println(); 
+			salArch.print("");
+			salArch.println();
+			salArch.print("");
+			salArch.println();
+			salArch.print("");
+			salArch.println();
+			salArch.print("");//prioridad categoria comentario
+			salArch.println();
+			salArch.print("");
+			salArch.println();
+			salArch.print("");
+			salArch.println();
+			salArch.print("");*/
+			salArch.close();
+		} 
+		catch (IOException ex) { 
+		} 
+	}
+	
+	/*public static void crearUsuario() {
+		createdUser=leerArchivo();
+		if(createdUser.getNombre().length()>1) {
+			modeloLista.addPersona(createdUser);
+			createdUser=null;
+			limpiarArchivo();
+		}
+	}
+	
+	
+	public static void upDateList(Usuario u) {
+		modeloLista.modificarPersona(u, lst_Usuarios.getSelectedIndex());
+	}*/
 	
 	/*Listeners
 	 * 
@@ -522,6 +628,29 @@ public class pnl_Proyectos extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			JRecursos frame2 = new JRecursos();
 			frame2.setVisible(true);
+		}
+	}
+	private class ThisMouseMotionListener extends MouseMotionAdapter {
+		@Override
+		public void mouseMoved(MouseEvent arg0) {
+			Tarea t;
+			t = leerArchivo();
+			//System.out.println("Actualizar Tarea");
+			if(t.getNombre() != null && t.getId()!=null && t.getUsuarioEncargado()!=null) {
+				//System.out.println("Añadira panel");
+				if(t.getComentario() == null) 
+					t.setComentario("");
+				if(t.getAdjunto()==null)
+					t.setAdjunto("");
+				//String nombre, String id, String usuarioEncargado, String adjunto, String fechaInicio,
+				//String fechaLimite, String estado, String prioridad, String categoria, String comentario)
+				pnlTareas.add(new pnlReutilizableTarea(t.getNombre(), t.getId(), t.getUsuarioEncargado(), t.getAdjunto(), t.getFechaInicio(),t.getFechaLimite(), t.getEstado(),t.getPrioridad(), t.getCategoria(),t.getComentario()));
+				pnlTareas.repaint();
+				pnlTareas.revalidate();
+				limpiarArchivo();
+			}else {
+				//System.out.println("No lo añadira");
+			}
 		}
 	}
 }

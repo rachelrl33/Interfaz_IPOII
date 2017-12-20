@@ -41,8 +41,22 @@ public class pnlReutilizableTarea extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param string10 
+	 * @param string9 
+	 * @param string8 
+	 * @param string7 
+	 * @param string6 
+	 * @param string5 
+	 * @param string4 
+	 * @param string3 
+	 * @param string2 
+	 * @param string 
 	 */
-	public pnlReutilizableTarea() {
+	
+	//String nombre, String id, String usuarioEncargado, String adjunto, String fechaInicio,
+	//String fechaLimite, String estado, String prioridad, String categoria, String comentario)
+	
+	public pnlReutilizableTarea(String nombre, String id, String usuarioEncargado, String adjunto, String fechaInicio, String fechaLimite, String estado,String prioridad, String categoria, String comentario) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 202, 0, 45, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 47, 18, 60, 0, 0, 41, 0};
@@ -103,7 +117,7 @@ public class pnlReutilizableTarea extends JPanel {
 		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null},
+				{id, usuarioEncargado, fechaInicio, fechaLimite, estado, prioridad},
 			},
 			new String[] {
 				"ID_Tarea", "Usuario encargado", "Fecha Inicio", "Fecha Fin", "Estado", "Prioridad"
@@ -156,6 +170,10 @@ public class pnlReutilizableTarea extends JPanel {
 		gbc_btnEditarRecursos.gridy = 7;
 		add(btnEditarRecursos, gbc_btnEditarRecursos);
 
+		
+		lblNombreTarea.setText(nombre);
+		lblCategora.setText(categoria);
+		txtDescripcion.setText(comentario);
 	}
 
 	private class ButtonActionListener implements ActionListener {

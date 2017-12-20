@@ -36,7 +36,11 @@ import dominio.Usuario;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -524,10 +528,42 @@ public class Crear_EditarProyecto{
 			Tarea nuevaTarea = new Tarea(nombre, id, usuarioEncargado, adjunto, fechaInicio, fechaLimite, estado, prioridad, categoria, comentario);
 			System.out.println("Constructor creado correctamente");
 			
+			String nombreArchivo= "src/resources/fichero_escrituraProyecto.txt"; 
+			FileWriter fw = null; 
+			try { 
+				fw = new FileWriter(nombreArchivo); 
+				BufferedWriter bw = new BufferedWriter(fw); 
+				PrintWriter salArch = new PrintWriter(bw); 
+
+				salArch.print(nombre); 
+				salArch.println(); 
+				salArch.print(id); 
+				salArch.println(); 
+				salArch.print(usuarioEncargado);
+				salArch.println(); 
+				salArch.print(adjunto);
+				salArch.println();
+				salArch.print(fechaInicio);
+				salArch.println();
+				salArch.print(fechaLimite);
+				salArch.println();
+				salArch.print(estado);//prioridad categoria comentario
+				salArch.println();
+				salArch.print(prioridad);
+				salArch.println();
+				salArch.print(categoria);
+				salArch.println();
+				salArch.print(comentario);
+				salArch.close(); 
+			} 
+			catch (IOException ex) { 
+			} 
 			//frame.setVisible(false);
 			//System.out.println("Frame invisible");
 			frmProyectoa.dispose();
 			frmProyectoa.setVisible(false);
+			
+			//return nuevaTarea;
 		}
 	}
 	
@@ -538,7 +574,8 @@ public class Crear_EditarProyecto{
 			//frame.setVisible(false);
 			//frmProyecto.dispose();
 			//frmProyecto.setVisible(false);
-			frmProyectoa.dispatchEvent(new WindowEvent(frmProyectoa, WindowEvent.WINDOW_CLOSING));
+			frmProyectoa.dispose();
+			frmProyectoa.setVisible(false);
 		}
 	}
 	private class BtnAnadirRecursosActionListener implements ActionListener {
