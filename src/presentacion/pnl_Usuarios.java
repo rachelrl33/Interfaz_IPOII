@@ -223,7 +223,7 @@ public class pnl_Usuarios extends JPanel {
 		pnl_InfoUsuarios.setLayout(gbl_pnl_InfoUsuarios);
 		
 		lbl_Avatar = new JLabel("");
-		lbl_Avatar.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/ag1.png")));
+		lbl_Avatar.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/user4.png")));
 		GridBagConstraints gbc_lbl_Avatar = new GridBagConstraints();
 		gbc_lbl_Avatar.gridwidth = 2;
 		gbc_lbl_Avatar.gridheight = 3;
@@ -564,7 +564,12 @@ public class pnl_Usuarios extends JPanel {
 			int selection = lst_Usuarios.getSelectedIndex();
 			if (selection!=-1) {
 				Usuario u= modeloLista.getPersona(selection);
-				lbl_Avatar.setIcon(u.getAvatar());
+				if(u.getAvatar()!=null) {
+					lbl_Avatar.setIcon(u.getAvatar());
+				}else {
+					lbl_Avatar.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/user4.png")));
+				}
+					
 				lbl_NombreDeUsuario.setText(u.getNombre());
 				lbl_Email.setText(u.getEmail());
 				lbl_Telefono.setText(u.getTelefono());

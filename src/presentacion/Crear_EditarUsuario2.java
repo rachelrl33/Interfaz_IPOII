@@ -410,7 +410,7 @@ public class Crear_EditarUsuario2 {
 				lbl_WarningNom.setIcon(null);
 				txtF_nombre.setBorder(defaultB);
 			}else {
-				btnAceptar.setEnabled(false);
+				//btnAceptar.setEnabled(false);
 				b_nombre = false;
 				txtF_nombre.setBorder(bordeRojo); 
 				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
@@ -431,7 +431,7 @@ public class Crear_EditarUsuario2 {
 				lbl_WarningEm.setIcon(null);
 				ftxtF_email.setBorder(defaultB);
 			}else {
-				btnAceptar.setEnabled(false);
+				//btnAceptar.setEnabled(false);
 				b_email = false;
 				ftxtF_email.setBorder(bordeRojo); 
 				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
@@ -453,7 +453,7 @@ public class Crear_EditarUsuario2 {
 				lbl_WarningCo.setIcon(null);
 				pssF_contrasena.setBorder(defaultB);
 			}else {	
-				btnAceptar.setEnabled(false);
+				//btnAceptar.setEnabled(false);
 				b_pass = false;
 				pssF_contrasena.setBorder(bordeRojo); 
 				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
@@ -474,7 +474,7 @@ public class Crear_EditarUsuario2 {
 				lbl_WarningCoR.setIcon(null);
 				pssF_contrasenaRep.setBorder(defaultB);
 			}else {
-				btnAceptar.setEnabled(false);
+				//btnAceptar.setEnabled(false);
 				b_pass = false;
 				pssF_contrasenaRep.setBorder(bordeRojo); 
 				lbl_WarningCoR.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
@@ -499,7 +499,7 @@ public class Crear_EditarUsuario2 {
 					lbl_WarningNom.setIcon(null);
 					txtA_conocimientos.setBorder(defaultB);
 				}else {
-					btnAceptar.setEnabled(false);
+					//btnAceptar.setEnabled(false);
 					b_conocimientos = false;
 					txtA_conocimientos.setBorder(bordeRojo); 
 					lbl_WarningCon.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
