@@ -501,24 +501,6 @@ public class pnl_Proyectos extends JPanel {
 			PrintWriter salArch = new PrintWriter(bw); 
 
 			salArch.print(""); 
-			/*salArch.println(); 
-			salArch.print(""); 
-			salArch.println(); 
-			salArch.print("");
-			salArch.println(); 
-			salArch.print("");
-			salArch.println();
-			salArch.print("");
-			salArch.println();
-			salArch.print("");
-			salArch.println();
-			salArch.print("");//prioridad categoria comentario
-			salArch.println();
-			salArch.print("");
-			salArch.println();
-			salArch.print("");
-			salArch.println();
-			salArch.print("");*/
 			salArch.close();
 		} 
 		catch (IOException ex) { 
@@ -548,18 +530,18 @@ public class pnl_Proyectos extends JPanel {
 	//btnAnadir
 	private class BtnAnadirProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			/*Crear_EditarProyecto frame;
+
+			Crear_EditarProyecto window;
 			try {
-				frame = new Crear_EditarProyecto(true);
-				frame.setVisible(true);
+				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
+				window = new Crear_EditarProyecto(1);
+				JFrame frmProyectoa = new JFrame();
+				window.frmProyectoa.setVisible(true);
+
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
-			
-			//window = new Crear_EditarProyecto();
-			//JFrame frame = new JFrame();
-			//window.frame.setVisible(true);
+			}
 		}
 	}
 	private class BtnEditProyectoActionListener implements ActionListener {
@@ -598,7 +580,7 @@ public class pnl_Proyectos extends JPanel {
 			Crear_EditarProyecto window;
 			try {
 				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
-				window = new Crear_EditarProyecto(true);
+				window = new Crear_EditarProyecto(3);
 				JFrame frmProyectoa = new JFrame();
 				window.frmProyectoa.setVisible(true);
 

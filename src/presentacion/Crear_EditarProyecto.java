@@ -87,9 +87,9 @@ public class Crear_EditarProyecto{
 	private JLabel lblWarningFI;
 	private JLabel lblWarningFF;
 	private JLabel lblWarningEncarg;
-	
-	private Boolean opcion;
-	
+
+	private int opcion;
+
 	JFrame frmProyectoa;// = new Crear_EditarProyecto();
 	private JLabel lblCategoria;
 	private JComboBox comboBox;
@@ -98,7 +98,7 @@ public class Crear_EditarProyecto{
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -115,15 +115,24 @@ public class Crear_EditarProyecto{
 	 * Create the frame.
 	 * @return 
 	 */
-	public Crear_EditarProyecto(boolean opcion1) throws ParseException {
+	public Crear_EditarProyecto(int opcion1) throws ParseException {
 		opcion = opcion1;
 		initialize();
 	}
-	
+
 	public void initialize() throws ParseException{
 		frmProyectoa = new JFrame();
 		//Crear_EditarProyecto(){
 		frmProyectoa.setTitle("Proyecto/Tarea");
+
+		if(opcion==1) {
+			frmProyectoa.setTitle("Nuevo Proyecto");
+		}else if(opcion==2) {
+			frmProyectoa.setTitle("Editar Proyecto");
+		}else {
+			frmProyectoa.setTitle("Nueva Tarea");
+		}
+
 		frmProyectoa.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frmProyectoa.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
 		frmProyectoa.setBounds(100, 100, 796, 447);
@@ -136,7 +145,7 @@ public class Crear_EditarProyecto{
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		
+
 		lblNombre = new JLabel("Nombre");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
@@ -144,7 +153,7 @@ public class Crear_EditarProyecto{
 		gbc_lblNombre.gridx = 1;
 		gbc_lblNombre.gridy = 1;
 		contentPane.add(lblNombre, gbc_lblNombre);
-		
+
 		lblId = new JLabel("ID");
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
 		gbc_lblId.anchor = GridBagConstraints.WEST;
@@ -152,7 +161,7 @@ public class Crear_EditarProyecto{
 		gbc_lblId.gridx = 3;
 		gbc_lblId.gridy = 1;
 		contentPane.add(lblId, gbc_lblId);
-		
+
 		lblFechaInicio = new JLabel("Fecha Inicio");
 		GridBagConstraints gbc_lblFechaInicio = new GridBagConstraints();
 		gbc_lblFechaInicio.anchor = GridBagConstraints.WEST;
@@ -160,7 +169,7 @@ public class Crear_EditarProyecto{
 		gbc_lblFechaInicio.gridx = 6;
 		gbc_lblFechaInicio.gridy = 1;
 		contentPane.add(lblFechaInicio, gbc_lblFechaInicio);
-		
+
 		lblFechaLimite = new JLabel("Fecha Limite");
 		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
 		gbc_lblFechaLimite.anchor = GridBagConstraints.WEST;
@@ -168,7 +177,7 @@ public class Crear_EditarProyecto{
 		gbc_lblFechaLimite.gridx = 9;
 		gbc_lblFechaLimite.gridy = 1;
 		contentPane.add(lblFechaLimite, gbc_lblFechaLimite);
-		
+
 		txtNombre = new JTextField();
 		defaultB=txtNombre.getBorder();
 		txtNombre.addKeyListener(new TxtNombreKeyListener());
@@ -179,7 +188,7 @@ public class Crear_EditarProyecto{
 		gbc_txtNombre.gridy = 2;
 		contentPane.add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		lblWarningNom = new JLabel("");
 		GridBagConstraints gbc_lblWarningNom = new GridBagConstraints();
 		gbc_lblWarningNom.insets = new Insets(0, 0, 5, 5);
@@ -187,7 +196,7 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningNom.gridx = 2;
 		gbc_lblWarningNom.gridy = 2;
 		contentPane.add(lblWarningNom, gbc_lblWarningNom);
-		
+
 		txtID = new JTextField();
 		txtID.addKeyListener(new TxtIDKeyListener());
 		GridBagConstraints gbc_txtID = new GridBagConstraints();
@@ -198,25 +207,25 @@ public class Crear_EditarProyecto{
 		gbc_txtID.gridy = 2;
 		contentPane.add(txtID, gbc_txtID);
 		txtID.setColumns(10);
-		
+
 		//ftFechaInicio = new JFormattedTextField();
 		GridBagConstraints gbc_ftFechaInicio = new GridBagConstraints();
 		gbc_ftFechaInicio.insets = new Insets(0, 0, 5, 5);
 		gbc_ftFechaInicio.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftFechaInicio.gridx = 6;
 		gbc_ftFechaInicio.gridy = 2;
-		
+
 		MaskFormatter formatoFecha;
 		try {
-		formatoFecha = new MaskFormatter("##/##/####'");
-		formatoFecha.setPlaceholderCharacter('X');
-		ftFechaInicio_1 = new JFormattedTextField(formatoFecha);
-		ftFechaInicio_1.addKeyListener(new FtFechaInicioKeyListener());
+			formatoFecha = new MaskFormatter("##/##/####'");
+			formatoFecha.setPlaceholderCharacter('X');
+			ftFechaInicio_1 = new JFormattedTextField(formatoFecha);
+			ftFechaInicio_1.addKeyListener(new FtFechaInicioKeyListener());
 		} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 		lblWarningID = new JLabel("");
 		GridBagConstraints gbc_lblWarningID = new GridBagConstraints();
 		gbc_lblWarningID.insets = new Insets(0, 0, 5, 5);
@@ -224,27 +233,27 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningID.gridx = 5;
 		gbc_lblWarningID.gridy = 2;
 		contentPane.add(lblWarningID, gbc_lblWarningID);
-		
+
 		contentPane.add(ftFechaInicio_1, gbc_ftFechaInicio);
-		
+
 		//ftFechaLimite = new JFormattedTextField();
 		GridBagConstraints gbc_ftFechaLimite = new GridBagConstraints();
 		gbc_ftFechaLimite.insets = new Insets(0, 0, 5, 5);
 		gbc_ftFechaLimite.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftFechaLimite.gridx = 9;
 		gbc_ftFechaLimite.gridy = 2;
-		
+
 		//MaskFormatter formatoFecha;
 		try {
-		formatoFecha = new MaskFormatter("##/##/####'");
-		formatoFecha.setPlaceholderCharacter('X');
-		ftFechaLimite_1 = new JFormattedTextField(formatoFecha);
-		ftFechaLimite_1.addKeyListener(new FtFechaLimiteKeyListener());
+			formatoFecha = new MaskFormatter("##/##/####'");
+			formatoFecha.setPlaceholderCharacter('X');
+			ftFechaLimite_1 = new JFormattedTextField(formatoFecha);
+			ftFechaLimite_1.addKeyListener(new FtFechaLimiteKeyListener());
 		} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 		lblCal = new JLabel("");
 		lblCal.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/calen.png")));
 		GridBagConstraints gbc_lblCal = new GridBagConstraints();
@@ -253,7 +262,7 @@ public class Crear_EditarProyecto{
 		gbc_lblCal.gridx = 7;
 		gbc_lblCal.gridy = 2;
 		contentPane.add(lblCal, gbc_lblCal);
-		
+
 		lblWarningFI = new JLabel("");
 		GridBagConstraints gbc_lblWarningFI = new GridBagConstraints();
 		gbc_lblWarningFI.insets = new Insets(0, 0, 5, 5);
@@ -261,9 +270,9 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningFI.gridx = 8;
 		gbc_lblWarningFI.gridy = 2;
 		contentPane.add(lblWarningFI, gbc_lblWarningFI);
-		
+
 		contentPane.add(ftFechaLimite_1, gbc_ftFechaLimite);
-		
+
 		lblCal2 = new JLabel("");
 		lblCal2.setIcon(new ImageIcon(Crear_EditarProyecto.class.getResource("/presentacion/calen.png")));
 		GridBagConstraints gbc_lblCal2 = new GridBagConstraints();
@@ -272,7 +281,7 @@ public class Crear_EditarProyecto{
 		gbc_lblCal2.gridx = 10;
 		gbc_lblCal2.gridy = 2;
 		contentPane.add(lblCal2, gbc_lblCal2);
-		
+
 		lblWarningFF = new JLabel("");
 		GridBagConstraints gbc_lblWarningFF = new GridBagConstraints();
 		gbc_lblWarningFF.anchor = GridBagConstraints.WEST;
@@ -280,7 +289,7 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningFF.gridx = 11;
 		gbc_lblWarningFF.gridy = 2;
 		contentPane.add(lblWarningFF, gbc_lblWarningFF);
-		
+
 		lblUsuarioEncargado = new JLabel("Jefe/encargardo");
 		GridBagConstraints gbc_lblUsuarioEncargado = new GridBagConstraints();
 		gbc_lblUsuarioEncargado.anchor = GridBagConstraints.WEST;
@@ -288,7 +297,7 @@ public class Crear_EditarProyecto{
 		gbc_lblUsuarioEncargado.gridx = 1;
 		gbc_lblUsuarioEncargado.gridy = 4;
 		contentPane.add(lblUsuarioEncargado, gbc_lblUsuarioEncargado);
-		
+
 		lblPrioridad = new JLabel("Prioridad");
 		GridBagConstraints gbc_lblPrioridad = new GridBagConstraints();
 		gbc_lblPrioridad.anchor = GridBagConstraints.WEST;
@@ -296,7 +305,7 @@ public class Crear_EditarProyecto{
 		gbc_lblPrioridad.gridx = 6;
 		gbc_lblPrioridad.gridy = 4;
 		contentPane.add(lblPrioridad, gbc_lblPrioridad);
-		
+
 		lblEstado = new JLabel("Estado");
 		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
 		gbc_lblEstado.anchor = GridBagConstraints.WEST;
@@ -304,7 +313,7 @@ public class Crear_EditarProyecto{
 		gbc_lblEstado.gridx = 9;
 		gbc_lblEstado.gridy = 4;
 		contentPane.add(lblEstado, gbc_lblEstado);
-		
+
 		txtUsuarioEncargado = new JTextField();
 		txtUsuarioEncargado.addKeyListener(new TextFieldKeyListener());
 		GridBagConstraints gbc_txtUsuarioEncargado = new GridBagConstraints();
@@ -315,7 +324,7 @@ public class Crear_EditarProyecto{
 		gbc_txtUsuarioEncargado.gridy = 5;
 		contentPane.add(txtUsuarioEncargado, gbc_txtUsuarioEncargado);
 		txtUsuarioEncargado.setColumns(10);
-		
+
 		lblWarningEncarg = new JLabel("");
 		GridBagConstraints gbc_lblWarningEncarg = new GridBagConstraints();
 		gbc_lblWarningEncarg.insets = new Insets(0, 0, 5, 5);
@@ -323,7 +332,7 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningEncarg.gridx = 5;
 		gbc_lblWarningEncarg.gridy = 5;
 		contentPane.add(lblWarningEncarg, gbc_lblWarningEncarg);
-		
+
 		cbPrioridad = new JComboBox();
 		cbPrioridad.setModel(new DefaultComboBoxModel(new String[] {"Baja", "Media", "Alta"}));
 		GridBagConstraints gbc_cbPrioridad = new GridBagConstraints();
@@ -333,7 +342,7 @@ public class Crear_EditarProyecto{
 		gbc_cbPrioridad.gridx = 6;
 		gbc_cbPrioridad.gridy = 5;
 		contentPane.add(cbPrioridad, gbc_cbPrioridad);
-		
+
 		cbEstado = new JComboBox();
 		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"En proceso", "En espera", "Terminada"}));
 		GridBagConstraints gbc_cbEstado = new GridBagConstraints();
@@ -343,7 +352,7 @@ public class Crear_EditarProyecto{
 		gbc_cbEstado.gridx = 9;
 		gbc_cbEstado.gridy = 5;
 		contentPane.add(cbEstado, gbc_cbEstado);
-		
+
 		btnAnadirRecursos = new JButton("Anadir Recursos");
 		btnAnadirRecursos.addActionListener(new BtnAnadirRecursosActionListener());
 		GridBagConstraints gbc_btnAnadirRecursos = new GridBagConstraints();
@@ -352,7 +361,7 @@ public class Crear_EditarProyecto{
 		gbc_btnAnadirRecursos.gridx = 1;
 		gbc_btnAnadirRecursos.gridy = 7;
 		contentPane.add(btnAnadirRecursos, gbc_btnAnadirRecursos);
-		
+
 		lblCategoria = new JLabel("Categoria");
 		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
 		gbc_lblCategoria.anchor = GridBagConstraints.WEST;
@@ -360,7 +369,7 @@ public class Crear_EditarProyecto{
 		gbc_lblCategoria.gridx = 6;
 		gbc_lblCategoria.gridy = 7;
 		contentPane.add(lblCategoria, gbc_lblCategoria);
-		
+
 		txtF_Adjunto = new JTextField();
 		GridBagConstraints gbc_txtF_Adjunto = new GridBagConstraints();
 		gbc_txtF_Adjunto.gridwidth = 4;
@@ -370,7 +379,7 @@ public class Crear_EditarProyecto{
 		gbc_txtF_Adjunto.gridy = 8;
 		contentPane.add(txtF_Adjunto, gbc_txtF_Adjunto);
 		txtF_Adjunto.setColumns(10);
-		
+
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Analisis", "Diseño", "Implementacion"}));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -380,7 +389,7 @@ public class Crear_EditarProyecto{
 		gbc_comboBox.gridx = 6;
 		gbc_comboBox.gridy = 8;
 		contentPane.add(comboBox, gbc_comboBox);
-		
+
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 11;
@@ -389,11 +398,11 @@ public class Crear_EditarProyecto{
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 10;
 		contentPane.add(scrollPane, gbc_scrollPane);
-		
+
 		txtDescripcion = new JTextArea();
 		txtDescripcion.setBorder(new TitledBorder(null, "Descripci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane.setViewportView(txtDescripcion);
-		
+
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
@@ -401,7 +410,7 @@ public class Crear_EditarProyecto{
 		gbc_btnCancelar.gridx = 9;
 		gbc_btnCancelar.gridy = 12;
 		contentPane.add(btnCancelar, gbc_btnCancelar);
-		
+
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new BtnAceptarActionListener());
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
@@ -412,14 +421,14 @@ public class Crear_EditarProyecto{
 		contentPane.add(btnAceptar, gbc_btnAceptar);
 	}
 
-	
-	
-	
+
+
+
 
 	//---------------------------------------------------
 	//CONTROL DE FORMATOS Y VALIDEZ DE DATOS INTRODUCIDOS 
 	//---------------------------------------------------
-	
+
 
 	private class TxtNombreKeyListener extends KeyAdapter {
 		@Override
@@ -435,8 +444,8 @@ public class Crear_EditarProyecto{
 			}
 		}
 	}
-	
-	
+
+
 	private class TxtIDKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -451,7 +460,7 @@ public class Crear_EditarProyecto{
 			}
 		}
 	}
-	
+
 	private class FtFechaInicioKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -466,7 +475,7 @@ public class Crear_EditarProyecto{
 			}
 		}
 	}
-	
+
 	private class FtFechaLimiteKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -481,7 +490,7 @@ public class Crear_EditarProyecto{
 			}
 		}
 	}
-	
+
 	private class TextFieldKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -496,81 +505,107 @@ public class Crear_EditarProyecto{
 			}
 		}
 	}
-	
-	
-		
-	
-	
+
+
+
+
+
 	//--------------------------------------------
 	//                 OYENTES 
 	//--------------------------------------------
-	
-	
+
+
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
-			String nombre = txtNombre.getText();
-			String id = txtID.getText();
-			String usuarioEncargado = txtUsuarioEncargado.getText();
-			String adjunto = txtF_Adjunto.getText();
-			String fechaInicio = ftFechaInicio_1.getText();
-			String fechaLimite = ftFechaLimite_1.getText();
-			String estado = cbEstado.getSelectedItem().toString();
-			String prioridad = cbPrioridad.getSelectedItem().toString();
-			String categoria = comboBox.getSelectedItem().toString();
-			String comentario = txtDescripcion.getText();
-			
-			if(adjunto == null)
-				adjunto = "";
-			if(comentario == null)
-				comentario = "";
-			
-			Tarea nuevaTarea = new Tarea(nombre, id, usuarioEncargado, adjunto, fechaInicio, fechaLimite, estado, prioridad, categoria, comentario);
-			System.out.println("Constructor creado correctamente");
-			
-			String nombreArchivo= "src/resources/fichero_escrituraProyecto.txt"; 
-			FileWriter fw = null; 
-			try { 
-				fw = new FileWriter(nombreArchivo); 
-				BufferedWriter bw = new BufferedWriter(fw); 
-				PrintWriter salArch = new PrintWriter(bw); 
+			if(opcion==3) {
+				String nombre = txtNombre.getText();
+				String id = txtID.getText();
+				String usuarioEncargado = txtUsuarioEncargado.getText();
+				String adjunto = txtF_Adjunto.getText();
+				String fechaInicio = ftFechaInicio_1.getText();
+				String fechaLimite = ftFechaLimite_1.getText();
+				String estado = cbEstado.getSelectedItem().toString();
+				String prioridad = cbPrioridad.getSelectedItem().toString();
+				String categoria = comboBox.getSelectedItem().toString();
+				String comentario = txtDescripcion.getText();
 
-				salArch.print(nombre); 
-				salArch.println(); 
-				salArch.print(id); 
-				salArch.println(); 
-				salArch.print(usuarioEncargado);
-				salArch.println(); 
-				salArch.print(adjunto);
-				salArch.println();
-				salArch.print(fechaInicio);
-				salArch.println();
-				salArch.print(fechaLimite);
-				salArch.println();
-				salArch.print(estado);//prioridad categoria comentario
-				salArch.println();
-				salArch.print(prioridad);
-				salArch.println();
-				salArch.print(categoria);
-				salArch.println();
-				salArch.print(comentario);
-				salArch.close(); 
-			} 
-			catch (IOException ex) { 
-			} 
-			//frame.setVisible(false);
-			//System.out.println("Frame invisible");
-			frmProyectoa.dispose();
-			frmProyectoa.setVisible(false);
-			
+				if((nombre.length()>0) && id.length()>0 && usuarioEncargado.length()>0) {
+
+
+					if(adjunto == null)
+						adjunto = "";
+					if(comentario == null)
+						comentario = "";
+
+					Tarea nuevaTarea = new Tarea(nombre, id, usuarioEncargado, adjunto, fechaInicio, fechaLimite, estado, prioridad, categoria, comentario);
+					System.out.println("Constructor creado correctamente");
+
+					String nombreArchivo= "src/resources/fichero_escrituraProyecto.txt"; 
+					FileWriter fw = null; 
+					try { 
+						fw = new FileWriter(nombreArchivo); 
+						BufferedWriter bw = new BufferedWriter(fw); 
+						PrintWriter salArch = new PrintWriter(bw); 
+
+						salArch.print(nombre); 
+						salArch.println(); 
+						salArch.print(id); 
+						salArch.println(); 
+						salArch.print(usuarioEncargado);
+						salArch.println(); 
+						salArch.print(adjunto);
+						salArch.println();
+						salArch.print(fechaInicio);
+						salArch.println();
+						salArch.print(fechaLimite);
+						salArch.println();
+						salArch.print(estado);//prioridad categoria comentario
+						salArch.println();
+						salArch.print(prioridad);
+						salArch.println();
+						salArch.print(categoria);
+						salArch.println();
+						salArch.print(comentario);
+						salArch.close(); 
+					} 
+					catch (IOException ex) { 
+					} 
+					//frame.setVisible(false);
+					//System.out.println("Frame invisible");
+					frmProyectoa.dispose();
+					frmProyectoa.setVisible(false);
+				}//fin if
+			}else if(opcion==2) {
+				System.out.println("Editando Proyecto");
+			}else {
+				System.out.println("Creando Proyecto");
+				String nombreProyecto = txtNombre.getText();
+				
+				String nombreArchivo= "src/resources/fichero_escrituraProyectos.txt"; 
+				FileWriter fw = null; 
+				try { 
+					fw = new FileWriter(nombreArchivo); 
+					BufferedWriter bw = new BufferedWriter(fw); 
+					PrintWriter salArch = new PrintWriter(bw); 
+
+					salArch.print(nombreProyecto); 
+					salArch.println(); 
+					
+					salArch.close(); 
+				} 
+				catch (IOException ex) { 
+				} 
+				
+				frmProyectoa.dispose();
+			}
 			//return nuevaTarea;
 		}
 	}
-	
-	
+
+
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-				//System.exit(1);
+			//System.exit(1);
 			//frame.setVisible(false);
 			//frmProyecto.dispose();
 			//frmProyecto.setVisible(false);
@@ -590,5 +625,5 @@ public class Crear_EditarProyecto{
 			}
 		}
 	}
-	
+
 }

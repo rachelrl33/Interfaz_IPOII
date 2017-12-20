@@ -21,6 +21,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
+import dominio.Proyecto;
+import dominio.Tarea;
 import dominio.Usuario;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -37,13 +39,23 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URI;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 
 public class JPrincipal {
 
 	JFrame frame;
+	private ArrayList<Proyecto> misProyectos = new ArrayList<Proyecto>();
 	private JPanel panel_piePag;
 	private JPanel pnl_encabezado;
 	private JSplitPane splitPane;
@@ -85,6 +97,7 @@ public class JPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addMouseMotionListener(new FrameMouseMotionListener());
 		frame.setVisible(true);
 		frame.getContentPane().setBackground(SystemColor.activeCaption);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(JPrincipal.class.getResource("/presentacion/logo.png")));
@@ -199,6 +212,8 @@ public class JPrincipal {
 		scrollPane.setMinimumSize(new Dimension(150, 150));
 		splitPane.setLeftComponent(scrollPane);
 		
+		
+		
 		tree = new JTree();
 		scrollPane.setViewportView(tree);
 		tree.addTreeSelectionListener(new TreeTreeSelectionListener());
@@ -209,7 +224,7 @@ public class JPrincipal {
 						{
 							DefaultMutableTreeNode node_1;
 							node_1 = new DefaultMutableTreeNode("Proyectos");
-								node_1.add(new DefaultMutableTreeNode("p1"));
+								//node_1.add(new DefaultMutableTreeNode("p1"));
 							add(node_1);
 							node_1 = new DefaultMutableTreeNode("Usuarios");
 							add(node_1);
@@ -220,7 +235,10 @@ public class JPrincipal {
 				tree.getSelectionModel().setSelectionMode (TreeSelectionModel.SINGLE_TREE_SELECTION);
 				tree.setCellRenderer(new MiRenderizadoArbol());
 		
-		
+				
+				//node_1.
+				//DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				//model.reload();
 		
 		
 		pnl_contenedorCard = new JPanel();
@@ -322,6 +340,36 @@ public class JPrincipal {
 			openWebPage(url);
 		}
 	}
+	private class FrameMouseMotionListener extends MouseMotionAdapter {
+		@Override
+		public void mouseMoved(MouseEvent arg0) {
+			Proyecto p = leerArchivo();
+			if(p.getNombre() != null) {
+				misProyectos.add(p);
+				tree = new JTree();
+				scrollPane.setViewportView(tree);
+				tree.addTreeSelectionListener(new TreeTreeSelectionListener());
+				
+						tree.setFont(new Font("Verdana", Font.PLAIN, 12));
+						tree.setModel(new DefaultTreeModel(
+							new DefaultMutableTreeNode("Mi zona de trabajo") {
+								{
+									DefaultMutableTreeNode node_1;
+									node_1 = new DefaultMutableTreeNode("Proyectos");
+										for(int pr=0; pr< misProyectos.size(); pr++)
+											node_1.add(new DefaultMutableTreeNode(misProyectos.get(pr).getNombre()));
+									add(node_1);
+									node_1 = new DefaultMutableTreeNode("Usuarios");
+									add(node_1);
+									add(new DefaultMutableTreeNode("Enviar mensaje"));
+								}
+							}
+						));
+						tree.getSelectionModel().setSelectionMode (TreeSelectionModel.SINGLE_TREE_SELECTION);
+						tree.setCellRenderer(new MiRenderizadoArbol());
+			}
+		}
+	}
 	
 	private void ButtonOpenWebActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try { 
@@ -332,6 +380,56 @@ public class JPrincipal {
            System.out.println(e.getMessage());
        }
     }    
+	
+	public static Proyecto leerArchivo() {
+		String nombreArchivo= "src/resources/fichero_escrituraProyectos.txt"; 
+		ArrayList<String> proyectos = new ArrayList<>();
+		FileReader fr = null; 
+		Proyecto newProyecto = null;
+		//int c=4;
+		try {
+			fr = new FileReader(nombreArchivo); 
+			String linea;
+
+			BufferedReader br = new BufferedReader(fr);
+			while((linea=br.readLine())!=null) {
+					proyectos.add(linea);
+			}	
+			//String nombre, String id, String usuarioEncargado, String adjunto, String fechaInicio,
+			//String fechaLimite, String estado, String prioridad, String categoria, String comentario)
+			newProyecto = new Proyecto(null, null, null, null, null, null, null, null, null);
+			if(proyectos.size()>=1) newProyecto.setNombre(proyectos.get(0));
+			
+
+			//newUsuario.setTelefono(usuario.get(2));
+			//newUsuario.setConocimientos(usuario.get(3));
+			
+			br.close();
+			fr.close();
+			
+			limpiarArchivo();
+			
+		}//FIN DEL TRY 
+		catch(IOException e){ 
+			System.out.println(e);
+		}
+		return newProyecto;
+	}
+	
+	public static void limpiarArchivo() {
+		String nombreArchivo= "src/resources/fichero_escrituraProyectos.txt"; 
+		FileWriter fw = null; 
+		try { 
+			fw = new FileWriter(nombreArchivo); 
+			BufferedWriter bw = new BufferedWriter(fw); 
+			PrintWriter salArch = new PrintWriter(bw); 
+
+			salArch.print(""); 
+			salArch.close();
+		} 
+		catch (IOException ex) { 
+		} 
+	}
 
 }
 
