@@ -450,8 +450,9 @@ public class JPrincipal {
 
 							node_1 = new DefaultMutableTreeNode("Proyectos");
 
-								//node_1.add(new DefaultMutableTreeNode("p1"));
-
+								node_1.add(new DefaultMutableTreeNode("p1"));
+								Proyecto p1 = new Proyecto("p1", null, null, null, null, null, null, null, null);
+								misProyectos.add(p1);
 							add(node_1);
 
 							node_1 = new DefaultMutableTreeNode("Usuarios");
