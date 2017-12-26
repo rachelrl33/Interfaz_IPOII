@@ -183,6 +183,8 @@ public class pnlReutilizableTarea extends JPanel {
 			int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta tarea?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
 				removeAll();
+				pnl_Proyectos.pnlTareas.repaint();
+				pnl_Proyectos.pnlTareas.revalidate();
 				//pnlReutilizableTarea.dispose();
 				
 			}

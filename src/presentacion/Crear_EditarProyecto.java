@@ -550,7 +550,7 @@ public class Crear_EditarProyecto{
 
 					Tarea nuevaTarea = new Tarea(nombre, id, usuarioEncargado, adjunto, fechaInicio, fechaLimite, estado, prioridad, categoria, comentario);
 					System.out.println("Constructor creado correctamente");
-
+/*
 					String nombreArchivo= "src/resources/fichero_escrituraProyecto.txt"; 
 					FileWriter fw = null; 
 					try { 
@@ -577,10 +577,15 @@ public class Crear_EditarProyecto{
 						salArch.print(categoria);
 						salArch.println();
 						salArch.print(comentario);
-						salArch.close(); 
-					} 
+						*/
+						pnl_Proyectos.pnlTareas.add(new pnlReutilizableTarea(nombre, id, usuarioEncargado, adjunto, fechaInicio,fechaLimite, estado,prioridad, categoria,comentario));
+						pnl_Proyectos.pnlTareas.repaint();
+						pnl_Proyectos.pnlTareas.revalidate();
+						
+					//	salArch.close(); 
+					/*} 
 					catch (IOException ex) { 
-					} 
+					} */
 					//frame.setVisible(false);
 					//System.out.println("Frame invisible");
 					frmProyectoa.dispose();

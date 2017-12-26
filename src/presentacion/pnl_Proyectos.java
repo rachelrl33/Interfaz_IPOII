@@ -85,7 +85,7 @@ public class pnl_Proyectos extends JPanel {
 	private JList listUsuariosAsociados;
 	private JLabel lbl_Cal;
 	private JLabel lbl_Cal2;
-	private JPanel pnlTareas;
+	static JPanel pnlTareas;
 	private DefaultMutableTreeNode nodoProyectos;
 	private JTree tree;
 	/**
@@ -95,7 +95,7 @@ public class pnl_Proyectos extends JPanel {
 	public pnl_Proyectos(DefaultMutableTreeNode nodoProyectos, JTree tree) {
 		this.nodoProyectos = nodoProyectos;
 		this.tree = tree;
-		addMouseMotionListener(new ThisMouseMotionListener());
+		//addMouseMotionListener(new ThisMouseMotionListener());
 		setBackground(Color.WHITE);
 		setBounds(new Rectangle(0, 0, 1210, 546));
 		setLayout(new BorderLayout(0, 0));
@@ -605,7 +605,7 @@ public class pnl_Proyectos extends JPanel {
 			frame2.setVisible(true);
 		}
 	}
-	private class ThisMouseMotionListener extends MouseMotionAdapter {
+	/*private class ThisMouseMotionListener extends MouseMotionAdapter {
 		@Override
 		public void mouseMoved(MouseEvent arg0) {
 			Tarea t;
@@ -630,5 +630,5 @@ public class pnl_Proyectos extends JPanel {
 				//System.out.println("No lo añadira");
 			}
 		}
-	}
+	}*/
 }
