@@ -112,6 +112,8 @@ public class JPrincipal {
 
 	JFrame frame;
 
+	DefaultMutableTreeNode nodoProyectos;
+	
 	private ArrayList<Proyecto> misProyectos = new ArrayList<Proyecto>();
 
 	private JPanel panel_piePag;
@@ -196,7 +198,7 @@ public class JPrincipal {
 
 		frame = new JFrame();
 
-		frame.addMouseMotionListener(new FrameMouseMotionListener());
+		//frame.addMouseMotionListener(new FrameMouseMotionListener());
 
 		frame.setVisible(true);
 
@@ -447,13 +449,13 @@ public class JPrincipal {
 						{
 
 							DefaultMutableTreeNode node_1;
+							
+							nodoProyectos = new DefaultMutableTreeNode("Proyectos");
 
-							node_1 = new DefaultMutableTreeNode("Proyectos");
-
-								node_1.add(new DefaultMutableTreeNode("p1"));
+								nodoProyectos.add(new DefaultMutableTreeNode("p1"));
 								Proyecto p1 = new Proyecto("p1", null, null, null, null, null, null, null, null);
 								misProyectos.add(p1);
-							add(node_1);
+							add(nodoProyectos);
 
 							node_1 = new DefaultMutableTreeNode("Usuarios");
 
@@ -527,7 +529,7 @@ public class JPrincipal {
 
 		
 
-		pnl_Proyectos = new pnl_Proyectos();
+		pnl_Proyectos = new pnl_Proyectos(nodoProyectos, tree);
 
 		pnl_contenedorCard.add(pnl_Proyectos, "Proyectos");
 
@@ -683,7 +685,7 @@ public class JPrincipal {
 
 	}
 
-	private class FrameMouseMotionListener extends MouseMotionAdapter {
+	/*private class FrameMouseMotionListener extends MouseMotionAdapter {
 
 		@Override
 
@@ -743,7 +745,7 @@ public class JPrincipal {
 
 	}
 
-	
+	*/
 
 	private void ButtonOpenWebActionPerformed(java.awt.event.ActionEvent evt) {                                         
 

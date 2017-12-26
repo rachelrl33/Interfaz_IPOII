@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -29,6 +30,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import dominio.Tarea;
 import dominio.Usuario;
@@ -113,9 +118,15 @@ public class Crear_EditarProyecto{
 
 	/**
 	 * Create the frame.
+	 * @param nodoProyectos 
 	 * @return 
 	 */
-	public Crear_EditarProyecto(int opcion1) throws ParseException {
+	private DefaultMutableTreeNode nodoProyectos;
+	private JTree tree;
+	
+	public Crear_EditarProyecto(int opcion1, DefaultMutableTreeNode nodoProyectos, JTree tree) throws ParseException {
+		this.nodoProyectos = nodoProyectos;
+		this.tree = tree;
 		opcion = opcion1;
 		initialize();
 	}
@@ -592,6 +603,15 @@ public class Crear_EditarProyecto{
 					salArch.println(); 
 					
 					salArch.close(); 
+					
+					nodoProyectos.add(new DefaultMutableTreeNode(nombreProyecto));
+					tree.repaint();
+					//nodoProyectos.
+					
+					DefaultTreeModel model = (DefaultTreeModel)tree.getModel();
+					model.reload((TreeNode) model.getRoot());
+					
+					tree.expandPath(new TreePath(nodoProyectos.getPath()));
 				} 
 				catch (IOException ex) { 
 				} 

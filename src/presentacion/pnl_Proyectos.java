@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
@@ -39,6 +40,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import dominio.Tarea;
 import dominio.Usuario;
@@ -84,11 +86,15 @@ public class pnl_Proyectos extends JPanel {
 	private JLabel lbl_Cal;
 	private JLabel lbl_Cal2;
 	private JPanel pnlTareas;
-
+	private DefaultMutableTreeNode nodoProyectos;
+	private JTree tree;
 	/**
 	 * Create the panel.
+	 * @param nodoProyectos 
 	 */
-	public pnl_Proyectos() {
+	public pnl_Proyectos(DefaultMutableTreeNode nodoProyectos, JTree tree) {
+		this.nodoProyectos = nodoProyectos;
+		this.tree = tree;
 		addMouseMotionListener(new ThisMouseMotionListener());
 		setBackground(Color.WHITE);
 		setBounds(new Rectangle(0, 0, 1210, 546));
@@ -534,7 +540,7 @@ public class pnl_Proyectos extends JPanel {
 			Crear_EditarProyecto window;
 			try {
 				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
-				window = new Crear_EditarProyecto(1);
+				window = new Crear_EditarProyecto(1, nodoProyectos,tree);
 				JFrame frmProyectoa = new JFrame();
 				window.frmProyectoa.setVisible(true);
 
@@ -580,7 +586,7 @@ public class pnl_Proyectos extends JPanel {
 			Crear_EditarProyecto window;
 			try {
 				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
-				window = new Crear_EditarProyecto(3);
+				window = new Crear_EditarProyecto(3,nodoProyectos, tree);
 				JFrame frmProyectoa = new JFrame();
 				window.frmProyectoa.setVisible(true);
 
