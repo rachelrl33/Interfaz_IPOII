@@ -88,13 +88,15 @@ public class pnl_Proyectos extends JPanel {
 	static JPanel pnlTareas;
 	private DefaultMutableTreeNode nodoProyectos;
 	private JTree tree;
+	private String nodoSel1;
 	/**
 	 * Create the panel.
 	 * @param nodoProyectos 
 	 */
-	public pnl_Proyectos(DefaultMutableTreeNode nodoProyectos, JTree tree) {
+	public pnl_Proyectos(DefaultMutableTreeNode nodoProyectos, JTree tree , boolean nodoSelPadre, String nodoSel) {
 		this.nodoProyectos = nodoProyectos;
 		this.tree = tree;
+		nodoSel1=nodoSel;
 		//addMouseMotionListener(new ThisMouseMotionListener());
 		setBackground(Color.WHITE);
 		setBounds(new Rectangle(0, 0, 1210, 546));
@@ -119,13 +121,19 @@ public class pnl_Proyectos extends JPanel {
 		gbc_pnl_InfoProyecto.gridy = 0;
 		pnl_Contenedor.add(pnl_InfoProyecto, gbc_pnl_InfoProyecto);
 		GridBagLayout gbl_pnl_InfoProyecto = new GridBagLayout();
-		gbl_pnl_InfoProyecto.columnWidths = new int[]{23, 0, 74, 46, 45, 60, 65, 38, 17, 0};
+		gbl_pnl_InfoProyecto.columnWidths = new int[]{23, 0, 74, 46, 35, 60, 78, 38, 14, 0};
 		gbl_pnl_InfoProyecto.rowHeights = new int[]{24, 0, 0, 32, 0, 45, 44, 42, 17, 24, 0, 0, 0, 0, 64, 17, 0};
 		gbl_pnl_InfoProyecto.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnl_InfoProyecto.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnl_InfoProyecto.setLayout(gbl_pnl_InfoProyecto);
 		
-		lblNombreDelProyecto = new JLabel("Nombre del proyecto");
+		lblNombreDelProyecto = new JLabel(nodoSel1);
+		
+		if(nodoSelPadre) {
+			lblNombreDelProyecto.setEnabled(false);
+			lblNombreDelProyecto.setText("Nombre de Proyecto");
+		}
+		
 		lblNombreDelProyecto.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblNombreDelProyecto = new GridBagConstraints();
 		gbc_lblNombreDelProyecto.anchor = GridBagConstraints.WEST;
@@ -146,6 +154,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(btnAnadirProyecto, gbc_btnAnadirProyecto);
 		
 		JButton btnEditProyecto = new JButton("");
+		if(nodoSelPadre) btnEditProyecto.setEnabled(false);
 		btnEditProyecto.addActionListener(new BtnEditProyectoActionListener());
 		btnEditProyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/edit.png")));
 		GridBagConstraints gbc_btnEditProyecto = new GridBagConstraints();
@@ -155,16 +164,22 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(btnEditProyecto, gbc_btnEditProyecto);
 		
 		btnEliminarPyoyecto = new JButton("");
+		if(nodoSelPadre) btnEliminarPyoyecto.setEnabled(false);
 		btnEliminarPyoyecto.addActionListener(new BtnEliminarProyectoActionListener());
 		btnEliminarPyoyecto.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/rubbish-bin.png")));
 		GridBagConstraints gbc_btnEliminarPyoyecto = new GridBagConstraints();
-		gbc_btnEliminarPyoyecto.anchor = GridBagConstraints.WEST;
 		gbc_btnEliminarPyoyecto.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEliminarPyoyecto.gridx = 7;
 		gbc_btnEliminarPyoyecto.gridy = 1;
 		pnl_InfoProyecto.add(btnEliminarPyoyecto, gbc_btnEliminarPyoyecto);
 		
-		lblIdDelProyecto = new JLabel("id del proyecto");
+		lblIdDelProyecto = new JLabel();
+		if(nodoSelPadre) {
+			lblIdDelProyecto.setEnabled(false);
+			lblIdDelProyecto.setText("id del proyecto");
+		}else {
+			lblIdDelProyecto.setText("20"+ nodoSel);
+		}
 		lblIdDelProyecto.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lblIdDelProyecto = new GridBagConstraints();
 		gbc_lblIdDelProyecto.anchor = GridBagConstraints.NORTHWEST;
@@ -175,6 +190,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblIdDelProyecto, gbc_lblIdDelProyecto);
 		
 		btnEditarRecursos = new JButton("Consultar recursos");
+		if(nodoSelPadre) btnEditarRecursos.setEnabled(false);
 		btnEditarRecursos.addActionListener(new BtnEditarRecursosActionListener());
 		GridBagConstraints gbc_btnEditarRecursos = new GridBagConstraints();
 		gbc_btnEditarRecursos.anchor = GridBagConstraints.EAST;
@@ -185,6 +201,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(btnEditarRecursos, gbc_btnEditarRecursos);
 		
 		lblDescripcion = new JLabel("Descripcion:");
+		if(nodoSelPadre) lblDescripcion.setEnabled(false);
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
 		gbc_lblDescripcion.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
@@ -203,9 +220,15 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(scrollPane_1, gbc_scrollPane_1);
 		
 		txtDescripcion = new JTextArea();
+		if(nodoSelPadre) {
+			txtDescripcion.setEnabled(false);
+		}else {
+			txtDescripcion.setText("Proyecto creación de una nueva aplicación para la tienda online de la tienda YOURWAY");
+		}
 		scrollPane_1.setViewportView(txtDescripcion);
 		
 		lblJefeDeProyecto = new JLabel("Jefe de Proyecto:");
+		if(nodoSelPadre) lblJefeDeProyecto.setEnabled(false);
 		GridBagConstraints gbc_lblJefeDeProyecto = new GridBagConstraints();
 		gbc_lblJefeDeProyecto.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_lblJefeDeProyecto.insets = new Insets(0, 0, 5, 5);
@@ -214,6 +237,11 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblJefeDeProyecto, gbc_lblJefeDeProyecto);
 		
 		txtJefeProyecto = new JTextField();
+		if(nodoSelPadre) {
+			txtJefeProyecto.setEnabled(false);
+		}else {
+			txtJefeProyecto.setText("Carolina Ramírez");
+		}
 		GridBagConstraints gbc_txtJefeProyecto = new GridBagConstraints();
 		gbc_txtJefeProyecto.anchor = GridBagConstraints.SOUTH;
 		gbc_txtJefeProyecto.gridwidth = 2;
@@ -225,6 +253,7 @@ public class pnl_Proyectos extends JPanel {
 		txtJefeProyecto.setColumns(10);
 		
 		lblFechaInicio = new JLabel("Fecha Inicio:");
+		if(nodoSelPadre) lblFechaInicio.setEnabled(false);
 		GridBagConstraints gbc_lblFechaInicio = new GridBagConstraints();
 		gbc_lblFechaInicio.anchor = GridBagConstraints.EAST;
 		gbc_lblFechaInicio.insets = new Insets(0, 0, 5, 5);
@@ -233,6 +262,11 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblFechaInicio, gbc_lblFechaInicio);
 		
 		formattedTextField = new JFormattedTextField();
+		if(nodoSelPadre) {
+			formattedTextField.setEnabled(false);
+		}else {
+			formattedTextField.setText("20/01/2018");
+		}
 		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
 		gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -242,6 +276,7 @@ public class pnl_Proyectos extends JPanel {
 		
 		lbl_Cal = new JLabel("");
 		lbl_Cal.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
+		if(nodoSelPadre) lbl_Cal.setEnabled(false);
 		GridBagConstraints gbc_lbl_Cal = new GridBagConstraints();
 		gbc_lbl_Cal.anchor = GridBagConstraints.WEST;
 		gbc_lbl_Cal.insets = new Insets(0, 0, 5, 5);
@@ -250,6 +285,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lbl_Cal, gbc_lbl_Cal);
 		
 		lblFechaLimite = new JLabel("Fecha Limite:");
+		if(nodoSelPadre) lblFechaLimite.setEnabled(false);
 		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
 		gbc_lblFechaLimite.anchor = GridBagConstraints.EAST;
 		gbc_lblFechaLimite.insets = new Insets(0, 0, 5, 5);
@@ -258,6 +294,11 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblFechaLimite, gbc_lblFechaLimite);
 		
 		textField = new JTextField();
+		if(nodoSelPadre) {
+			textField.setEnabled(false);
+		}else {
+			textField.setText("16/06/2019");
+		}
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -268,6 +309,7 @@ public class pnl_Proyectos extends JPanel {
 		
 		lbl_Cal2 = new JLabel("");
 		lbl_Cal2.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/calen.png")));
+		if(nodoSelPadre) lbl_Cal2.setEnabled(false);
 		GridBagConstraints gbc_lbl_Cal2 = new GridBagConstraints();
 		gbc_lbl_Cal2.anchor = GridBagConstraints.WEST;
 		gbc_lbl_Cal2.insets = new Insets(0, 0, 5, 5);
@@ -276,6 +318,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lbl_Cal2, gbc_lbl_Cal2);
 		
 		lblPrioridad = new JLabel("Prioridad:");
+		if(nodoSelPadre) lblPrioridad.setEnabled(false);
 		lblPrioridad.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblPrioridad = new GridBagConstraints();
 		gbc_lblPrioridad.anchor = GridBagConstraints.EAST;
@@ -285,6 +328,11 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblPrioridad, gbc_lblPrioridad);
 		
 		txtPrioridad = new JTextField();
+		if(nodoSelPadre) {
+			txtPrioridad.setEnabled(false);
+		}else {
+			txtPrioridad.setText("Alta");
+		}
 		GridBagConstraints gbc_txtPrioridad = new GridBagConstraints();
 		gbc_txtPrioridad.gridwidth = 2;
 		gbc_txtPrioridad.insets = new Insets(0, 0, 5, 5);
@@ -295,6 +343,7 @@ public class pnl_Proyectos extends JPanel {
 		txtPrioridad.setColumns(10);
 		
 		lblEstado_1 = new JLabel("Estado:");
+		if(nodoSelPadre) lblEstado_1.setEnabled(false);
 		GridBagConstraints gbc_lblEstado_1 = new GridBagConstraints();
 		gbc_lblEstado_1.anchor = GridBagConstraints.EAST;
 		gbc_lblEstado_1.insets = new Insets(0, 0, 5, 5);
@@ -303,6 +352,11 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(lblEstado_1, gbc_lblEstado_1);
 		
 		txtEstado = new JTextField();
+		if(nodoSelPadre) {
+			txtEstado.setEnabled(false);
+		}else {
+			txtEstado.setText("En espera");
+		}
 		GridBagConstraints gbc_txtEstado = new GridBagConstraints();
 		gbc_txtEstado.gridwidth = 2;
 		gbc_txtEstado.insets = new Insets(0, 0, 5, 5);
@@ -313,6 +367,7 @@ public class pnl_Proyectos extends JPanel {
 		txtEstado.setColumns(10);
 		
 		lblUsuariosAsociados = new JLabel("Usuarios Asociados:");
+		if(nodoSelPadre) lblUsuariosAsociados.setEnabled(false);
 		lblUsuariosAsociados.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		GridBagConstraints gbc_lblUsuariosAsociados = new GridBagConstraints();
 		gbc_lblUsuariosAsociados.anchor = GridBagConstraints.WEST;
@@ -333,21 +388,23 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(scrollPane_2, gbc_scrollPane_2);
 		
 		listUsuariosAsociados = new JList();
+		if(nodoSelPadre) listUsuariosAsociados.setEnabled(false);
 		listUsuariosAsociados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(listUsuariosAsociados);
-		
-		listUsuariosAsociados.setCellRenderer(new MiListCellRenderer());
-		DefaultListModel modeloLista = new DefaultListModel();
-		listUsuariosAsociados.setModel(modeloLista);
-
-		modeloLista.addElement("Raquel Ramos");
-		modeloLista.addElement("Jesus Ramos");
-		modeloLista.addElement("Juan Lopez");
-		modeloLista.addElement("Marta Casas");
-		modeloLista.addElement("Miguel Rodriguez");
-		
+		if(!nodoSelPadre) {
+			listUsuariosAsociados.setCellRenderer(new MiListCellRenderer());
+			DefaultListModel modeloLista = new DefaultListModel();
+			listUsuariosAsociados.setModel(modeloLista);
+	
+			modeloLista.addElement("Raquel Ramos");
+			modeloLista.addElement("Jesus Ramos");
+			modeloLista.addElement("Juan Lopez");
+			modeloLista.addElement("Marta Casas");
+			modeloLista.addElement("Miguel Rodriguez");
+		}
 		
 		pnl_InfoTareas = new JPanel();
+		if(nodoSelPadre) pnl_InfoTareas.setVisible(false);
 		GridBagConstraints gbc_pnl_InfoTareas = new GridBagConstraints();
 		gbc_pnl_InfoTareas.fill = GridBagConstraints.BOTH;
 		gbc_pnl_InfoTareas.gridx = 1;
@@ -397,7 +454,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoTareas.add(lblEstado, gbc_lblEstado);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"En espera", "En proceso", "Terminada"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"-", "En espera", "En proceso", "Terminada"}));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 3;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -415,7 +472,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoTareas.add(lblCategoria, gbc_lblCategoria);
 		
 		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Analisis", "Diseño", "Implementacion"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"-", "Analisis", "Diseño", "Implementacion"}));
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 3;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
@@ -550,6 +607,9 @@ public class pnl_Proyectos extends JPanel {
 			}
 		}
 	}
+	
+	
+	
 	private class BtnEditProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			/*Crear_EditarProyecto frame;
@@ -563,7 +623,6 @@ public class pnl_Proyectos extends JPanel {
 			
 		}
 	}
-	
 	
 	
 	private class BtnEliminarProyectoActionListener implements ActionListener {

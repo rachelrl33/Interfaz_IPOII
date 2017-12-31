@@ -165,7 +165,7 @@ public class JPrincipal {
 	
 
 	private Usuario user1;
-
+	private String nodoSel;
 	
 
 
@@ -452,8 +452,8 @@ public class JPrincipal {
 							
 							nodoProyectos = new DefaultMutableTreeNode("Proyectos");
 
-								nodoProyectos.add(new DefaultMutableTreeNode("p1"));
-								Proyecto p1 = new Proyecto("p1", null, null, null, null, null, null, null, null);
+								nodoProyectos.add(new DefaultMutableTreeNode("P_01"));
+								Proyecto p1 = new Proyecto("P_01", null, null, null, null, null, null, null, null);
 								misProyectos.add(p1);
 							add(nodoProyectos);
 
@@ -527,14 +527,16 @@ public class JPrincipal {
 
 		
 
-		
-
-		pnl_Proyectos = new pnl_Proyectos(nodoProyectos, tree);
+		pnl_Proyectos = new pnl_Proyectos(nodoProyectos, tree, true, nodoSel);
 
 		pnl_contenedorCard.add(pnl_Proyectos, "Proyectos");
-
 		
+		
+		pnl_Proyectos = new pnl_Proyectos(nodoProyectos, tree, false, nodoSel);
 
+		pnl_contenedorCard.add(pnl_Proyectos, "P_01");
+		
+		
 		Usuario user = new Usuario (null,null,null,null,null, null, null);
 
 		pnl_Usuarios = new pnl_Usuarios(user);
@@ -601,9 +603,9 @@ public class JPrincipal {
 
 
 
-			String nodo = (e.getPath().getLastPathComponent()).toString();
+			nodoSel = (e.getPath().getLastPathComponent()).toString();
 
-			switch (nodo){
+			switch (nodoSel){
 
 			case "Proyectos": 
 
@@ -617,27 +619,26 @@ public class JPrincipal {
 
 				break;
 
-			}
 
-			if (nodo=="Enviar mensaje") {
+			case "Enviar mensaje":
 
 				JEnviar_Mensaje window = new JEnviar_Mensaje();
 
 				JFrame frmMensaje = new JFrame();
 
 				window.frmMensaje.setVisible(true);
+				break;
 
-			}else {
+			default:
+					pnl_Proyectos = new pnl_Proyectos(nodoProyectos, tree, false, nodoSel);
 
-			((CardLayout) pnl_contenedorCard.getLayout()).show(pnl_contenedorCard, nodo);
+					pnl_contenedorCard.add(pnl_Proyectos, nodoSel);
+			break;
+				
+			}
+			((CardLayout) pnl_contenedorCard.getLayout()).show(pnl_contenedorCard, nodoSel);
 
 			}
-
-			
-
-			
-
-		}
 
 	}
 
@@ -653,7 +654,7 @@ public class JPrincipal {
 
 			//Dialogo de confimaci�n 
 
-			int opcion = JOptionPane.showConfirmDialog(frame, "�Seguro que quieres cerrar la sesi�n?", "Cerrar sesi�n", JOptionPane.OK_CANCEL_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres cerrar la sesion?", "Cerrar sesion", JOptionPane.OK_CANCEL_OPTION);
 
 			if (opcion == 0) { 
 
