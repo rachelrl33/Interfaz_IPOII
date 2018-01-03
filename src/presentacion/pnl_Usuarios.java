@@ -394,8 +394,8 @@ public class pnl_Usuarios extends JPanel {
 			newUsuario = new Usuario(null,"" , null,"" , null,"" , null);
 			newUsuario.setNombre(usuario.get(0));
 			newUsuario.setTelefono(usuario.get(1));
-			//newUsuario.setEmail(usuario.get(2));
-			//newUsuario.setConocimientos(usuario.get(3));
+			newUsuario.setEmail(usuario.get(2));
+			newUsuario.setConocimientos(usuario.get(3));
 			
 			br.close();
 			fr.close();

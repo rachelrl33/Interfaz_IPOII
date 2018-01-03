@@ -50,6 +50,9 @@ import java.text.ParseException;
 import javax.swing.JMenuBar;
 import javax.swing.text.MaskFormatter;
 import java.text.ParseException;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
+import java.awt.SystemColor;
 
 public class Crear_EditarUsuario2 {
 
@@ -89,12 +92,14 @@ public class Crear_EditarUsuario2 {
 	private Border defaultB;
 	
 	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private Usuario user;
+
 	private JPanel pnl_MenuAvatars;
 	private JLabel lblSeleccionarAvatar;
 	private boolean opcion;
-	private static Usuario userU;
+	private static Usuario user;
 	private JLabel lbl_WarningCon;
+	private JLabel lblcamposObligatorios;
+	private JLabel lblConocimientosYHabilidades;
 	
 	/**
 	 * Create the application.
@@ -128,7 +133,7 @@ public class Crear_EditarUsuario2 {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{39, 0, 61, 41, 16, 48, 0, 74, 0, 43, 98, 116, 72, 0, 40, 0};
 		gridBagLayout.rowHeights = new int[]{24, 33, 40, 27, 19, 20, 34, 33, 0, 27, 41, 0, 0, 22, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmUsuario.getContentPane().setLayout(gridBagLayout);
 		
@@ -147,24 +152,34 @@ public class Crear_EditarUsuario2 {
 
 		//CONOCIMIENTOS
 		txtA_conocimientos = new JTextArea();
+		txtA_conocimientos.setBorder(new LineBorder(Color.GRAY));
 		txtA_conocimientos.setText(user.getConocimientos());
 		txtA_conocimientos.setFont(new Font("Verdana", Font.BOLD, 13));
 		txtA_conocimientos.addKeyListener(new AT_conocimientosActionListener());
-		txtA_conocimientos.setBorder(new TitledBorder(null, "Conocimientos y habilidades", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		lblConocimientosYHabilidades = new JLabel("Conocimientos y habilidades*");
+		GridBagConstraints gbc_lblConocimientosYHabilidades = new GridBagConstraints();
+		gbc_lblConocimientosYHabilidades.anchor = GridBagConstraints.WEST;
+		gbc_lblConocimientosYHabilidades.gridwidth = 2;
+		gbc_lblConocimientosYHabilidades.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConocimientosYHabilidades.gridx = 10;
+		gbc_lblConocimientosYHabilidades.gridy = 1;
+		frmUsuario.getContentPane().add(lblConocimientosYHabilidades, gbc_lblConocimientosYHabilidades);
+
 		GridBagConstraints gbc_txtA_conocimientos = new GridBagConstraints();
 		gbc_txtA_conocimientos.gridwidth = 3;
 		gbc_txtA_conocimientos.insets = new Insets(0, 0, 5, 5);
-		gbc_txtA_conocimientos.gridheight = 12;
+		gbc_txtA_conocimientos.gridheight = 11;
 		gbc_txtA_conocimientos.fill = GridBagConstraints.BOTH;
 		gbc_txtA_conocimientos.gridx = 10;
-		gbc_txtA_conocimientos.gridy = 1;
+		gbc_txtA_conocimientos.gridy = 2;
 		frmUsuario.getContentPane().add(txtA_conocimientos, gbc_txtA_conocimientos);
 		
 		
 		
 		
 		//NOMBRE
-		lblNombre = new JLabel("Nombre");
+		lblNombre = new JLabel("Nombre*");
 		lblNombre.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
@@ -178,13 +193,6 @@ public class Crear_EditarUsuario2 {
 		txtF_nombre.setText(user.getNombre());
 		defaultB=txtF_nombre.getBorder();
 		txtF_nombre.addKeyListener(new TxtF_nombreActionListener());
-		
-		lbl_WarningCon = new JLabel("");
-		GridBagConstraints gbc_lbl_WarningCon = new GridBagConstraints();
-		gbc_lbl_WarningCon.insets = new Insets(0, 0, 5, 5);
-		gbc_lbl_WarningCon.gridx = 13;
-		gbc_lbl_WarningCon.gridy = 1;
-		frmUsuario.getContentPane().add(lbl_WarningCon, gbc_lbl_WarningCon);
 		GridBagConstraints gbc_txtF_nombre = new GridBagConstraints();
 		gbc_txtF_nombre.anchor = GridBagConstraints.NORTH;
 		gbc_txtF_nombre.gridwidth = 2;
@@ -194,15 +202,27 @@ public class Crear_EditarUsuario2 {
 		gbc_txtF_nombre.gridy = 2;
 		frmUsuario.getContentPane().add(txtF_nombre, gbc_txtF_nombre);
 		txtF_nombre.setColumns(10);
-		if(!opcion)txtF_nombre.setEnabled(false);
+		if(!opcion) txtF_nombre.setEnabled(false);
 		
 		lbl_WarningNom = new JLabel("");
+		lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
+		if(!opcion) lbl_WarningNom.setIcon(null);
 		GridBagConstraints gbc_lbl_WarningNom = new GridBagConstraints();
 		gbc_lbl_WarningNom.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lbl_WarningNom.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_WarningNom.gridx = 9;
 		gbc_lbl_WarningNom.gridy = 2;
 		frmUsuario.getContentPane().add(lbl_WarningNom, gbc_lbl_WarningNom);
+		
+		
+		lbl_WarningCon = new JLabel("");
+		lbl_WarningCon.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
+		if(!opcion) lbl_WarningCon.setIcon(null);
+		GridBagConstraints gbc_lbl_WarningCon = new GridBagConstraints();
+		gbc_lbl_WarningCon.insets = new Insets(0, 0, 5, 5);
+		gbc_lbl_WarningCon.gridx = 13;
+		gbc_lbl_WarningCon.gridy = 2;
+		frmUsuario.getContentPane().add(lbl_WarningCon, gbc_lbl_WarningCon);
 		
 		
 		//TELEFONO
@@ -237,6 +257,7 @@ public class Crear_EditarUsuario2 {
 		
 		
 		lbl_WarningTel = new JLabel("");
+		if(!opcion)lbl_WarningTel.setIcon(null);
 		GridBagConstraints gbc_lbl_WarningTel = new GridBagConstraints();
 		gbc_lbl_WarningTel.anchor = GridBagConstraints.WEST;
 		gbc_lbl_WarningTel.insets = new Insets(0, 0, 5, 5);
@@ -255,7 +276,7 @@ public class Crear_EditarUsuario2 {
 
 		
 		//EMAIL
-		lbl_Email = new JLabel("Email");
+		lbl_Email = new JLabel("Email*");
 		lbl_Email.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lbl_Email = new GridBagConstraints();
 		gbc_lbl_Email.gridwidth = 2;
@@ -278,6 +299,8 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.getContentPane().add(ftxtF_email, gbc_ftxtF_email);
 		
 		lbl_WarningEm = new JLabel("");
+		lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
+		if(!opcion) lbl_WarningEm.setIcon(null);
 		GridBagConstraints gbc_lbl_WarningEm = new GridBagConstraints();
 		gbc_lbl_WarningEm.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lbl_WarningEm.insets = new Insets(0, 0, 5, 5);
@@ -286,7 +309,7 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.getContentPane().add(lbl_WarningEm, gbc_lbl_WarningEm);
 		
 		
-		//CONTRASEñA
+		//CONTRASEnA
 		lblContrasena = new JLabel("Contrasena");
 		lblContrasena.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
@@ -297,9 +320,20 @@ public class Crear_EditarUsuario2 {
 		gbc_lblContrasena.gridy = 11;
 		frmUsuario.getContentPane().add(lblContrasena, gbc_lblContrasena);
 		
+		
+		//REPETIR CONTRASENA
+		lblRepetirContrasea = new JLabel("Repetir contrase\u00F1a");
+		lblRepetirContrasea.setFont(new Font("Verdana", Font.BOLD, 12));
+		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
+		gbc_lblRepetirContrasea.gridwidth = 2;
+		gbc_lblRepetirContrasea.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRepetirContrasea.gridx = 6;
+		gbc_lblRepetirContrasea.gridy = 11;
+		frmUsuario.getContentPane().add(lblRepetirContrasea, gbc_lblRepetirContrasea);
+		
 		pssF_contrasena = new JPasswordField();
 		pssF_contrasena.setText(user.getContrasena());
-		pssF_contrasena.addKeyListener(new TxtF_passActionListener());
+		//pssF_contrasena.addKeyListener(new TxtF_passActionListener());
 		GridBagConstraints gbc_pssF_contrasena = new GridBagConstraints();
 		gbc_pssF_contrasena.gridwidth = 3;
 		gbc_pssF_contrasena.insets = new Insets(0, 0, 5, 5);
@@ -309,6 +343,7 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.getContentPane().add(pssF_contrasena, gbc_pssF_contrasena);
 		
 		lbl_WarningCo = new JLabel("");
+		if(!opcion)lbl_WarningCo.setIcon(null);
 		GridBagConstraints gbc_lbl_WarningCo = new GridBagConstraints();
 		gbc_lbl_WarningCo.anchor = GridBagConstraints.WEST;
 		gbc_lbl_WarningCo.insets = new Insets(0, 0, 5, 5);
@@ -317,23 +352,13 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.getContentPane().add(lbl_WarningCo, gbc_lbl_WarningCo);
 		
 		
-		//REPETIR CONTRASENA
-		lblRepetirContrasea = new JLabel("Repetir contrase\u00F1a");
-		lblRepetirContrasea.setFont(new Font("Verdana", Font.BOLD, 12));
-		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
-		gbc_lblRepetirContrasea.insets = new Insets(0, 0, 5, 5);
-		gbc_lblRepetirContrasea.gridx = 7;
-		gbc_lblRepetirContrasea.gridy = 11;
-		frmUsuario.getContentPane().add(lblRepetirContrasea, gbc_lblRepetirContrasea);
-		
-		
 		pssF_contrasenaRep = new JPasswordField();
 		pssF_contrasenaRep.addKeyListener(new TxtF_passRActionListener());
 		GridBagConstraints gbc_pssF_contrasenaRep = new GridBagConstraints();
-		gbc_pssF_contrasenaRep.gridwidth = 2;
+		gbc_pssF_contrasenaRep.gridwidth = 3;
 		gbc_pssF_contrasenaRep.insets = new Insets(0, 0, 5, 5);
 		gbc_pssF_contrasenaRep.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pssF_contrasenaRep.gridx = 7;
+		gbc_pssF_contrasenaRep.gridx = 6;
 		gbc_pssF_contrasenaRep.gridy = 12;
 		frmUsuario.getContentPane().add(pssF_contrasenaRep, gbc_pssF_contrasenaRep);
 		
@@ -348,6 +373,16 @@ public class Crear_EditarUsuario2 {
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
+		
+		lblcamposObligatorios = new JLabel("*Campos obligatorios");
+		lblcamposObligatorios.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblcamposObligatorios = new GridBagConstraints();
+		gbc_lblcamposObligatorios.anchor = GridBagConstraints.WEST;
+		gbc_lblcamposObligatorios.gridwidth = 3;
+		gbc_lblcamposObligatorios.insets = new Insets(0, 0, 5, 5);
+		gbc_lblcamposObligatorios.gridx = 1;
+		gbc_lblcamposObligatorios.gridy = 14;
+		frmUsuario.getContentPane().add(lblcamposObligatorios, gbc_lblcamposObligatorios);
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.anchor = GridBagConstraints.EAST;
 		gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
@@ -357,7 +392,6 @@ public class Crear_EditarUsuario2 {
 		
 		
 		btnAceptar = new JButton("Aceptar");
-		//btnAceptar.setEnabled(false);
 		btnAceptar.addActionListener(new BtnAceptarActionListener());
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
@@ -405,82 +439,63 @@ public class Crear_EditarUsuario2 {
 		@Override
 		public void keyReleased(KeyEvent e) {
 			if(txtF_nombre.getText().length() > 0) {
-				//btnAceptar.setEnabled(true);
-				b_nombre = true;
 				lbl_WarningNom.setIcon(null);
 				txtF_nombre.setBorder(defaultB);
 			}else {
-				//btnAceptar.setEnabled(false);
-				b_nombre = false;
-				txtF_nombre.setBorder(bordeRojo); 
+				//txtF_nombre.setBorder(bordeRojo); 
 				lbl_WarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 			}
-			if(b_nombre && b_telefono) { ///&& b_email && b_conocimientos) {
-				btnAceptar.setEnabled(true);
-			}
+
 		}
 	}
 	
+	
+
 	
 	//EMAIL
 	private class TxtF_emailActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if(ftxtF_email.getText().matches(EMAIL_PATTERN)) {
-				//btnAceptar.setEnabled(true);
-				b_email = true;
 				lbl_WarningEm.setIcon(null);
 				ftxtF_email.setBorder(defaultB);
 			}else {
-				//btnAceptar.setEnabled(false);
-				b_email = false;
+
 				ftxtF_email.setBorder(bordeRojo); 
 				lbl_WarningEm.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
-			if(b_nombre && b_telefono) { ///&& b_email && b_conocimientos) {
-				btnAceptar.setEnabled(true);
-			}
+
 		}
 	}
 	
 	
+
 	
 	//CONTRASEÑA
-	private class TxtF_passActionListener extends KeyAdapter {
+	/*private class TxtF_passActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if(pssF_contrasena.getPassword().length >0) {
-				//btnAceptar.setEnabled(true);
-				b_pass = true;
 				lbl_WarningCo.setIcon(null);
 				pssF_contrasena.setBorder(defaultB);
 			}else {	
-				//btnAceptar.setEnabled(false);
-				b_pass = false;
+
 				pssF_contrasena.setBorder(bordeRojo); 
 				lbl_WarningCo.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 			}
-			if(b_nombre && b_telefono) { ///&& b_email && b_conocimientos) {
-				btnAceptar.setEnabled(true);
-			}
+
 		}
-	}
+	}*/
 	
 	
 	//REPITA CONTRASENA
 	private class TxtF_passRActionListener extends KeyAdapter {
 		public void keyReleased(KeyEvent arg0) {
 			if((Arrays.equals(pssF_contrasena.getPassword(), pssF_contrasenaRep.getPassword()))) {
-				//btnAceptar.setEnabled(true);
-				b_pass = true;
 				lbl_WarningCoR.setIcon(null);
 				pssF_contrasenaRep.setBorder(defaultB);
 			}else {
-				//btnAceptar.setEnabled(false);
-				b_pass = false;
-				pssF_contrasenaRep.setBorder(bordeRojo); 
+
+				//pssF_contrasenaRep.setBorder(bordeRojo); 
 				lbl_WarningCoR.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
-			}
-			if(b_nombre && b_telefono) { ///&& b_email && b_conocimientos) {
-				btnAceptar.setEnabled(true);
 			}
 		}
 	}
@@ -494,39 +509,20 @@ public class Crear_EditarUsuario2 {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(txtA_conocimientos.getText().length() > 0) {
-					//btnAceptar.setEnabled(true);
-					b_conocimientos = true;
-					lbl_WarningNom.setIcon(null);
+					lbl_WarningCon.setIcon(null);
 					txtA_conocimientos.setBorder(defaultB);
 				}else {
-					//btnAceptar.setEnabled(false);
-					b_conocimientos = false;
-					txtA_conocimientos.setBorder(bordeRojo); 
+					//txtA_conocimientos.setBorder(bordeRojo); 
 					lbl_WarningCon.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));	
 				}
-				if(b_nombre && b_telefono) { ///&& b_email && b_conocimientos) {
-					btnAceptar.setEnabled(true);
-				}
+
 			}
 		}
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	public static Usuario updatePersona() {
-		Usuario updatedUser= new Usuario (null,userU.getNombre() ,userU.getTelefono(),userU.getTelefono(),userU.getEmail(), userU.getConocimientos(), null);
-		return updatedUser;
-	}
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -545,26 +541,29 @@ public class Crear_EditarUsuario2 {
 	
 	private class BtnAceptarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			frmUsuario.setVisible(false);
 			//Crear o modificar el usuario
 			//Usuario user = new Usuario (lblFotoAvatar.getIcon(),lblNombre.getText(),lblTelefono.getText(),lbl_Email.getText(),lblContrasena.getText(), txtA_conocimientos.getText(), null);
-			if(opcion ) {
-				if(txtF_nombre.getText().length() > 0) {
-				guardarDatosArchivo();
-				JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
-				pnl_Usuarios.crearUsuario();
-				}else {
-					JOptionPane.showMessageDialog(frmUsuario, "Usuario vacío o sin nombre, NO creado", "Aviso", JOptionPane.OK_OPTION);
+			if(opcion) {
+				if(txtF_nombre.getText().length() > 0 && txtA_conocimientos.getText().length() > 0 && ftxtF_email.getText().matches(EMAIL_PATTERN)) {
+					guardarDatosArchivo();
+					frmUsuario.dispose();
+					frmUsuario.setVisible(false);
+					JOptionPane.showMessageDialog(frmUsuario, "Usuario creado/editado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
+					pnl_Usuarios.crearUsuario();
+
 				}
-			}else {
-				guardarDatosArchivo();
-				pnl_Usuarios.editarUsuario();
+			} else{
+				if(txtF_nombre.getText().length() > 0 && txtA_conocimientos.getText().length() > 0 && ftxtF_email.getText().matches(EMAIL_PATTERN) && ftxtF_telefono.getText().length() > 0) {
+					guardarDatosArchivo();
+					pnl_Usuarios.editarUsuario();
+					frmUsuario.dispose();
+					frmUsuario.setVisible(false);
+				}
 			}
-			}
-		}
+			
 	
-
-
+		}
+	}
 
 }
 

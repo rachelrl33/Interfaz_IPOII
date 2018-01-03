@@ -35,6 +35,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import dominio.Proyecto;
 import dominio.Tarea;
 import dominio.Usuario;
 
@@ -50,6 +51,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.awt.Font;
 
 public class Crear_EditarProyecto{
 
@@ -94,6 +96,7 @@ public class Crear_EditarProyecto{
 	private JLabel lblWarningEncarg;
 
 	private int opcion;
+	private Proyecto proyecto;
 
 	JFrame frmProyectoa;// = new Crear_EditarProyecto();
 	private JLabel lblCategoria;
@@ -123,16 +126,19 @@ public class Crear_EditarProyecto{
 	 */
 	private DefaultMutableTreeNode nodoProyectos;
 	private JTree tree;
+	private JLabel lblcamposObligatorios;
 	
-	public Crear_EditarProyecto(int opcion1, DefaultMutableTreeNode nodoProyectos, JTree tree) throws ParseException {
+	public Crear_EditarProyecto(int opcion1, DefaultMutableTreeNode nodoProyectos, JTree tree, Proyecto p1) throws ParseException {
 		this.nodoProyectos = nodoProyectos;
 		this.tree = tree;
 		opcion = opcion1;
+		proyecto=p1;
 		initialize();
 	}
 
 	public void initialize() throws ParseException{
 		frmProyectoa = new JFrame();
+		frmProyectoa.setResizable(false);
 		//Crear_EditarProyecto(){
 		frmProyectoa.setTitle("Proyecto/Tarea");
 
@@ -146,18 +152,19 @@ public class Crear_EditarProyecto{
 
 		frmProyectoa.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frmProyectoa.setIconImage(Toolkit.getDefaultToolkit().getImage(Crear_EditarProyecto.class.getResource("/presentacion/folder.png")));
-		frmProyectoa.setBounds(100, 100, 796, 447);
+		frmProyectoa.setBounds(100, 100, 741, 438);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frmProyectoa.setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{42, 0, 39, 50, 47, 64, 86, 32, 51, 79, 0, 44, 48, 0};
 		gbl_contentPane.rowHeights = new int[]{38, 0, 0, 0, 0, 0, 23, 0, 0, 29, 90, 26, 29, 9, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 
-		lblNombre = new JLabel("Nombre");
+		lblNombre = new JLabel("Nombre*");
+		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -165,7 +172,8 @@ public class Crear_EditarProyecto{
 		gbc_lblNombre.gridy = 1;
 		contentPane.add(lblNombre, gbc_lblNombre);
 
-		lblId = new JLabel("ID");
+		lblId = new JLabel("ID*");
+		lblId.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
 		gbc_lblId.anchor = GridBagConstraints.WEST;
 		gbc_lblId.insets = new Insets(0, 0, 5, 5);
@@ -190,6 +198,9 @@ public class Crear_EditarProyecto{
 		contentPane.add(lblFechaLimite, gbc_lblFechaLimite);
 
 		txtNombre = new JTextField();
+		if(opcion==2) {
+			txtNombre.setText(proyecto.getNombre());
+		}
 		defaultB=txtNombre.getBorder();
 		txtNombre.addKeyListener(new TxtNombreKeyListener());
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
@@ -201,6 +212,7 @@ public class Crear_EditarProyecto{
 		txtNombre.setColumns(10);
 
 		lblWarningNom = new JLabel("");
+		if(txtNombre.getText().isEmpty())lblWarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 		GridBagConstraints gbc_lblWarningNom = new GridBagConstraints();
 		gbc_lblWarningNom.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWarningNom.anchor = GridBagConstraints.WEST;
@@ -209,6 +221,9 @@ public class Crear_EditarProyecto{
 		contentPane.add(lblWarningNom, gbc_lblWarningNom);
 
 		txtID = new JTextField();
+		if(opcion==2) {
+			txtID.setText(proyecto.getId());
+		}
 		txtID.addKeyListener(new TxtIDKeyListener());
 		GridBagConstraints gbc_txtID = new GridBagConstraints();
 		gbc_txtID.gridwidth = 2;
@@ -232,12 +247,16 @@ public class Crear_EditarProyecto{
 			formatoFecha.setPlaceholderCharacter('X');
 			ftFechaInicio_1 = new JFormattedTextField(formatoFecha);
 			ftFechaInicio_1.addKeyListener(new FtFechaInicioKeyListener());
+			if(opcion==2) {
+				ftFechaInicio_1.setText(proyecto.getFechaInicio());
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		lblWarningID = new JLabel("");
+		if(txtID.getText().isEmpty())lblWarningID.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 		GridBagConstraints gbc_lblWarningID = new GridBagConstraints();
 		gbc_lblWarningID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWarningID.anchor = GridBagConstraints.WEST;
@@ -260,6 +279,9 @@ public class Crear_EditarProyecto{
 			formatoFecha.setPlaceholderCharacter('X');
 			ftFechaLimite_1 = new JFormattedTextField(formatoFecha);
 			ftFechaLimite_1.addKeyListener(new FtFechaLimiteKeyListener());
+			if(opcion==2) {
+				ftFechaLimite_1.setText(proyecto.getFechaLimite());
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -301,7 +323,8 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningFF.gridy = 2;
 		contentPane.add(lblWarningFF, gbc_lblWarningFF);
 
-		lblUsuarioEncargado = new JLabel("Jefe/encargardo");
+		lblUsuarioEncargado = new JLabel("Jefe/encargardo*");
+		lblUsuarioEncargado.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblUsuarioEncargado = new GridBagConstraints();
 		gbc_lblUsuarioEncargado.anchor = GridBagConstraints.WEST;
 		gbc_lblUsuarioEncargado.insets = new Insets(0, 0, 5, 5);
@@ -326,7 +349,11 @@ public class Crear_EditarProyecto{
 		contentPane.add(lblEstado, gbc_lblEstado);
 
 		txtUsuarioEncargado = new JTextField();
+		
 		txtUsuarioEncargado.addKeyListener(new TextFieldKeyListener());
+		if(opcion==2) {
+			txtUsuarioEncargado.setText(proyecto.getJefe());
+		}
 		GridBagConstraints gbc_txtUsuarioEncargado = new GridBagConstraints();
 		gbc_txtUsuarioEncargado.gridwidth = 4;
 		gbc_txtUsuarioEncargado.insets = new Insets(0, 0, 5, 5);
@@ -337,6 +364,7 @@ public class Crear_EditarProyecto{
 		txtUsuarioEncargado.setColumns(10);
 
 		lblWarningEncarg = new JLabel("");
+		if(txtUsuarioEncargado.getText().isEmpty())lblWarningEncarg.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 		GridBagConstraints gbc_lblWarningEncarg = new GridBagConstraints();
 		gbc_lblWarningEncarg.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWarningEncarg.anchor = GridBagConstraints.WEST;
@@ -345,6 +373,12 @@ public class Crear_EditarProyecto{
 		contentPane.add(lblWarningEncarg, gbc_lblWarningEncarg);
 
 		cbPrioridad = new JComboBox();
+		if(opcion==2) {
+			int index =0;
+			if(proyecto.getPrioridad().equals("Media")) index=1;
+			if(proyecto.getPrioridad().equals("Alta")) index=2;
+			cbPrioridad.setSelectedItem(index);
+		}
 		cbPrioridad.setModel(new DefaultComboBoxModel(new String[] {"Baja", "Media", "Alta"}));
 		GridBagConstraints gbc_cbPrioridad = new GridBagConstraints();
 		gbc_cbPrioridad.gridwidth = 2;
@@ -355,7 +389,13 @@ public class Crear_EditarProyecto{
 		contentPane.add(cbPrioridad, gbc_cbPrioridad);
 
 		cbEstado = new JComboBox();
-		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"En proceso", "En espera", "Terminada"}));
+		if(opcion==2) {
+			int index =0;
+			if(proyecto.getEstado().equals("En proceso")) index=1;
+			if(proyecto.getEstado().equals("Terminado")) index=2;
+			cbEstado.setSelectedItem(index);
+		}
+		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"En espera", "En proceso", "Terminado"}));
 		GridBagConstraints gbc_cbEstado = new GridBagConstraints();
 		gbc_cbEstado.gridwidth = 3;
 		gbc_cbEstado.insets = new Insets(0, 0, 5, 5);
@@ -374,6 +414,9 @@ public class Crear_EditarProyecto{
 		contentPane.add(btnAnadirRecursos, gbc_btnAnadirRecursos);
 
 		lblCategoria = new JLabel("Categoria");
+		if(opcion!=3) {
+			lblCategoria.setEnabled(false);
+		}
 		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
 		gbc_lblCategoria.anchor = GridBagConstraints.WEST;
 		gbc_lblCategoria.insets = new Insets(0, 0, 5, 5);
@@ -393,6 +436,9 @@ public class Crear_EditarProyecto{
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Analisis", "Diseño", "Implementacion"}));
+		if(opcion!=3) {
+			comboBox.setEnabled(false);
+		}
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -411,11 +457,22 @@ public class Crear_EditarProyecto{
 		contentPane.add(scrollPane, gbc_scrollPane);
 
 		txtDescripcion = new JTextArea();
+		if(opcion==2) {
+			txtDescripcion.setText(proyecto.getDescripcion());
+		}
 		txtDescripcion.setBorder(new TitledBorder(null, "Descripci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane.setViewportView(txtDescripcion);
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
+		
+		lblcamposObligatorios = new JLabel("*Campos obligatorios");
+		lblcamposObligatorios.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblcamposObligatorios = new GridBagConstraints();
+		gbc_lblcamposObligatorios.insets = new Insets(0, 0, 5, 5);
+		gbc_lblcamposObligatorios.gridx = 1;
+		gbc_lblcamposObligatorios.gridy = 12;
+		contentPane.add(lblcamposObligatorios, gbc_lblcamposObligatorios);
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCancelar.gridx = 9;
@@ -423,6 +480,7 @@ public class Crear_EditarProyecto{
 		contentPane.add(btnCancelar, gbc_btnCancelar);
 
 		btnAceptar = new JButton("Aceptar");
+		
 		btnAceptar.addActionListener(new BtnAceptarActionListener());
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.gridwidth = 2;
@@ -450,7 +508,7 @@ public class Crear_EditarProyecto{
 				txtNombre.setBorder(defaultB);
 			}else {
 				b_nombre=false;
-				txtNombre.setBorder(bordeRojo); 
+				//txtNombre.setBorder(bordeRojo); 
 				lblWarningNom.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
@@ -466,7 +524,7 @@ public class Crear_EditarProyecto{
 				txtID.setBorder(defaultB);
 			}else {
 				b_id=false;
-				txtID.setBorder(bordeRojo); 
+				//txtID.setBorder(bordeRojo); 
 				lblWarningID.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
@@ -502,6 +560,7 @@ public class Crear_EditarProyecto{
 		}
 	}
 
+	
 	private class TextFieldKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -511,7 +570,7 @@ public class Crear_EditarProyecto{
 				txtUsuarioEncargado.setBorder(defaultB);
 			}else {
 				b_encargado=false;
-				txtUsuarioEncargado.setBorder(bordeRojo); 
+				//txtUsuarioEncargado.setBorder(bordeRojo); 
 				lblWarningEncarg.setIcon(new ImageIcon(Crear_EditarUsuario2.class.getResource("/presentacion/warning.png")));
 			}
 		}
@@ -588,15 +647,23 @@ public class Crear_EditarProyecto{
 					} */
 					//frame.setVisible(false);
 					//System.out.println("Frame invisible");
+					
 					frmProyectoa.dispose();
 					frmProyectoa.setVisible(false);
+					JOptionPane.showMessageDialog(frmProyectoa, "Tarea creada correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 				}//fin if
 			}else if(opcion==2) {
+				frmProyectoa.dispose();
+				frmProyectoa.setVisible(false);
 				System.out.println("Editando Proyecto");
+				
 			}else {
 				System.out.println("Creando Proyecto");
 				String nombreProyecto = txtNombre.getText();
-				
+				String idProyecto = txtID.getText();
+				String usuarioEncargadoProyecto = txtUsuarioEncargado.getText();
+				if((nombreProyecto.length()>0) && idProyecto.length()>0 && usuarioEncargadoProyecto.length()>0) {
+					
 				String nombreArchivo= "src/resources/fichero_escrituraProyectos.txt"; 
 				FileWriter fw = null; 
 				try { 
@@ -622,6 +689,9 @@ public class Crear_EditarProyecto{
 				} 
 				
 				frmProyectoa.dispose();
+				frmProyectoa.setVisible(false);
+				JOptionPane.showMessageDialog(frmProyectoa, "Proyecto creado correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
+			}
 			}
 			//return nuevaTarea;
 		}

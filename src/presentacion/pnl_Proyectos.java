@@ -42,6 +42,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import dominio.Proyecto;
 import dominio.Tarea;
 import dominio.Usuario;
 
@@ -597,7 +598,8 @@ public class pnl_Proyectos extends JPanel {
 			Crear_EditarProyecto window;
 			try {
 				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
-				window = new Crear_EditarProyecto(1, nodoProyectos,tree);
+				Proyecto proyecto=new Proyecto("","", "", "", "","", "", "", null);
+				window = new Crear_EditarProyecto(1, nodoProyectos,tree, proyecto);
 				JFrame frmProyectoa = new JFrame();
 				window.frmProyectoa.setVisible(true);
 
@@ -612,14 +614,27 @@ public class pnl_Proyectos extends JPanel {
 	
 	private class BtnEditProyectoActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			/*Crear_EditarProyecto frame;
+			Crear_EditarProyecto window;
 			try {
-				frame = new Crear_EditarProyecto(false);
-				frame.setVisible(true);
+				String nombreProyectoE = lblNombreDelProyecto.getText();
+				String idProyectoE = lblIdDelProyecto.getText();
+				String usuarioEncargadoProyectoE = txtJefeProyecto.getText();
+				String fechaInicioProyectoE = formattedTextField.getText();
+				String fechaLimiteProyectoE = textField.getText();
+				String estadoProyectoE = txtEstado.getText();
+				String prioridadProyectoE = txtPrioridad.getText();
+				String comentarioProyectoE = txtDescripcion.getText();
+				
+				Proyecto proyecto=new Proyecto(nombreProyectoE,idProyectoE, comentarioProyectoE, usuarioEncargadoProyectoE, fechaInicioProyectoE,fechaLimiteProyectoE, prioridadProyectoE, estadoProyectoE, null);
+				
+				
+				window = new Crear_EditarProyecto(2, nodoProyectos,tree, proyecto);
+				JFrame frmProyectoa = new JFrame();
+				window.frmProyectoa.setVisible(true);
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}*/
+			}
 			
 		}
 	}
@@ -645,7 +660,8 @@ public class pnl_Proyectos extends JPanel {
 			Crear_EditarProyecto window;
 			try {
 				//Tarea tarea = new Tarea(null, null, null, null, null, null, null, null, null, null);
-				window = new Crear_EditarProyecto(3,nodoProyectos, tree);
+				Proyecto proyecto=new Proyecto("","", "", "", "","", "", "", null);
+				window = new Crear_EditarProyecto(3,nodoProyectos, tree, proyecto);
 				JFrame frmProyectoa = new JFrame();
 				window.frmProyectoa.setVisible(true);
 
