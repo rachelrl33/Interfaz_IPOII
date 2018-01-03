@@ -607,6 +607,11 @@ public class JPrincipal {
 
 			switch (nodoSel){
 
+			case "Mi zona de trabajo":
+				pnl_Bienvenida = new JPanel();
+				pnl_contenedorCard.add(pnl_Bienvenida, "name_531829446263122");
+				
+				break;
 			case "Proyectos": 
 
 				lbl_NombreDelNodo.setText("Proyectos");

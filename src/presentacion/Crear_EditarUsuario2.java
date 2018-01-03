@@ -53,6 +53,8 @@ import java.text.ParseException;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.SystemColor;
+import javax.swing.DropMode;
+import java.awt.Dimension;
 
 public class Crear_EditarUsuario2 {
 
@@ -131,9 +133,9 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.setBounds(100, 100, 811, 505);
 		frmUsuario.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{39, 0, 61, 41, 16, 48, 0, 74, 0, 43, 98, 116, 72, 0, 40, 0};
-		gridBagLayout.rowHeights = new int[]{24, 33, 40, 27, 19, 20, 34, 33, 0, 27, 41, 0, 0, 22, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{58, 0, 61, 41, 16, 48, 34, 74, 35, 39, 98, 68, 72, 32, 34, 0};
+		gridBagLayout.rowHeights = new int[]{24, 33, 40, 27, 19, 20, 34, 28, 0, 27, 41, 0, 0, 22, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmUsuario.getContentPane().setLayout(gridBagLayout);
 		
@@ -152,6 +154,7 @@ public class Crear_EditarUsuario2 {
 
 		//CONOCIMIENTOS
 		txtA_conocimientos = new JTextArea();
+		txtA_conocimientos.setLineWrap(true);
 		txtA_conocimientos.setBorder(new LineBorder(Color.GRAY));
 		txtA_conocimientos.setText(user.getConocimientos());
 		txtA_conocimientos.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -325,25 +328,24 @@ public class Crear_EditarUsuario2 {
 		lblRepetirContrasea = new JLabel("Repetir contrase\u00F1a");
 		lblRepetirContrasea.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
-		gbc_lblRepetirContrasea.gridwidth = 2;
 		gbc_lblRepetirContrasea.insets = new Insets(0, 0, 5, 5);
-		gbc_lblRepetirContrasea.gridx = 6;
+		gbc_lblRepetirContrasea.gridx = 7;
 		gbc_lblRepetirContrasea.gridy = 11;
 		frmUsuario.getContentPane().add(lblRepetirContrasea, gbc_lblRepetirContrasea);
+		
+		lbl_WarningCo = new JLabel("");
+		if(!opcion)lbl_WarningCo.setIcon(null);
 		
 		pssF_contrasena = new JPasswordField();
 		pssF_contrasena.setText(user.getContrasena());
 		//pssF_contrasena.addKeyListener(new TxtF_passActionListener());
 		GridBagConstraints gbc_pssF_contrasena = new GridBagConstraints();
-		gbc_pssF_contrasena.gridwidth = 3;
+		gbc_pssF_contrasena.gridwidth = 4;
 		gbc_pssF_contrasena.insets = new Insets(0, 0, 5, 5);
 		gbc_pssF_contrasena.fill = GridBagConstraints.HORIZONTAL;
 		gbc_pssF_contrasena.gridx = 1;
 		gbc_pssF_contrasena.gridy = 12;
 		frmUsuario.getContentPane().add(pssF_contrasena, gbc_pssF_contrasena);
-		
-		lbl_WarningCo = new JLabel("");
-		if(!opcion)lbl_WarningCo.setIcon(null);
 		GridBagConstraints gbc_lbl_WarningCo = new GridBagConstraints();
 		gbc_lbl_WarningCo.anchor = GridBagConstraints.WEST;
 		gbc_lbl_WarningCo.insets = new Insets(0, 0, 5, 5);
@@ -355,10 +357,10 @@ public class Crear_EditarUsuario2 {
 		pssF_contrasenaRep = new JPasswordField();
 		pssF_contrasenaRep.addKeyListener(new TxtF_passRActionListener());
 		GridBagConstraints gbc_pssF_contrasenaRep = new GridBagConstraints();
-		gbc_pssF_contrasenaRep.gridwidth = 3;
+		gbc_pssF_contrasenaRep.gridwidth = 2;
 		gbc_pssF_contrasenaRep.insets = new Insets(0, 0, 5, 5);
 		gbc_pssF_contrasenaRep.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pssF_contrasenaRep.gridx = 6;
+		gbc_pssF_contrasenaRep.gridx = 7;
 		gbc_pssF_contrasenaRep.gridy = 12;
 		frmUsuario.getContentPane().add(pssF_contrasenaRep, gbc_pssF_contrasenaRep);
 		

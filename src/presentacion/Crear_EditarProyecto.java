@@ -653,9 +653,14 @@ public class Crear_EditarProyecto{
 					JOptionPane.showMessageDialog(frmProyectoa, "Tarea creada correctamente", "Confirmacion", JOptionPane.PLAIN_MESSAGE);
 				}//fin if
 			}else if(opcion==2) {
-				frmProyectoa.dispose();
-				frmProyectoa.setVisible(false);
-				System.out.println("Editando Proyecto");
+				String nombre = txtNombre.getText();
+				String id = txtID.getText();
+				String usuarioEncargado = txtUsuarioEncargado.getText();
+				if((nombre.length()>0) && id.length()>0 && usuarioEncargado.length()>0) {
+					frmProyectoa.dispose();
+					frmProyectoa.setVisible(false);
+					System.out.println("Editando Proyecto");
+				}
 				
 			}else {
 				System.out.println("Creando Proyecto");
