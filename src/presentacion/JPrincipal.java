@@ -109,10 +109,10 @@ import java.awt.event.MouseEvent;
 public class JPrincipal {
 
 
-
+	static DefaultMutableTreeNode nodoSelN;
 	JFrame frame;
 
-	DefaultMutableTreeNode nodoProyectos;
+	static DefaultMutableTreeNode nodoProyectos;
 	
 	private ArrayList<Proyecto> misProyectos = new ArrayList<Proyecto>();
 
@@ -165,7 +165,7 @@ public class JPrincipal {
 	
 
 	private Usuario user1;
-	private String nodoSel;
+	static String nodoSel;
 	
 
 
@@ -604,7 +604,7 @@ public class JPrincipal {
 
 
 			nodoSel = (e.getPath().getLastPathComponent()).toString();
-
+			nodoSelN = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
 			switch (nodoSel){
 
 			case "Mi zona de trabajo":

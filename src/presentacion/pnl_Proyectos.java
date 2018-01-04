@@ -41,6 +41,8 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import dominio.Proyecto;
 import dominio.Tarea;
@@ -646,6 +648,17 @@ public class pnl_Proyectos extends JPanel {
 			int opcion = JOptionPane.showConfirmDialog(pnl_InfoProyecto, "¿Seguro que quieres eliminar este proyecto?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
 			if (opcion == 0) { 
 				//Hay que dejar el panel en blanco y eliminar el nodo del arbol
+				
+				System.out.println(JPrincipal.nodoSel + " se borrará");
+				
+				DefaultMutableTreeNode nodo;
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				
+				nodo = (DefaultMutableTreeNode) JPrincipal.nodoSelN;
+				model.removeNodeFromParent(nodo);
+				
+				TreePath path = (new TreePath(JPrincipal.nodoProyectos.getPath()));
+				tree.setSelectionPath(path);
 				pnl_InfoProyecto.setVisible(false);
 				pnl_InfoTareas.setVisible(false);
 			}
