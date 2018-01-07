@@ -140,7 +140,7 @@ public class Crear_EditarProyecto{
 		frmProyectoa = new JFrame();
 		frmProyectoa.setResizable(false);
 		//Crear_EditarProyecto(){
-		frmProyectoa.setTitle("Proyecto/Tarea");
+		frmProyectoa.setTitle(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.frmProyectoa.title")); //$NON-NLS-1$
 
 		if(opcion==1) {
 			frmProyectoa.setTitle("Nuevo Proyecto");
@@ -163,7 +163,7 @@ public class Crear_EditarProyecto{
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 
-		lblNombre = new JLabel("Nombre*");
+		lblNombre = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblNombre.text")); //$NON-NLS-1$
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
@@ -181,7 +181,7 @@ public class Crear_EditarProyecto{
 		gbc_lblId.gridy = 1;
 		contentPane.add(lblId, gbc_lblId);
 
-		lblFechaInicio = new JLabel("Fecha Inicio");
+		lblFechaInicio = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblFechaInicio.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblFechaInicio = new GridBagConstraints();
 		gbc_lblFechaInicio.anchor = GridBagConstraints.WEST;
 		gbc_lblFechaInicio.insets = new Insets(0, 0, 5, 5);
@@ -189,7 +189,7 @@ public class Crear_EditarProyecto{
 		gbc_lblFechaInicio.gridy = 1;
 		contentPane.add(lblFechaInicio, gbc_lblFechaInicio);
 
-		lblFechaLimite = new JLabel("Fecha Limite");
+		lblFechaLimite = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblFechaLimite.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
 		gbc_lblFechaLimite.anchor = GridBagConstraints.WEST;
 		gbc_lblFechaLimite.insets = new Insets(0, 0, 5, 5);
@@ -323,7 +323,7 @@ public class Crear_EditarProyecto{
 		gbc_lblWarningFF.gridy = 2;
 		contentPane.add(lblWarningFF, gbc_lblWarningFF);
 
-		lblUsuarioEncargado = new JLabel("Jefe/encargardo*");
+		lblUsuarioEncargado = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblUsuarioEncargado.text")); //$NON-NLS-1$
 		lblUsuarioEncargado.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblUsuarioEncargado = new GridBagConstraints();
 		gbc_lblUsuarioEncargado.anchor = GridBagConstraints.WEST;
@@ -332,7 +332,7 @@ public class Crear_EditarProyecto{
 		gbc_lblUsuarioEncargado.gridy = 4;
 		contentPane.add(lblUsuarioEncargado, gbc_lblUsuarioEncargado);
 
-		lblPrioridad = new JLabel("Prioridad");
+		lblPrioridad = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblPrioridad.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblPrioridad = new GridBagConstraints();
 		gbc_lblPrioridad.anchor = GridBagConstraints.WEST;
 		gbc_lblPrioridad.insets = new Insets(0, 0, 5, 5);
@@ -340,7 +340,7 @@ public class Crear_EditarProyecto{
 		gbc_lblPrioridad.gridy = 4;
 		contentPane.add(lblPrioridad, gbc_lblPrioridad);
 
-		lblEstado = new JLabel("Estado");
+		lblEstado = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblEstado.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
 		gbc_lblEstado.anchor = GridBagConstraints.WEST;
 		gbc_lblEstado.insets = new Insets(0, 0, 5, 5);
@@ -404,7 +404,7 @@ public class Crear_EditarProyecto{
 		gbc_cbEstado.gridy = 5;
 		contentPane.add(cbEstado, gbc_cbEstado);
 
-		btnAnadirRecursos = new JButton("Anadir Recursos");
+		btnAnadirRecursos = new JButton(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.btnAnadirRecursos.text")); //$NON-NLS-1$
 		btnAnadirRecursos.addActionListener(new BtnAnadirRecursosActionListener());
 		GridBagConstraints gbc_btnAnadirRecursos = new GridBagConstraints();
 		gbc_btnAnadirRecursos.anchor = GridBagConstraints.WEST;
@@ -413,7 +413,7 @@ public class Crear_EditarProyecto{
 		gbc_btnAnadirRecursos.gridy = 7;
 		contentPane.add(btnAnadirRecursos, gbc_btnAnadirRecursos);
 
-		lblCategoria = new JLabel("Categoria");
+		lblCategoria = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblCategoria.text")); //$NON-NLS-1$
 		if(opcion!=3) {
 			lblCategoria.setEnabled(false);
 		}
@@ -460,13 +460,13 @@ public class Crear_EditarProyecto{
 		if(opcion==2) {
 			txtDescripcion.setText(proyecto.getDescripcion());
 		}
-		txtDescripcion.setBorder(new TitledBorder(null, "Descripci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		txtDescripcion.setBorder(new TitledBorder(null, MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.txtDescripcion.borderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		scrollPane.setViewportView(txtDescripcion);
 
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.btnCancelar.text")); //$NON-NLS-1$
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
 		
-		lblcamposObligatorios = new JLabel("*Campos obligatorios");
+		lblcamposObligatorios = new JLabel(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.lblcamposObligatorios.text")); //$NON-NLS-1$
 		lblcamposObligatorios.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblcamposObligatorios = new GridBagConstraints();
 		gbc_lblcamposObligatorios.insets = new Insets(0, 0, 5, 5);
@@ -479,7 +479,7 @@ public class Crear_EditarProyecto{
 		gbc_btnCancelar.gridy = 12;
 		contentPane.add(btnCancelar, gbc_btnCancelar);
 
-		btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton(MessagesCrearEditarProyecto.getString("Crear_EditarProyecto.btnAceptar.text")); //$NON-NLS-1$
 		
 		btnAceptar.addActionListener(new BtnAceptarActionListener());
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();

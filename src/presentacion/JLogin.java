@@ -308,7 +308,8 @@ public class JLogin {
 			lbl_ErrorUser.setText("");
 
 			Usuario user = new Usuario (null,nombreUsuario,null,null,null, null, null);
-
+			//if(comboBox.getSelectedItem().equals("Ingles"))
+				
 			//Muestra la pantalla principal
 			JPrincipal window = new JPrincipal(user);
 			frame.setVisible(false);
@@ -333,13 +334,20 @@ public class JLogin {
 				if(comboBox.getSelectedItem().equals("Ingles") && defStatus) {
 					System.out.println("Mostrare ingles");
 					MessagesJLoginInter.setIdioma("Ingles");
+					MessagesJPrincipalInter.setIdioma("Ingles");
+					MessagespnlProyectosInter.setIdioma("Ingles");
+					Messages.setIdioma("Ingles");
+					MessagesUsuario.setIdioma("Ingles");
+					MessagesCrearEditarProyecto.setIdioma("Ingles");
+					MessagesCrearEditarUsuario2.setIdioma("Ingles");
+					MessagesJEnviarMensaje.setIdioma("Ingles");
 					frame.dispose();
 					defStatus = false;
 					JLogin v2 = new JLogin();
 					v2.frame.setVisible(true);
 				//	v2.frame.setTitle("Test");
 					v2.defStatus = false;
-					v2.comboBox.setSelectedIndex(1);
+					v2.comboBox.setSelectedIndex(1); //actualiza el combobox para evitar bucle infinito
 					frame.dispose();
 					//new JLogin().frame.setVisible(true);
 					
@@ -347,6 +355,13 @@ public class JLogin {
 					if(!defStatus && comboBox.getSelectedItem().equals("Espanol")) {
 					System.out.println("Mostrare espanol");
 					MessagesJLoginInter.setIdioma("Espanol");
+					MessagesJPrincipalInter.setIdioma("Espanol");
+					MessagespnlProyectosInter.setIdioma("Espanol");
+					Messages.setIdioma("Espanol");
+					MessagesUsuario.setIdioma("Espanol");
+					MessagesCrearEditarProyecto.setIdioma("Espanol");
+					MessagesCrearEditarUsuario2.setIdioma("Espanol");
+					MessagesJEnviarMensaje.setIdioma("Espanol");
 					frame.dispose();
 					defStatus = true;
 					JLogin v3 = new JLogin();

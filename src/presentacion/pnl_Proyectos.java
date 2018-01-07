@@ -192,7 +192,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lblIdDelProyecto.gridy = 2;
 		pnl_InfoProyecto.add(lblIdDelProyecto, gbc_lblIdDelProyecto);
 		
-		btnEditarRecursos = new JButton("Consultar recursos");
+		btnEditarRecursos = new JButton(Messages.getString("pnl_Proyectos.btnEditarRecursos.text")); //$NON-NLS-1$
 		if(nodoSelPadre) btnEditarRecursos.setEnabled(false);
 		btnEditarRecursos.addActionListener(new BtnEditarRecursosActionListener());
 		GridBagConstraints gbc_btnEditarRecursos = new GridBagConstraints();
@@ -203,7 +203,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_btnEditarRecursos.gridy = 2;
 		pnl_InfoProyecto.add(btnEditarRecursos, gbc_btnEditarRecursos);
 		
-		lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion = new JLabel(Messages.getString("pnl_Proyectos.lblDescripcion.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblDescripcion.setEnabled(false);
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
 		gbc_lblDescripcion.anchor = GridBagConstraints.SOUTHWEST;
@@ -230,7 +230,7 @@ public class pnl_Proyectos extends JPanel {
 		}
 		scrollPane_1.setViewportView(txtDescripcion);
 		
-		lblJefeDeProyecto = new JLabel("Jefe de Proyecto:");
+		lblJefeDeProyecto = new JLabel(Messages.getString("pnl_Proyectos.lblJefeDeProyecto.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblJefeDeProyecto.setEnabled(false);
 		GridBagConstraints gbc_lblJefeDeProyecto = new GridBagConstraints();
 		gbc_lblJefeDeProyecto.anchor = GridBagConstraints.SOUTHEAST;
@@ -255,7 +255,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(txtJefeProyecto, gbc_txtJefeProyecto);
 		txtJefeProyecto.setColumns(10);
 		
-		lblFechaInicio = new JLabel("Fecha Inicio:");
+		lblFechaInicio = new JLabel(Messages.getString("pnl_Proyectos.lblFechaInicio.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblFechaInicio.setEnabled(false);
 		GridBagConstraints gbc_lblFechaInicio = new GridBagConstraints();
 		gbc_lblFechaInicio.anchor = GridBagConstraints.EAST;
@@ -287,7 +287,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lbl_Cal.gridy = 7;
 		pnl_InfoProyecto.add(lbl_Cal, gbc_lbl_Cal);
 		
-		lblFechaLimite = new JLabel("Fecha Limite:");
+		lblFechaLimite = new JLabel(Messages.getString("pnl_Proyectos.lblFechaLimite.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblFechaLimite.setEnabled(false);
 		GridBagConstraints gbc_lblFechaLimite = new GridBagConstraints();
 		gbc_lblFechaLimite.anchor = GridBagConstraints.EAST;
@@ -320,7 +320,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lbl_Cal2.gridy = 7;
 		pnl_InfoProyecto.add(lbl_Cal2, gbc_lbl_Cal2);
 		
-		lblPrioridad = new JLabel("Prioridad:");
+		lblPrioridad = new JLabel(Messages.getString("pnl_Proyectos.lblPrioridad.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblPrioridad.setEnabled(false);
 		lblPrioridad.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_lblPrioridad = new GridBagConstraints();
@@ -345,7 +345,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(txtPrioridad, gbc_txtPrioridad);
 		txtPrioridad.setColumns(10);
 		
-		lblEstado_1 = new JLabel("Estado:");
+		lblEstado_1 = new JLabel(Messages.getString("pnl_Proyectos.lblEstado_1.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblEstado_1.setEnabled(false);
 		GridBagConstraints gbc_lblEstado_1 = new GridBagConstraints();
 		gbc_lblEstado_1.anchor = GridBagConstraints.EAST;
@@ -369,7 +369,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoProyecto.add(txtEstado, gbc_txtEstado);
 		txtEstado.setColumns(10);
 		
-		lblUsuariosAsociados = new JLabel("Usuarios Asociados:");
+		lblUsuariosAsociados = new JLabel(Messages.getString("pnl_Proyectos.lblUsuariosAsociados.text")); //$NON-NLS-1$
 		if(nodoSelPadre) lblUsuariosAsociados.setEnabled(false);
 		lblUsuariosAsociados.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		GridBagConstraints gbc_lblUsuariosAsociados = new GridBagConstraints();
@@ -420,7 +420,7 @@ public class pnl_Proyectos extends JPanel {
 		gbl_pnl_InfoTareas.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		pnl_InfoTareas.setLayout(gbl_pnl_InfoTareas);
 		
-		lblTareas = new JLabel("TAREAS");
+		lblTareas = new JLabel(Messages.getString("pnl_Proyectos.lblTareas.text")); //$NON-NLS-1$
 		lblTareas.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblTareas = new GridBagConstraints();
 		gbc_lblTareas.anchor = GridBagConstraints.NORTHWEST;
@@ -439,7 +439,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_btnAnadirTarea.gridy = 1;
 		pnl_InfoTareas.add(btnAnadirTarea, gbc_btnAnadirTarea);
 		
-		lblBuscarPor = new JLabel("Buscar por:");
+		lblBuscarPor = new JLabel(Messages.getString("pnl_Proyectos.lblBuscarPor.text")); //$NON-NLS-1$
 		lblBuscarPor.setIcon(new ImageIcon(pnl_Proyectos.class.getResource("/presentacion/search.png")));
 		GridBagConstraints gbc_lblBuscarPor = new GridBagConstraints();
 		gbc_lblBuscarPor.gridwidth = 2;
@@ -448,7 +448,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_lblBuscarPor.gridy = 2;
 		pnl_InfoTareas.add(lblBuscarPor, gbc_lblBuscarPor);
 		
-		lblEstado = new JLabel("Estado");
+		lblEstado = new JLabel(Messages.getString("pnl_Proyectos.lblEstado.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
 		gbc_lblEstado.anchor = GridBagConstraints.WEST;
 		gbc_lblEstado.insets = new Insets(0, 0, 5, 5);
@@ -466,7 +466,7 @@ public class pnl_Proyectos extends JPanel {
 		gbc_comboBox.gridy = 3;
 		pnl_InfoTareas.add(comboBox, gbc_comboBox);
 		
-		lblCategoria = new JLabel("Categoria");
+		lblCategoria = new JLabel(Messages.getString("pnl_Proyectos.lblCategoria.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblCategoria = new GridBagConstraints();
 		gbc_lblCategoria.anchor = GridBagConstraints.EAST;
 		gbc_lblCategoria.insets = new Insets(0, 0, 5, 5);
@@ -485,7 +485,7 @@ public class pnl_Proyectos extends JPanel {
 		pnl_InfoTareas.add(comboBox_1, gbc_comboBox_1);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new TitledBorder(null, "Listado de tareas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPane.setViewportBorder(new TitledBorder(null, Messages.getString("pnl_Proyectos.scrollPane.viewportBorderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);

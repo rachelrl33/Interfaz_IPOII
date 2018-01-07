@@ -122,7 +122,7 @@ public class pnl_Usuarios extends JPanel {
 		gbl_pnl_ListaUsuarios.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnl_ListaUsuarios.setLayout(gbl_pnl_ListaUsuarios);
 		
-		lbl_Buscar = new JLabel("Buscar");
+		lbl_Buscar = new JLabel(MessagesUsuario.getString("pnl_Usuarios.lbl_Buscar.text")); //$NON-NLS-1$
 		lbl_Buscar.setIcon(new ImageIcon(pnl_Usuarios.class.getResource("/presentacion/search.png")));
 		GridBagConstraints gbc_lbl_Buscar = new GridBagConstraints();
 		gbc_lbl_Buscar.insets = new Insets(0, 0, 5, 5);
@@ -232,7 +232,7 @@ public class pnl_Usuarios extends JPanel {
 		gbc_lbl_Avatar.gridy = 1;
 		pnl_InfoUsuarios.add(lbl_Avatar, gbc_lbl_Avatar);
 		
-		lbl_NombreDeUsuario = new JLabel("Usuario");
+		lbl_NombreDeUsuario = new JLabel(MessagesUsuario.getString("pnl_Usuarios.lbl_NombreDeUsuario.text")); //$NON-NLS-1$
 		lbl_NombreDeUsuario.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lbl_NombreDeUsuario = new GridBagConstraints();
 		gbc_lbl_NombreDeUsuario.anchor = GridBagConstraints.WEST;
@@ -269,7 +269,7 @@ public class pnl_Usuarios extends JPanel {
 		gbc_btnEliminarUsuario.gridy = 1;
 		pnl_InfoUsuarios.add(btnEliminarUsuario, gbc_btnEliminarUsuario);
 		
-		lbl_Email = new JLabel("email");
+		lbl_Email = new JLabel(MessagesUsuario.getString("pnl_Usuarios.lbl_Email.text")); //$NON-NLS-1$
 		lbl_Email.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lbl_Email = new GridBagConstraints();
 		gbc_lbl_Email.anchor = GridBagConstraints.WEST;
@@ -278,7 +278,7 @@ public class pnl_Usuarios extends JPanel {
 		gbc_lbl_Email.gridy = 2;
 		pnl_InfoUsuarios.add(lbl_Email, gbc_lbl_Email);
 		
-		lbl_Telefono = new JLabel("telefono");
+		lbl_Telefono = new JLabel(MessagesUsuario.getString("pnl_Usuarios.lbl_Telefono.text")); //$NON-NLS-1$
 		lbl_Telefono.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lbl_Telefono = new GridBagConstraints();
 		gbc_lbl_Telefono.anchor = GridBagConstraints.WEST;
@@ -289,7 +289,7 @@ public class pnl_Usuarios extends JPanel {
 		
 		textArea = new JTextArea();
 		textArea.setBackground(SystemColor.menu);
-		textArea.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Conocimientos y habilidades", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		textArea.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), MessagesUsuario.getString("pnl_Usuarios.textArea.borderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0))); //$NON-NLS-2$
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridheight = 3;
 		gbc_textArea.gridwidth = 12;
@@ -299,14 +299,14 @@ public class pnl_Usuarios extends JPanel {
 		gbc_textArea.gridy = 5;
 		pnl_InfoUsuarios.add(textArea, gbc_textArea);
 		
-		lbl_JefeDe = new JLabel("Jefe de:");
+		lbl_JefeDe = new JLabel(MessagesUsuario.getString("pnl_Usuarios.lbl_JefeDe.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lbl_JefeDe = new GridBagConstraints();
 		gbc_lbl_JefeDe.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_JefeDe.gridx = 1;
 		gbc_lbl_JefeDe.gridy = 9;
 		pnl_InfoUsuarios.add(lbl_JefeDe, gbc_lbl_JefeDe);
 		
-		lbl_TrabajandoEn = new JLabel("Trabajando en:");
+		lbl_TrabajandoEn = new JLabel(MessagesUsuario.getString("pnl_Usuarios.lbl_TrabajandoEn.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lbl_TrabajandoEn = new GridBagConstraints();
 		gbc_lbl_TrabajandoEn.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_TrabajandoEn.gridx = 7;

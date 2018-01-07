@@ -160,7 +160,7 @@ public class Crear_EditarUsuario2 {
 		txtA_conocimientos.setFont(new Font("Verdana", Font.BOLD, 13));
 		txtA_conocimientos.addKeyListener(new AT_conocimientosActionListener());
 		
-		lblConocimientosYHabilidades = new JLabel("Conocimientos y habilidades*");
+		lblConocimientosYHabilidades = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblConocimientosYHabilidades.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblConocimientosYHabilidades = new GridBagConstraints();
 		gbc_lblConocimientosYHabilidades.anchor = GridBagConstraints.WEST;
 		gbc_lblConocimientosYHabilidades.gridwidth = 2;
@@ -182,7 +182,7 @@ public class Crear_EditarUsuario2 {
 		
 		
 		//NOMBRE
-		lblNombre = new JLabel("Nombre*");
+		lblNombre = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblNombre.text")); //$NON-NLS-1$
 		lblNombre.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.WEST;
@@ -229,7 +229,7 @@ public class Crear_EditarUsuario2 {
 		
 		
 		//TELEFONO
-		lblTelefono = new JLabel("Telefono");
+		lblTelefono = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblTelefono.text")); //$NON-NLS-1$
 		lblTelefono.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblTelefono = new GridBagConstraints();
 		gbc_lblTelefono.anchor = GridBagConstraints.SOUTHWEST;
@@ -268,7 +268,7 @@ public class Crear_EditarUsuario2 {
 		gbc_lbl_WarningTel.gridy = 4;
 		frmUsuario.getContentPane().add(lbl_WarningTel, gbc_lbl_WarningTel);
 		
-		lblSeleccionarAvatar = new JLabel("Seleccionar Avatar");
+		lblSeleccionarAvatar = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblSeleccionarAvatar.text")); //$NON-NLS-1$
 		lblSeleccionarAvatar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lblSeleccionarAvatar = new GridBagConstraints();
 		gbc_lblSeleccionarAvatar.gridwidth = 5;
@@ -279,7 +279,7 @@ public class Crear_EditarUsuario2 {
 
 		
 		//EMAIL
-		lbl_Email = new JLabel("Email*");
+		lbl_Email = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lbl_Email.text")); //$NON-NLS-1$
 		lbl_Email.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lbl_Email = new GridBagConstraints();
 		gbc_lbl_Email.gridwidth = 2;
@@ -313,7 +313,7 @@ public class Crear_EditarUsuario2 {
 		
 		
 		//CONTRASEnA
-		lblContrasena = new JLabel("Contrasena");
+		lblContrasena = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblContrasena.text")); //$NON-NLS-1$
 		lblContrasena.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
 		gbc_lblContrasena.gridwidth = 2;
@@ -325,7 +325,7 @@ public class Crear_EditarUsuario2 {
 		
 		
 		//REPETIR CONTRASENA
-		lblRepetirContrasea = new JLabel("Repetir contrase\u00F1a");
+		lblRepetirContrasea = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblRepetirContrasea.text")); //$NON-NLS-1$
 		lblRepetirContrasea.setFont(new Font("Verdana", Font.BOLD, 12));
 		GridBagConstraints gbc_lblRepetirContrasea = new GridBagConstraints();
 		gbc_lblRepetirContrasea.insets = new Insets(0, 0, 5, 5);
@@ -373,10 +373,10 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.getContentPane().add(lbl_WarningCoR, gbc_lbl_WarningCoR);
 		
 
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.btnCancelar.text")); //$NON-NLS-1$
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
 		
-		lblcamposObligatorios = new JLabel("*Campos obligatorios");
+		lblcamposObligatorios = new JLabel(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.lblcamposObligatorios.text")); //$NON-NLS-1$
 		lblcamposObligatorios.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblcamposObligatorios = new GridBagConstraints();
 		gbc_lblcamposObligatorios.anchor = GridBagConstraints.WEST;
@@ -393,7 +393,7 @@ public class Crear_EditarUsuario2 {
 		frmUsuario.getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 		
-		btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton(MessagesCrearEditarUsuario2.getString("Crear_EditarUsuario2.btnAceptar.text")); //$NON-NLS-1$
 		btnAceptar.addActionListener(new BtnAceptarActionListener());
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);

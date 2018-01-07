@@ -354,7 +354,7 @@ public class JPrincipal {
 
 		
 
-		btnCerrarSesion = new JButton("Cerrar sesion");
+		btnCerrarSesion = new JButton(MessagesJPrincipalInter.getString("JPrincipal.btnCerrarSesion.text")); //$NON-NLS-1$
 
 		btnCerrarSesion.addActionListener(new BtnCerrarSesionActionListener());
 
@@ -374,7 +374,7 @@ public class JPrincipal {
 
 		
 
-		btnAyuda = new JButton("Ayuda");
+		btnAyuda = new JButton(MessagesJPrincipalInter.getString("JPrincipal.btnAyuda.text")); //$NON-NLS-1$
 
 		btnAyuda.addActionListener(new BtnAyudaActionListener());
 

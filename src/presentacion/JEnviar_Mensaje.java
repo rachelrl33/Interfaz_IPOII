@@ -85,7 +85,7 @@ public class JEnviar_Mensaje {
 	 */
 	private void initialize() {
 		frmMensaje = new JFrame();
-		frmMensaje.setTitle("Mensaje");
+		frmMensaje.setTitle(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.frmMensaje.title")); //$NON-NLS-1$
 		frmMensaje.setIconImage(Toolkit.getDefaultToolkit().getImage(JEnviar_Mensaje.class.getResource("/presentacion/email.png")));
 		frmMensaje.setBounds(100, 100, 644, 451);
 		frmMensaje.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -97,7 +97,7 @@ public class JEnviar_Mensaje {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmMensaje.getContentPane().setLayout(gridBagLayout);
 		
-		lblEnviarMensaje = new JLabel("   Enviar Mensaje");
+		lblEnviarMensaje = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblEnviarMensaje.text")); //$NON-NLS-1$
 		lblEnviarMensaje.setIcon(new ImageIcon(JEnviar_Mensaje.class.getResource("/presentacion/email.png")));
 		lblEnviarMensaje.setFont(new Font("Verdana", Font.BOLD, 14));
 		GridBagConstraints gbc_lblEnviarMensaje = new GridBagConstraints();
@@ -108,7 +108,7 @@ public class JEnviar_Mensaje {
 		gbc_lblEnviarMensaje.gridy = 1;
 		frmMensaje.getContentPane().add(lblEnviarMensaje, gbc_lblEnviarMensaje);
 		
-		lblDestinatario = new JLabel("Destinatario");
+		lblDestinatario = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblDestinatario.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblDestinatario = new GridBagConstraints();
 		gbc_lblDestinatario.anchor = GridBagConstraints.WEST;
 		gbc_lblDestinatario.insets = new Insets(0, 0, 5, 5);
@@ -145,7 +145,7 @@ public class JEnviar_Mensaje {
 		gbc_lbl_ErrorDest.gridy = 2;
 		frmMensaje.getContentPane().add(lbl_ErrorDest, gbc_lbl_ErrorDest);
 		
-		lblAsunto = new JLabel("Asunto");
+		lblAsunto = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblAsunto.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblAsunto = new GridBagConstraints();
 		gbc_lblAsunto.anchor = GridBagConstraints.WEST;
 		gbc_lblAsunto.insets = new Insets(0, 0, 5, 5);
@@ -174,7 +174,7 @@ public class JEnviar_Mensaje {
 		gbc_lbl_WarningAsunt.gridy = 3;
 		frmMensaje.getContentPane().add(lbl_WarningAsunt, gbc_lbl_WarningAsunt);
 		
-		lblAdjuntar = new JLabel("Mensaje");
+		lblAdjuntar = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblAdjuntar.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblAdjuntar = new GridBagConstraints();
 		gbc_lblAdjuntar.anchor = GridBagConstraints.WEST;
 		gbc_lblAdjuntar.insets = new Insets(0, 0, 5, 5);
@@ -194,7 +194,7 @@ public class JEnviar_Mensaje {
 		txtA_Mensaje = new JTextArea();
 		scrollPane.setViewportView(txtA_Mensaje);
 		
-		lblAdjuntarArchivo = new JLabel("Adjuntar archivo");
+		lblAdjuntarArchivo = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblAdjuntarArchivo.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblAdjuntarArchivo = new GridBagConstraints();
 		gbc_lblAdjuntarArchivo.gridwidth = 2;
 		gbc_lblAdjuntarArchivo.insets = new Insets(0, 0, 5, 5);
@@ -222,7 +222,7 @@ public class JEnviar_Mensaje {
 		gbc_btnAdjuntarArchivos.gridy = 6;
 		frmMensaje.getContentPane().add(btnAdjuntarArchivos, gbc_btnAdjuntarArchivos);
 		
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.btnCancelar.text")); //$NON-NLS-1$
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.anchor = GridBagConstraints.EAST;
@@ -231,7 +231,7 @@ public class JEnviar_Mensaje {
 		gbc_btnCancelar.gridy = 7;
 		frmMensaje.getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
-		btnEnviar = new JButton("Enviar");
+		btnEnviar = new JButton(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.btnEnviar.text")); //$NON-NLS-1$
 		btnEnviar.setEnabled(false);
 		btnEnviar.addActionListener(new BtnEnviarActionListener());
 		GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
