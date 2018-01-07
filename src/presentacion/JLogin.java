@@ -52,6 +52,7 @@ import java.awt.event.ItemEvent;
 
 public class JLogin {
 
+	boolean defStatus = true;
 	JFrame frame;
 	static JPanel pnlLogin;
 	private JPanel pnlUser;
@@ -326,24 +327,38 @@ public class JLogin {
 	}
 	private class ComboBoxItemListener implements ItemListener {
 		public void itemStateChanged(ItemEvent arg0) {
-			if(comboBox.getSelectedItem()!=null) {
-				System.out.println(comboBox.getSelectedItem());
-				if(comboBox.getSelectedItem().equals("Ingles")) {
+			//int i = 0;
+			//if(comboBox.getSelectedItem()!=null || comboBox.getSelectedItem()!="Epanol") {
+			//	System.out.println(comboBox.getSelectedItem());
+				if(comboBox.getSelectedItem().equals("Ingles") && defStatus) {
 					System.out.println("Mostrare ingles");
 					MessagesJLoginInter.setIdioma("Ingles");
-					//JLogin ventana = new JLogin();
-					//ventana.getFrame().setVisible(true);
-					//frame.dispose();
-					frame.repaint();
+					frame.dispose();
+					defStatus = false;
+					JLogin v2 = new JLogin();
+					v2.frame.setVisible(true);
+				//	v2.frame.setTitle("Test");
+					v2.defStatus = false;
+					v2.comboBox.setSelectedIndex(1);
+					frame.dispose();
+					//new JLogin().frame.setVisible(true);
+					
 				}else {
+					if(!defStatus && comboBox.getSelectedItem().equals("Espanol")) {
 					System.out.println("Mostrare espanol");
 					MessagesJLoginInter.setIdioma("Espanol");
-					frame.repaint();
+					frame.dispose();
+					defStatus = true;
+					JLogin v3 = new JLogin();
+					v3.frame.setVisible(true);
+					v3.defStatus=true;
+					frame.dispose();
+					}
 				}
 				
 				//JLogin ventana = new JLogin();
 			}
 		}
-	}
+	
 }
 

@@ -428,13 +428,13 @@ public class EditorGrafico extends JFrame {
 			String nodo = (arg0.getPath().getLastPathComponent()).toString();
 			switch (nodo){
 				case "Archivo 1":
-					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Archivo1.png")));
+					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/com01.gif")));
 					break;
 				case "Archivo 2":
-					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Archivo2.png")));
+					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/IC378068.jpg.png")));
 					break;
 				case "Archivo 3":
-					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/Archivo3.png")));
+					miAreaDibujo.setIcon(new ImageIcon(EditorGrafico.class.getResource("/presentacion/modelo-logico-inicial2.png")));
 					break;
 					
 			}
