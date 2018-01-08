@@ -55,6 +55,7 @@ public class JEnviar_Mensaje {
 	private String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
 	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
+	private JLabel lblCamposObligatorios;
 
 	/**
 	 * Launch the application.
@@ -92,7 +93,7 @@ public class JEnviar_Mensaje {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{43, 72, 0, 24, 73, 84, 36, 0, 66, 71, 34, 0};
-		gridBagLayout.rowHeights = new int[]{23, 45, 0, 37, 42, 195, 19, 34, 32, 0};
+		gridBagLayout.rowHeights = new int[]{23, 45, 0, 37, 42, 122, 35, 52, 32, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmMensaje.getContentPane().setLayout(gridBagLayout);
@@ -192,6 +193,7 @@ public class JEnviar_Mensaje {
 		frmMensaje.getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		txtA_Mensaje = new JTextArea();
+		txtA_Mensaje.setLineWrap(true);
 		scrollPane.setViewportView(txtA_Mensaje);
 		
 		lblAdjuntarArchivo = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblAdjuntarArchivo.text")); //$NON-NLS-1$
@@ -224,8 +226,18 @@ public class JEnviar_Mensaje {
 		
 		btnCancelar = new JButton(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.btnCancelar.text")); //$NON-NLS-1$
 		btnCancelar.addActionListener(new BtnCancelarActionListener());
+		
+		lblCamposObligatorios = new JLabel(MessagesJEnviarMensaje.getString("JEnviar_Mensaje.lblCamposObligatorios.text")); //$NON-NLS-1$
+		lblCamposObligatorios.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblCamposObligatorios = new GridBagConstraints();
+		gbc_lblCamposObligatorios.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblCamposObligatorios.gridwidth = 4;
+		gbc_lblCamposObligatorios.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCamposObligatorios.gridx = 1;
+		gbc_lblCamposObligatorios.gridy = 7;
+		frmMensaje.getContentPane().add(lblCamposObligatorios, gbc_lblCamposObligatorios);
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-		gbc_btnCancelar.anchor = GridBagConstraints.EAST;
+		gbc_btnCancelar.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCancelar.gridx = 8;
 		gbc_btnCancelar.gridy = 7;
@@ -235,7 +247,7 @@ public class JEnviar_Mensaje {
 		btnEnviar.setEnabled(false);
 		btnEnviar.addActionListener(new BtnEnviarActionListener());
 		GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
-		gbc_btnEnviar.anchor = GridBagConstraints.EAST;
+		gbc_btnEnviar.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnEnviar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnEnviar.gridx = 9;
 		gbc_btnEnviar.gridy = 7;

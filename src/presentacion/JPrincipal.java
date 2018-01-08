@@ -683,7 +683,7 @@ public class JPrincipal {
 
 		public void actionPerformed(ActionEvent e) {
 
-			String url="https://drive.google.com/file/d/1uIDQ2XJSvMhCO9RAVDxZE_0Fy5_IyQsv/view?usp=sharing";
+			String url="https://drive.google.com/open?id=1lX1nbcOYyNOy1YXeVK7Qzqrb7gbJM2C4";
 
 			openWebPage(url);
 
